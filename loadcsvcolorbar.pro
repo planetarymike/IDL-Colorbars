@@ -1,4 +1,4 @@
-pro loadcsvcolorbar,  filename = filename
+pro loadcsvcolorbar, filename
   ;;commands to load my own color table combining qualitative colors
   ;;and a tabulated colorbar, based on Davin's loadct2
 
