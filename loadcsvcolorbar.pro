@@ -1,4 +1,4 @@
-pro loadcsvcolorbar, filename
+pro loadcsvcolorbar, filename, reverse = reverse
   ;;commands to load my own color table combining qualitative colors
   ;;and a tabulated colorbar, based on Davin's loadct2
 
@@ -32,9 +32,9 @@ pro loadcsvcolorbar, filename
   myg[qi] = qg
   myb[qi] = qb
 
-  ;;the color indices usable in the colorbar is therefore
-  bottom_c = nqual
-  top_c = !d.table_size-1
+  ;;the color indices usable in the colorbar are therefore
+  bottom_c = 0
+  top_c = !d.table_size-nqual-1
 
   ;;now interpolate the color bar to the appropriate size
   interpr = interpolate(float(mytbl.field1), findgen(top_c-bottom_c+1) $
@@ -52,13 +52,17 @@ pro loadcsvcolorbar, filename
      interpb *= 255
   endif
 
-
-
   ;;add the colorbar values from file to the rgb
-  myr[bottom_c:top_c] = interpr
-  myg[bottom_c:top_c] = interpg
-  myb[bottom_c:top_c] = interpb
-  
+  if keyword_set(reverse) then begin
+     myr[bottom_c:top_c] = reverse(interpr)
+     myg[bottom_c:top_c] = reverse(interpg)
+     myb[bottom_c:top_c] = reverse(interpb)
+  endif else begin
+     myr[bottom_c:top_c] = interpr
+     myg[bottom_c:top_c] = interpg
+     myb[bottom_c:top_c] = interpb
+  endelse
+
   ;;return the rgb values of this colorbar
   tvlct, r, g, b, /get
   r = myr
