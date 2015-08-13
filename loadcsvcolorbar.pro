@@ -1,21 +1,62 @@
-pro loadcsvcolorbar, filename, reverse = reverse, silent = silent, noqual = noqual
-  ;;commands to load my own color table combining qualitative colors
-  ;;and a tabulated colorbar, based on Davin's loadct2
+;;LOADCSVCOLORBAR.PRO
+;;commands to load a CSV color table file from a local directory,
+;;along with some colorbrewer qualitative colors in selected indices,
+;;as defined in qualcolors.pro
+;;
+;; OPTIONAL:
+;;
+;; COLORTBL: the CSV file basename (no directory or extension) or
+;; index of the colorbar to load. This must refer to a three column
+;; CSV file with RGB values of the colors to load into the color
+;; table. Interpolation will be performed over the color entries to
+;; fit the color table into the available space. If omitted, the user
+;; can interactively select from the available colorbars via a dialog.
+;;
+;; DIRECTORY=: overrides the default search directory with a user
+;; specified directory.
+;;
+;; /SILENT: when loading a color table by index, by default the name
+;; of the color table is printed. With this flag set, no output is
+;; printed.
+;;
+;; /REVERSE: load the color table so that the color indices in IDL are
+;; reversed relative to the order in the file.
+;;
+;; /NOQUAL: load the color table without the qualitative colorbrewer
+;; colors. Unless the color table contains them at the ends of the
+;; range, white and black will not be accessible with this flag
+;; enabled.
 
-  ;;find RGB table directory
-  @'colorbar_filenames.pro'
-  ;;the directory we want is rgbdir
+
+pro loadcsvcolorbar, colortbl, $
+                     directory = directory, $
+                     silent = silent, $
+                     reverse = reverse, $
+                     noqual = noqual
+
+
+  if keyword_set(directory) then begin
+     ;;user-specified absolute directory
+     rgbdir = directory
+  endif else begin
+     ;;find RGB table directory (by default IDL_RGB_VALUES/ in the same
+     ;;directory as this procedure file on the IDL path)
+     @'colorbar_filenames.pro'
+     ;;this defines the directory we want as rgbdir
+  endelse
+
   
-  if n_elements(filename) GT 0 then begin
+  if n_elements(colortbl) GT 0 then begin
      ;;user specified a colorbar
-     if size(filename, type = 7) EQ 7 then begin 
-        ;;by string filename, just add the directory
-        filename = rgbdir+filename
-     endif else if isa(filename, /integer) then begin
+     if size(colortbl, type = 7) EQ 7 then begin 
+        ;;string colortbl, this is a filename, just add the directory
+        ;;and extension
+        colortbl = rgbdir+colortbl
+     endif else if isa(colortbl, /integer) then begin
         ;;by integer, get the filenames and pick the right one
         colorbarnames = file_basename(file_search(rgbdir+"/*"), '.dat')
-        if ~keyword_set(silent) then print, "Loading CSV color bar: ", colorbarnames[filename]
-        filename = rgbdir+colorbarnames[filename]+".dat"
+        if ~keyword_set(silent) then print, "Loading CSV color bar: ", colorbarnames[colortbl]
+        colortbl = rgbdir+colorbarnames[colortbl]+".dat"
      endif else begin
         print, "I'm not sure which colorbar you're trying to load, please pick by hand:"
      endelse
@@ -23,14 +64,14 @@ pro loadcsvcolorbar, filename, reverse = reverse, silent = silent, noqual = noqu
      colorbarnames = file_basename(file_search(rgbdir+"/*"), '.dat')
      print, colorbarnames,  format = '(A30,A30,A30)'
      read, choice, prompt = "Select colorbar number: "
-     filename = rgbdir+colorbarnames[choice]+".dat"
+     colortbl = rgbdir+colorbarnames[choice]+".dat"
   endelse
   
   COMMON colors, r_orig, g_orig, b_orig, r_curr, g_curr, b_curr
   ;;@colors_com
 
   ;;load the RGB values from file
-  mytbl = read_csv(filename)
+  mytbl = read_csv(colortbl)
 
   ;;setup color arrays
   myr = indgen(256)
@@ -81,13 +122,19 @@ pro loadcsvcolorbar, filename, reverse = reverse, silent = silent, noqual = noqu
   g = myg
   b = myb
   tvlct, r, g, b
-  
-  r_curr = r                    ;Important!  Update the colors common block.
+
+  ;;Important!  Update the colors common block.  
+  r_curr = r
   g_curr = g
   b_curr = b
 
-  !p.color = gray50
-  !p.background = white
+  if ~keyword_set(noqual) then begin
+     ;;if we have qualitative colors, then set the global plot
+     ;;variables to some nice defaults. Otherwise, the user is on
+     ;;their own!
+     !p.color = gray50
+     !p.background = white
+  endif
 
   ;;tplot global options to make sure the colorbars don't use
   ;;the qualitative colors

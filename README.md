@@ -28,7 +28,10 @@ If you are using tplot, written in large part by Davin Larson (available here: h
 
 This is done automatically by loadcsvcolorbar if it detects tplot on your IDL path.
 
-Depending on your inclination, you may wish to add qualcolors.pro to your IDL startup script, defining variable names to their qualitative indices (eg red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin.
+I recommend adding qualcolors.pro to your IDL startup script. This sets some variable names to their qualitative indices (eg red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin. qualcolors.pro also defines the usable range of colors in the color bar and the number of qualitative colors as variable names, so that you can replace the magic numbers in the tvscl example above with
+
+    sclarr=bytscl(arr,top=(top_c-bottom_c))+bottom_c
+    tv, sclarr
 
 Many routines and files hosted here are useful only if you want to reproduce the work I did to export the IDL color tables, analyze them with the python tools, and import new colortables into IDL. This work requires the python viscm toolkit, available here: https://github.com/matplotlib/viscm . There's also an unfortunate detour into Mathematica to perform some basic file generation (basically, to convert IDL csv tables to the viscm format), as I don't yet know how to do this sort of thing in Python.
 
