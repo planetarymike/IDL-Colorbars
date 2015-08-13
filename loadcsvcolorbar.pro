@@ -1,4 +1,4 @@
-pro loadcsvcolorbar, filename, reverse = reverse, silent = silent
+pro loadcsvcolorbar, filename, reverse = reverse, silent = silent, noqual = noqual
   ;;commands to load my own color table combining qualitative colors
   ;;and a tabulated colorbar, based on Davin's loadct2
 
@@ -46,7 +46,8 @@ pro loadcsvcolorbar, filename, reverse = reverse, silent = silent
   ;;the color indices usable in the colorbar are therefore
   bottom_c = 0
   top_c = !d.table_size-nqual-1
-
+  if keyword_set(noqual) then top_c = !d.table_size-1
+  
   ;;now interpolate the color bar to the appropriate size
   interpr = interpolate(float(mytbl.field1), findgen(top_c-bottom_c+1) $
                                        *(n_elements(mytbl.field1)-1)/(top_c-bottom_c))
