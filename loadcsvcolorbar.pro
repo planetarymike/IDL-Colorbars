@@ -1,4 +1,4 @@
-pro loadcsvcolorbar, filename, reverse = reverse
+pro loadcsvcolorbar, filename, reverse = reverse, silent = silent
   ;;commands to load my own color table combining qualitative colors
   ;;and a tabulated colorbar, based on Davin's loadct2
 
@@ -6,15 +6,26 @@ pro loadcsvcolorbar, filename, reverse = reverse
   @'colorbar_filenames.pro'
   ;;the directory we want is rgbdir
   
-  if ~keyword_set(filename) then begin
+  if n_elements(filename) GT 0 then begin
+     ;;user specified a colorbar
+     if size(filename, type = 7) EQ 7 then begin 
+        ;;by string filename, just add the directory
+        filename = rgbdir+filename
+     endif else if isa(filename, /integer) then begin
+        ;;by integer, get the filenames and pick the right one
+        colorbarnames = file_basename(file_search(rgbdir+"/*"), '.dat')
+        if ~keyword_set(silent) then print, "Loading CSV color bar: ", colorbarnames[filename]
+        filename = rgbdir+colorbarnames[filename]+".dat"
+     endif else begin
+        print, "I'm not sure which colorbar you're trying to load, please pick by hand:"
+     endelse
+  endif else begin
      colorbarnames = file_basename(file_search(rgbdir+"/*"), '.dat')
      print, colorbarnames,  format = '(A30,A30,A30)'
      read, choice, prompt = "Select colorbar number: "
      filename = rgbdir+colorbarnames[choice]+".dat"
-  endif else begin
-     filename = rgbdir+filename
   endelse
-
+  
   COMMON colors, r_orig, g_orig, b_orig, r_curr, g_curr, b_curr
   ;;@colors_com
 
