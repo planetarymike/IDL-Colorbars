@@ -85,9 +85,34 @@ pro loadcsvcolorbar, colortbl, $
   myb[qi] = qb
 
   ;;the color indices usable in the colorbar are therefore
-  bottom_c = 0
-  top_c = !d.table_size-nqual-1
-  if keyword_set(noqual) then top_c = !d.table_size-1
+  if max(qi) EQ !d.table_size-1 and max(qi)-min(qi)+1 EQ nqual then begin
+     ;;qualcolors are at top of color table
+     bottom_c = 0
+     top_c = !d.table_size-nqual-1
+  endif else if min(qi) EQ 0 and max(qi)-min(qi)+1 EQ nqual then begin
+     ;;qualcolors are at bottom of color table
+     bottom_c = nqual
+     top_c = !d.table_size-1
+  endif else begin
+     print, "**********************************************************"
+     print, "*************Error in loadcsvcolorbar.pro*****************"
+     print, "**********************************************************"
+     print, "Cannot determine where the qualitative colors are located,"
+     print, " disabling qualitative colors."
+     print, ""
+     print, "Colorbar "+file_basename(colortbl)+" will be loaded "
+     print, " without qualitative indices. Check qualcolors.pro to "
+     print, " remedy the problem."
+     print, "**********************************************************"
+     print, "**********************************************************"
+     print, "**********************************************************"
+     noqual = 1
+  endelse
+     
+  if keyword_set(noqual) then begin
+     bottom_c = 0
+     top_c = !d.table_size-1
+  endif
   
   ;;now interpolate the color bar to the appropriate size
   interpr = interpolate(float(mytbl.field1), findgen(top_c-bottom_c+1) $
