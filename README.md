@@ -8,9 +8,16 @@ Also included is a series of routines to read in RGB colorbars from CSV files an
 To install, clone the entire repository onto your machine and add it to your IDL !PATH variable. All of the routines should compile on demand and find the files and directories they need automatically.
 
 To load a table from the supplied colortable, point loadct at the location of the table file:
-loadct, file='/path/to/IDL-Colorbars/mycolorbars.tbl'. The new perceptual schemes are stored at the end of the table, in indices 75 and on.
 
-To load a set of qualitative colors and a colorbar from file, use the command loadcsvcolorbar. You can specify the filename of a colorbar CSV file, relative to the IDL_rgb_values directory, or call it without arguments and see a list of all the colorbar files hosted in this directory, and select which one to load by number.
+	loadct, file='/path/to/IDL-Colorbars/mycolorbars.tbl' 
+
+The new perceptual schemes are stored at the end of the table, in indices 75 and on.
+
+To load a set of qualitative colors and a colorbar from file, use the command 
+
+	loadcsvcolorbar 
+
+You can specify the filename of a colorbar CSV file, relative to the IDL_rgb_values directory, or call it without arguments and see a list of all the colorbar files hosted in this directory, and select which one to load by number.
 
 Interpolation is performed in RGB space on the input CSV file, to compress or expand the input color arrays to the space available in the IDL colortable. For this reason, it is possible to create new RGB colorbars easily in CSV format. Two examples are given in the colorbar_csv_source directory, bw.csv and brw.csv . Because RGB colorspace is not perceptually uniform, it's best to keep it simple with manually entered color tables, and leave creating new perceptually uniform color bars to languages with a more robust color handling system than IDL. 
 
