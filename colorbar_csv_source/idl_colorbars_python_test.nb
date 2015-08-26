@@ -1,0 +1,3401 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    192083,       3392]
+NotebookOptionsPosition[    189069,       3293]
+NotebookOutlinePosition[    189858,       3319]
+CellTagsIndexPosition[    189690,       3313]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6482162358487186`*^9, 3.6482162429075823`*^9}}],
+
+Cell[BoxData["\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/IDL-\
+Colorbars/colorbar_csv_source\"\>"], "Output",
+ CellChangeTimes->{3.6482162441979027`*^9, 3.649608458536663*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"cmap1", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<matplotlib_option_d.csv\>\"", ",", "\"\<Data\>\""}], "]"}]}],
+   ";"}]], "Input",
+ CellChangeTimes->{{3.648061179003487*^9, 3.6480612234502783`*^9}, 
+   3.648067618173285*^9, {3.648216249692092*^9, 3.648216260227953*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"crainbow", "=", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<cubehelix_rainbow_256.csv\>\"", ",", "\"\<Data\>\""}], 
+     "]"}], "/", "255."}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.648068007171833*^9, 3.648068030139607*^9}, {
+   3.6480681276019287`*^9, 3.6480681481888113`*^9}, 3.648216264767478*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"mplrainbow", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<MPL_rainbow_BW.csv\>\"", ",", "\"\<Data\>\""}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.648068160197073*^9, 3.648068183077076*^9}, 
+   3.648068218017405*^9, {3.648072146638451*^9, 3.648072147262402*^9}, {
+   3.648216269436138*^9, 3.648216306972171*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "@", "crainbow"}]], "Input",
+ CellChangeTimes->{{3.648061231849666*^9, 3.648061240557205*^9}, {
+  3.6480680336969433`*^9, 3.648068035653761*^9}}],
+
+Cell[BoxData["256"], "Output",
+ CellChangeTimes->{3.6480612409513187`*^9, 3.648062768823475*^9, 
+  3.648064904322626*^9, 3.648067619761849*^9, 3.6480680361371098`*^9, 
+  3.6480681327928457`*^9, 3.6480682246157103`*^9, 3.648216284089087*^9, 
+  3.6496084587745523`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "Rectangle"}]], "Input",
+ CellChangeTimes->{{3.648062820085143*^9, 3.648062821312356*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox["\<\"\!\(\*RowBox[{\\\"Rectangle\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"x\\\", \
+\\\"TI\\\"], StyleBox[\\\"min\\\", \\\"TI\\\"]], \\\",\\\", \
+SubscriptBox[StyleBox[\\\"y\\\", \\\"TI\\\"], StyleBox[\\\"min\\\", \
+\\\"TI\\\"]]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{SubscriptBox[StyleBox[\\\"x\\\", \\\"TI\\\"], StyleBox[\\\"max\\\", \
+\\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"y\\\", \\\"TI\\\"], \
+StyleBox[\\\"max\\\", \\\"TI\\\"]]}], \\\"}\\\"}]}], \\\"]\\\"}]\) represents \
+an axis-aligned filled rectangle from \!\(\*RowBox[{\\\"{\\\", \
+RowBox[{SubscriptBox[StyleBox[\\\"x\\\", \\\"TI\\\"], StyleBox[\\\"min\\\", \
+\\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"y\\\", \\\"TI\\\"], \
+StyleBox[\\\"min\\\", \\\"TI\\\"]]}], \\\"}\\\"}]\) to \
+\!\(\*RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"x\\\", \
+\\\"TI\\\"], StyleBox[\\\"max\\\", \\\"TI\\\"]], \\\",\\\", \
+SubscriptBox[StyleBox[\\\"y\\\", \\\"TI\\\"], StyleBox[\\\"max\\\", \
+\\\"TI\\\"]]}], \\\"}\\\"}]\).\\n\!\(\*RowBox[{\\\"Rectangle\\\", \\\"[\\\", \
+RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"x\\\", \\\"TI\\\"], \
+StyleBox[\\\"min\\\", \\\"TI\\\"]], \\\",\\\", \
+SubscriptBox[StyleBox[\\\"y\\\", \\\"TI\\\"], StyleBox[\\\"min\\\", \
+\\\"TI\\\"]]}], \\\"}\\\"}], \\\"]\\\"}]\) corresponds to a unit square with \
+its bottom-left corner at \!\(\*RowBox[{\\\"{\\\", \
+RowBox[{SubscriptBox[StyleBox[\\\"x\\\", \\\"TI\\\"], StyleBox[\\\"min\\\", \
+\\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"y\\\", \\\"TI\\\"], \
+StyleBox[\\\"min\\\", \\\"TI\\\"]]}], \\\"}\\\"}]\).\"\>", "MSG"], 
+  "\[NonBreakingSpace]", 
+  ButtonBox[
+   StyleBox["\[RightSkeleton]", "SR"],
+   Active->True,
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Rectangle"]}]], "Print", "PrintUsage",
+ CellChangeTimes->{3.649608459507758*^9},
+ CellTags->"Info-984607dc-bfb2-433f-be7c-4b6a93e476d7"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"colorbar", "[", "cmap_", "]"}], ":=", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"RGBColor", "@@", 
+         RowBox[{"cmap", "[", 
+          RowBox[{"[", "ii", "]"}], "]"}]}], ",", 
+        RowBox[{"Rectangle", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            FractionBox[
+             RowBox[{"ii", "-", "1"}], 
+             RowBox[{"Length", "[", "cmap", "]"}]], ",", "0"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            FractionBox["ii", 
+             RowBox[{"Length", "[", "cmap", "]"}]], ",", "1"}], "}"}]}], 
+         "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"ii", ",", "1", ",", 
+        RowBox[{"Length", "[", "cmap", "]"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"AspectRatio", "\[Rule]", "0.2"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.648062774709776*^9, 3.648062893415534*^9}, 
+   3.6480631027209883`*^9, {3.648071052002184*^9, 3.648071052604917*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"colorbar", "[", "crainbow", "]"}]], "Input",
+ CellChangeTimes->{{3.648062880921598*^9, 3.648062883335888*^9}, {
+  3.648068134708187*^9, 3.648068137300136*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {RGBColor[
+    6.636694485562685*^-8, 6.636686583450336*^-8, 6.636681958909097*^-8], 
+    RectangleBox[{0, 0}, NCache[{Rational[1, 256], 1}, {0.00390625, 1}]]}, 
+   {RGBColor[0.015290469272447996`, 0.003139909004492276, 0.], 
+    RectangleBox[NCache[{Rational[1, 256], 0}, {0.00390625, 0}], 
+     NCache[{Rational[1, 128], 1}, {0.0078125, 1}]]}, 
+   {RGBColor[0.030570723641820022`, 0.006282914675981649, 0.], 
+    RectangleBox[NCache[{Rational[1, 128], 0}, {0.0078125, 0}], 
+     NCache[{Rational[3, 256], 1}, {0.01171875, 1}]]}, 
+   {RGBColor[0.04554839475151619, 0.009432238433047548, 0.], 
+    RectangleBox[NCache[{Rational[3, 256], 0}, {0.01171875, 0}], 
+     NCache[{Rational[1, 64], 1}, {0.015625, 1}]]}, 
+   {RGBColor[0.058316491547638356`, 0.012591028529822888`, 0.], 
+    RectangleBox[NCache[{Rational[1, 64], 0}, {0.015625, 0}], 
+     NCache[{Rational[5, 256], 1}, {0.01953125, 1}]]}, 
+   {RGBColor[0.06930614915540068, 0.015762420290558816`, 0.], 
+    RectangleBox[NCache[{Rational[5, 256], 0}, {0.01953125, 0}], 
+     NCache[{Rational[3, 128], 1}, {0.0234375, 1}]]}, 
+   {RGBColor[0.07904952510206184, 0.018949531827149733`, 0.], 
+    RectangleBox[NCache[{Rational[3, 128], 0}, {0.0234375, 0}], 
+     NCache[{Rational[7, 256], 1}, {0.02734375, 1}]]}, 
+   {RGBColor[0.08785664413006633, 0.022155459780166874`, 0.], 
+    RectangleBox[NCache[{Rational[7, 256], 0}, {0.02734375, 0}], 
+     NCache[{Rational[1, 32], 1}, {0.03125, 1}]]}, 
+   {RGBColor[0.095926203810628, 0.025383275089219837`, 0.], 
+    RectangleBox[NCache[{Rational[1, 32], 0}, {0.03125, 0}], 
+     NCache[{Rational[9, 256], 1}, {0.03515625, 1}]]}, 
+   {RGBColor[0.10339423268924144`, 0.02863601879842304, 0.], 
+    RectangleBox[NCache[{Rational[9, 256], 0}, {0.03515625, 0}], 
+     NCache[{Rational[5, 128], 1}, {0.0390625, 1}]]}, 
+   {RGBColor[0.11035848158181527`, 0.03191669790269438, 0.], 
+    RectangleBox[NCache[{Rational[5, 128], 0}, {0.0390625, 0}], 
+     NCache[{Rational[11, 256], 1}, {0.04296875, 1}]]}, 
+   {RGBColor[0.1168918576276251, 0.03522828124056264, 0.], 
+    RectangleBox[NCache[{Rational[11, 256], 0}, {0.04296875, 0}], 
+     NCache[{Rational[3, 64], 1}, {0.046875, 1}]]}, 
+   {RGBColor[0.12305036645514428`, 0.03857369543909077, 0.], 
+    RectangleBox[NCache[{Rational[3, 64], 0}, {0.046875, 0}], 
+     NCache[{Rational[13, 256], 1}, {0.05078125, 1}]]}, 
+   {RGBColor[0.12887807499981446`, 0.04191474079087144, 0.], 
+    RectangleBox[NCache[{Rational[13, 256], 0}, {0.05078125, 0}], 
+     NCache[{Rational[7, 128], 1}, {0.0546875, 1}]]}, 
+   {RGBColor[0.1344103540607413, 0.045132855189430825`, 0.], 
+    RectangleBox[NCache[{Rational[7, 128], 0}, {0.0546875, 0}], 
+     NCache[{Rational[15, 256], 1}, {0.05859375, 1}]]}, 
+   {RGBColor[0.1397448002278408, 0.04819741619221141, 0.], 
+    RectangleBox[NCache[{Rational[15, 256], 0}, {0.05859375, 0}], 
+     NCache[{Rational[1, 16], 1}, {0.0625, 1}]]}, 
+   {RGBColor[0.1451706843221716, 0.05092043987172872, 0.], 
+    RectangleBox[NCache[{Rational[1, 16], 0}, {0.0625, 0}], 
+     NCache[{Rational[17, 256], 1}, {0.06640625, 1}]]}, 
+   {RGBColor[0.15070109153584635`, 0.053317142427437764`, 0.], 
+    RectangleBox[NCache[{Rational[17, 256], 0}, {0.06640625, 0}], 
+     NCache[{Rational[9, 128], 1}, {0.0703125, 1}]]}, 
+   {RGBColor[0.15631986724245875`, 0.05541833110100829, 0.], 
+    RectangleBox[NCache[{Rational[9, 128], 0}, {0.0703125, 0}], 
+     NCache[{Rational[19, 256], 1}, {0.07421875, 1}]]}, 
+   {RGBColor[0.16201216931289153`, 0.057249105276465616`, 0.], 
+    RectangleBox[NCache[{Rational[19, 256], 0}, {0.07421875, 0}], 
+     NCache[{Rational[5, 64], 1}, {0.078125, 1}]]}, 
+   {RGBColor[0.1677643778601124, 0.0588302700546282, 0.], 
+    RectangleBox[NCache[{Rational[5, 64], 0}, {0.078125, 0}], 
+     NCache[{Rational[21, 256], 1}, {0.08203125, 1}]]}, 
+   {RGBColor[0.17354872373558827`, 0.06022657962176239, 0.], 
+    RectangleBox[NCache[{Rational[21, 256], 0}, {0.08203125, 0}], 
+     NCache[{Rational[11, 128], 1}, {0.0859375, 1}]]}, 
+   {RGBColor[0.17929281342102987`, 0.061647947539741364`, 0.], 
+    RectangleBox[NCache[{Rational[11, 128], 0}, {0.0859375, 0}], 
+     NCache[{Rational[23, 256], 1}, {0.08984375, 1}]]}, 
+   {RGBColor[0.18498630992107412`, 0.06312117153238053, 0.], 
+    RectangleBox[NCache[{Rational[23, 256], 0}, {0.08984375, 0}], 
+     NCache[{Rational[3, 32], 1}, {0.09375, 1}]]}, 
+   {RGBColor[0.19062580219849065`, 0.06465206408996949, 0.], 
+    RectangleBox[NCache[{Rational[3, 32], 0}, {0.09375, 0}], 
+     NCache[{Rational[25, 256], 1}, {0.09765625, 1}]]}, 
+   {RGBColor[0.19620793058997293`, 0.0662462777468971, 0.], 
+    RectangleBox[NCache[{Rational[25, 256], 0}, {0.09765625, 0}], 
+     NCache[{Rational[13, 128], 1}, {0.1015625, 1}]]}, 
+   {RGBColor[0.2017293941592062, 0.06790925428692687, 0.], 
+    RectangleBox[NCache[{Rational[13, 128], 0}, {0.1015625, 0}], 
+     NCache[{Rational[27, 256], 1}, {0.10546875, 1}]]}, 
+   {RGBColor[0.20718695753421984`, 0.06964617550896529, 0.], 
+    RectangleBox[NCache[{Rational[27, 256], 0}, {0.10546875, 0}], 
+     NCache[{Rational[7, 64], 1}, {0.109375, 1}]]}, 
+   {RGBColor[0.21257745728397537`, 0.07146191669535176, 0.], 
+    RectangleBox[NCache[{Rational[7, 64], 0}, {0.109375, 0}], 
+     NCache[{Rational[29, 256], 1}, {0.11328125, 1}]]}, 
+   {RGBColor[0.21789780787895954`, 0.07336100388216882, 0.], 
+    RectangleBox[NCache[{Rational[29, 256], 0}, {0.11328125, 0}], 
+     NCache[{Rational[15, 128], 1}, {0.1171875, 1}]]}, 
+   {RGBColor[0.22287198481776405`, 0.07540131838257061, 0.], 
+    RectangleBox[NCache[{Rational[15, 128], 0}, {0.1171875, 0}], 
+     NCache[{Rational[31, 256], 1}, {0.12109375, 1}]]}, 
+   {RGBColor[0.22761026337344836`, 0.07756459748329611, 0.], 
+    RectangleBox[NCache[{Rational[31, 256], 0}, {0.12109375, 0}], 
+     NCache[{Rational[1, 8], 1}, {0.125, 1}]]}, 
+   {RGBColor[0.23225585709422475`, 0.07982511201637307, 0.], 
+    RectangleBox[NCache[{Rational[1, 8], 0}, {0.125, 0}], 
+     NCache[{Rational[33, 256], 1}, {0.12890625, 1}]]}, 
+   {RGBColor[0.2368066073970894, 0.08218518447484607, 0.], 
+    RectangleBox[NCache[{Rational[33, 256], 0}, {0.12890625, 0}], 
+     NCache[{Rational[17, 128], 1}, {0.1328125, 1}]]}, 
+   {RGBColor[0.24126042918006918`, 0.08464665980743741, 0.004030598825609549],
+     RectangleBox[NCache[{Rational[17, 128], 0}, {0.1328125, 0}], 
+     NCache[{Rational[35, 256], 1}, {0.13671875, 1}]]}, 
+   {RGBColor[
+    0.24561531787038188`, 0.08721090688481115, 0.010692261417073827`], 
+    RectangleBox[NCache[{Rational[35, 256], 0}, {0.13671875, 0}], 
+     NCache[{Rational[9, 64], 1}, {0.140625, 1}]]}, 
+   {RGBColor[0.2498693559542212, 0.08987882634742439, 0.01777399258591233], 
+    RectangleBox[NCache[{Rational[9, 64], 0}, {0.140625, 0}], 
+     NCache[{Rational[37, 256], 1}, {0.14453125, 1}]]}, 
+   {RGBColor[0.2540207190337343, 0.09265086424087152, 0.025270229870334348`], 
+    RectangleBox[NCache[{Rational[37, 256], 0}, {0.14453125, 0}], 
+     NCache[{Rational[19, 128], 1}, {0.1484375, 1}]]}, 
+   {RGBColor[0.258067681450556, 0.09552703071486668, 0.03317429547238978], 
+    RectangleBox[NCache[{Rational[19, 128], 0}, {0.1484375, 0}], 
+     NCache[{Rational[39, 256], 1}, {0.15234375, 1}]]}, 
+   {RGBColor[0.2620086215102054, 0.09850692297510841, 0.04145371581805996], 
+    RectangleBox[NCache[{Rational[39, 256], 0}, {0.15234375, 0}], 
+     NCache[{Rational[5, 32], 1}, {0.15625, 1}]]}, 
+   {RGBColor[0.2658420263375514, 0.1015897516331164, 0.04941387421789332], 
+    RectangleBox[NCache[{Rational[5, 32], 0}, {0.15625, 0}], 
+     NCache[{Rational[41, 256], 1}, {0.16015625, 1}]]}, 
+   {RGBColor[0.26956649639021724`, 0.10477436959471817`, 0.05690448521945269],
+     RectangleBox[NCache[{Rational[41, 256], 0}, {0.16015625, 0}], 
+     NCache[{Rational[21, 128], 1}, {0.1640625, 1}]]}, 
+   {RGBColor[0.2731807496540973, 0.10805930265801417`, 0.06401938577937388], 
+    RectangleBox[NCache[{Rational[21, 128], 0}, {0.1640625, 0}], 
+     NCache[{Rational[43, 256], 1}, {0.16796875, 1}]]}, 
+   {RGBColor[0.27668362554298526`, 0.11144278104969103`, 0.07082331776361339],
+     RectangleBox[NCache[{Rational[43, 256], 0}, {0.16796875, 0}], 
+     NCache[{Rational[11, 64], 1}, {0.171875, 1}]]}, 
+   {RGBColor[0.28007408852257426`, 0.11492277120720518`, 0.07736270564768899],
+     RectangleBox[NCache[{Rational[11, 64], 0}, {0.171875, 0}], 
+     NCache[{Rational[45, 256], 1}, {0.17578125, 1}]]}, 
+   {RGBColor[0.283345092805427, 0.11849807350871117`, 0.08373311065763925], 
+    RectangleBox[NCache[{Rational[45, 256], 0}, {0.17578125, 0}], 
+     NCache[{Rational[23, 128], 1}, {0.1796875, 1}]]}, 
+   {RGBColor[0.28646194343205805`, 0.12217196449250889`, 0.09027380111445751],
+     RectangleBox[NCache[{Rational[23, 128], 0}, {0.1796875, 0}], 
+     NCache[{Rational[47, 256], 1}, {0.18359375, 1}]]}, 
+   {RGBColor[0.28941575151547205`, 0.12594283803918913`, 0.0970270712637501], 
+    RectangleBox[NCache[{Rational[47, 256], 0}, {0.18359375, 0}], 
+     NCache[{Rational[3, 16], 1}, {0.1875, 1}]]}, 
+   {RGBColor[0.29220220737624875`, 0.1298080942543026, 0.1039871255969298], 
+    RectangleBox[NCache[{Rational[3, 16], 0}, {0.1875, 0}], 
+     NCache[{Rational[49, 256], 1}, {0.19140625, 1}]]}, 
+   {RGBColor[0.29481705103168165`, 0.13376496712982883`, 0.1111477795146298], 
+    RectangleBox[NCache[{Rational[49, 256], 0}, {0.19140625, 0}], 
+     NCache[{Rational[25, 128], 1}, {0.1953125, 1}]]}, 
+   {RGBColor[0.2972560874298405, 0.13781054894169653`, 0.11850241522660859`], 
+    RectangleBox[NCache[{Rational[25, 128], 0}, {0.1953125, 0}], 
+     NCache[{Rational[51, 256], 1}, {0.19921875, 1}]]}, 
+   {RGBColor[0.2995152029161297, 0.14194181282820575`, 0.12604394680658165`], 
+    RectangleBox[NCache[{Rational[51, 256], 0}, {0.19921875, 0}], 
+     NCache[{Rational[13, 64], 1}, {0.203125, 1}]]}, 
+   {RGBColor[0.3015903829213597, 0.14615563349753863`, 0.13376479385420323`], 
+    RectangleBox[NCache[{Rational[13, 64], 0}, {0.203125, 0}], 
+     NCache[{Rational[53, 256], 1}, {0.20703125, 1}]]}, 
+   {RGBColor[0.3034777308499602, 0.15044880606877145`, 0.14165686316392992`], 
+    RectangleBox[NCache[{Rational[53, 256], 0}, {0.20703125, 0}], 
+     NCache[{Rational[27, 128], 1}, {0.2109375, 1}]]}, 
+   {RGBColor[0.305173488138087, 0.1548180630957206, 0.14971153778685053`], 
+    RectangleBox[NCache[{Rational[27, 128], 0}, {0.2109375, 0}], 
+     NCache[{Rational[55, 256], 1}, {0.21484375, 1}]]}, 
+   {RGBColor[
+    0.30667405544421755`, 0.15926008985727258`, 0.15791967288198713`], 
+    RectangleBox[NCache[{Rational[55, 256], 0}, {0.21484375, 0}], 
+     NCache[{Rational[7, 32], 1}, {0.21875, 1}]]}, 
+   {RGBColor[0.3079760149295351, 0.163771538022602, 0.16627159777798284`], 
+    RectangleBox[NCache[{Rational[7, 32], 0}, {0.21875, 0}], 
+     NCache[{Rational[57, 256], 1}, {0.22265625, 1}]]}, 
+   {RGBColor[0.3090761535821226, 0.16834903781607316`, 0.17475712369777247`], 
+    RectangleBox[NCache[{Rational[57, 256], 0}, {0.22265625, 0}], 
+     NCache[{Rational[29, 128], 1}, {0.2265625, 1}]]}, 
+   {RGBColor[0.3099714875378728, 0.17298920881591887`, 0.18336555663342358`], 
+    RectangleBox[NCache[{Rational[29, 128], 0}, {0.2265625, 0}], 
+     NCache[{Rational[59, 256], 1}, {0.23046875, 1}]]}, 
+   {RGBColor[0.3106592873521601, 0.17768866952425638`, 0.19208571489308063`], 
+    RectangleBox[NCache[{Rational[59, 256], 0}, {0.23046875, 0}], 
+     NCache[{Rational[15, 64], 1}, {0.234375, 1}]]}, 
+   {RGBColor[
+    0.31113710417982643`, 0.18244404584480578`, 0.20090595087520763`], 
+    RectangleBox[NCache[{Rational[15, 64], 0}, {0.234375, 0}], 
+     NCache[{Rational[61, 256], 1}, {0.23828125, 1}]]}, 
+   {RGBColor[0.3114027968269995, 0.18725197859988538`, 0.2098141766561852], 
+    RectangleBox[NCache[{Rational[61, 256], 0}, {0.23828125, 0}], 
+     NCache[{Rational[31, 128], 1}, {0.2421875, 1}]]}, 
+   {RGBColor[0.3114545596467181, 0.192109130210813, 0.21879789300536168`], 
+    RectangleBox[NCache[{Rational[31, 128], 0}, {0.2421875, 0}], 
+     NCache[{Rational[63, 256], 1}, {0.24609375, 1}]]}, 
+   {RGBColor[0.31129095126135736`, 0.1970121906565412, 0.22784422146676248`], 
+    RectangleBox[NCache[{Rational[63, 256], 0}, {0.24609375, 0}], 
+     NCache[{Rational[1, 4], 1}, {0.25, 1}]]}, 
+   {RGBColor[
+    0.31091092410843935`, 0.20195788281485244`, 0.23693993916891348`], 
+    RectangleBox[NCache[{Rational[1, 4], 0}, {0.25, 0}], 
+     NCache[{Rational[65, 256], 1}, {0.25390625, 1}]]}, 
+   {RGBColor[0.310313854822546, 0.20694296727930506`, 0.24607151604381966`], 
+    RectangleBox[NCache[{Rational[65, 256], 0}, {0.25390625, 0}], 
+     NCache[{Rational[33, 128], 1}, {0.2578125, 1}]]}, 
+   {RGBColor[0.309499575484724, 0.21196424673374992`, 0.2552251541533211], 
+    RectangleBox[NCache[{Rational[33, 128], 0}, {0.2578125, 0}], 
+     NCache[{Rational[67, 256], 1}, {0.26171875, 1}]]}, 
+   {RGBColor[0.30846840579181845`, 0.21701856995500962`, 0.2643868288361055], 
+    RectangleBox[NCache[{Rational[67, 256], 0}, {0.26171875, 0}], 
+     NCache[{Rational[17, 64], 1}, {0.265625, 1}]]}, 
+   {RGBColor[0.3072211862214963, 0.22210283550343735`, 0.2735423314018742], 
+    RectangleBox[NCache[{Rational[17, 64], 0}, {0.265625, 0}], 
+     NCache[{Rational[69, 256], 1}, {0.26953125, 1}]]}, 
+   {RGBColor[0.3057593122940032, 0.22721399515077267`, 0.28267731311082933`], 
+    RectangleBox[NCache[{Rational[69, 256], 0}, {0.26953125, 0}], 
+     NCache[{Rational[35, 128], 1}, {0.2734375, 1}]]}, 
+   {RGBColor[0.30408477005858775`, 0.23234905708508835`, 0.2917773301870146], 
+    RectangleBox[NCache[{Rational[35, 128], 0}, {0.2734375, 0}], 
+     NCache[{Rational[71, 256], 1}, {0.27734375, 1}]]}, 
+   {RGBColor[0.3022001729604326, 0.23750508892379102`, 0.3008278896233746], 
+    RectangleBox[NCache[{Rational[71, 256], 0}, {0.27734375, 0}], 
+     NCache[{Rational[9, 32], 1}, {0.28125, 1}]]}, 
+   {RGBColor[0.30010880027207754`, 0.24267922055760793`, 0.309814495544891], 
+    RectangleBox[NCache[{Rational[9, 32], 0}, {0.28125, 0}], 
+     NCache[{Rational[73, 256], 1}, {0.28515625, 1}]]}, 
+   {RGBColor[0.29781463730056323`, 0.2478686468413383, 0.31872269590401675`], 
+    RectangleBox[NCache[{Rational[73, 256], 0}, {0.28515625, 0}], 
+     NCache[{Rational[37, 128], 1}, {0.2890625, 1}]]}, 
+   {RGBColor[0.2953224176063438, 0.25307063014081743`, 0.3275381292900419], 
+    RectangleBox[NCache[{Rational[37, 128], 0}, {0.2890625, 0}], 
+     NCache[{Rational[75, 256], 1}, {0.29296875, 1}]]}, 
+   {RGBColor[0.292637667490308, 0.2582825027400695, 0.33624657164112637`], 
+    RectangleBox[NCache[{Rational[75, 256], 0}, {0.29296875, 0}], 
+     NCache[{Rational[19, 64], 1}, {0.296875, 1}]]}, 
+   {RGBColor[0.2897667530181923, 0.26350166910795464`, 0.34483398265466747`], 
+    RectangleBox[NCache[{Rational[19, 64], 0}, {0.296875, 0}], 
+     NCache[{Rational[77, 256], 1}, {0.30078125, 1}]]}, 
+   {RGBColor[0.28671692985353575`, 0.26872560801973194`, 0.3532865516985503], 
+    RectangleBox[NCache[{Rational[77, 256], 0}, {0.30078125, 0}], 
+     NCache[{Rational[39, 128], 1}, {0.3046875, 1}]]}, 
+   {RGBColor[0.2834963961561572, 0.27395187452581793`, 0.3615907430327369], 
+    RectangleBox[NCache[{Rational[39, 128], 0}, {0.3046875, 0}], 
+     NCache[{Rational[79, 256], 1}, {0.30859375, 1}]]}, 
+   {RGBColor[0.2801143487665763, 0.2791781017575825, 0.36973334015769566`], 
+    RectangleBox[NCache[{Rational[79, 256], 0}, {0.30859375, 0}], 
+     NCache[{Rational[5, 16], 1}, {0.3125, 1}]]}, 
+   {RGBColor[
+    0.27658104282960655`, 0.28440200255824605`, 0.37770148911339335`], 
+    RectangleBox[NCache[{Rational[5, 16], 0}, {0.3125, 0}], 
+     NCache[{Rational[81, 256], 1}, {0.31640625, 1}]]}, 
+   {RGBColor[0.2729078549022085, 0.2896213709257755, 0.385482740560044], 
+    RectangleBox[NCache[{Rational[81, 256], 0}, {0.31640625, 0}], 
+     NCache[{Rational[41, 128], 1}, {0.3203125, 1}]]}, 
+   {RGBColor[0.26910734942873765`, 0.2948340832540819, 0.39306509047956767`], 
+    RectangleBox[NCache[{Rational[41, 128], 0}, {0.3203125, 0}], 
+     NCache[{Rational[83, 256], 1}, {0.32421875, 1}]]}, 
+   {RGBColor[
+    0.26519334823539664`, 0.30003809935875014`, 0.40043701934479087`], 
+    RectangleBox[NCache[{Rational[83, 256], 0}, {0.32421875, 0}], 
+     NCache[{Rational[21, 64], 1}, {0.328125, 1}]]}, 
+   {RGBColor[0.2611810023765936, 0.30523146327393536`, 0.4075875296118465], 
+    RectangleBox[NCache[{Rational[21, 64], 0}, {0.328125, 0}], 
+     NCache[{Rational[85, 256], 1}, {0.33203125, 1}]]}, 
+   {RGBColor[0.25708686523808666`, 0.31041230380789503`, 0.4145061814000177], 
+    RectangleBox[NCache[{Rational[85, 256], 0}, {0.33203125, 0}], 
+     NCache[{Rational[43, 128], 1}, {0.3359375, 1}]]}, 
+   {RGBColor[0.2529289652426483, 0.3155788348458495, 0.4211831262324292], 
+    RectangleBox[NCache[{Rational[43, 128], 0}, {0.3359375, 0}], 
+     NCache[{Rational[87, 256], 1}, {0.33984375, 1}]]}, 
+   {RGBColor[0.24872687579097486`, 0.3207293553904209, 0.4276091387205178], 
+    RectangleBox[NCache[{Rational[87, 256], 0}, {0.33984375, 0}], 
+     NCache[{Rational[11, 32], 1}, {0.34375, 1}]]}, 
+   {RGBColor[0.2445017791843898, 0.32586224933176194`, 0.4337756460851161], 
+    RectangleBox[NCache[{Rational[11, 32], 0}, {0.34375, 0}], 
+     NCache[{Rational[89, 256], 1}, {0.34765625, 1}]]}, 
+   {RGBColor[0.24027652020548684`, 0.3309759849415891, 0.4396747554172398], 
+    RectangleBox[NCache[{Rational[89, 256], 0}, {0.34765625, 0}], 
+     NCache[{Rational[45, 128], 1}, {0.3515625, 1}]]}, 
+   {RGBColor[0.2360756437827899, 0.33606911408764895`, 0.4452992785922722], 
+    RectangleBox[NCache[{Rational[45, 128], 0}, {0.3515625, 0}], 
+     NCache[{Rational[91, 256], 1}, {0.35546875, 1}]]}, 
+   {RGBColor[
+    0.23192540976618348`, 0.34114027116762335`, 0.45064275476216553`], 
+    RectangleBox[NCache[{Rational[91, 256], 0}, {0.35546875, 0}], 
+     NCache[{Rational[23, 64], 1}, {0.359375, 1}]]}, 
+   {RGBColor[
+    0.22785377636074378`, 0.34618817176407063`, 0.45569947036151387`], 
+    RectangleBox[NCache[{Rational[23, 64], 0}, {0.359375, 0}], 
+     NCache[{Rational[93, 256], 1}, {0.36328125, 1}]]}, 
+   {RGBColor[0.2238903423310849, 0.35121161102467247`, 0.4604644765748433], 
+    RectangleBox[NCache[{Rational[93, 256], 0}, {0.36328125, 0}], 
+     NCache[{Rational[47, 128], 1}, {0.3671875, 1}]]}, 
+   {RGBColor[
+    0.22006623688898763`, 0.35620946177475754`, 0.46493360422422125`], 
+    RectangleBox[NCache[{Rational[47, 128], 0}, {0.3671875, 0}], 
+     NCache[{Rational[95, 256], 1}, {0.37109375, 1}]]}, 
+   {RGBColor[0.21641394548589374`, 0.3611806723717733, 0.46910347604822505`], 
+    RectangleBox[NCache[{Rational[95, 256], 0}, {0.37109375, 0}], 
+     NCache[{Rational[3, 8], 1}, {0.375, 1}]]}, 
+   {RGBColor[0.21296705989977605`, 0.3661242643140272, 0.47297151635542795`], 
+    RectangleBox[NCache[{Rational[3, 8], 0}, {0.375, 0}], 
+     NCache[{Rational[97, 256], 1}, {0.37890625, 1}]]}, 
+   {RGBColor[0.209759942441529, 0.371039329618586, 0.47653595804779497`], 
+    RectangleBox[NCache[{Rational[97, 256], 0}, {0.37890625, 0}], 
+     NCache[{Rational[49, 128], 1}, {0.3828125, 1}]]}, 
+   {RGBColor[0.20682729722425697`, 0.3759250279856666, 0.47979584702168837`], 
+    RectangleBox[NCache[{Rational[49, 128], 0}, {0.3828125, 0}], 
+     NCache[{Rational[99, 256], 1}, {0.38671875, 1}]]}, 
+   {RGBColor[0.2042036465714448, 0.38078058376915075`, 0.4827510439665081], 
+    RectangleBox[NCache[{Rational[99, 256], 0}, {0.38671875, 0}], 
+     NCache[{Rational[25, 64], 1}, {0.390625, 1}]]}, 
+   {RGBColor[0.2019227179099895, 0.38560528277495365`, 0.4854022235932883], 
+    RectangleBox[NCache[{Rational[25, 64], 0}, {0.390625, 0}], 
+     NCache[{Rational[101, 256], 1}, {0.39453125, 1}]]}, 
+   {RGBColor[
+    0.20001675567028082`, 0.39039846891087976`, 0.48775087133776146`], 
+    RectangleBox[NCache[{Rational[101, 256], 0}, {0.39453125, 0}], 
+     NCache[{Rational[51, 128], 1}, {0.3984375, 1}]]}, 
+   {RGBColor[0.1985157830857725, 0.39515954071324544`, 0.4897992775944275], 
+    RectangleBox[NCache[{Rational[51, 128], 0}, {0.3984375, 0}], 
+     NCache[{Rational[103, 256], 1}, {0.40234375, 1}]]}, 
+   {RGBColor[0.19744684910434118`, 0.3998879477769447, 0.4915505295499523], 
+    RectangleBox[NCache[{Rational[103, 256], 0}, {0.40234375, 0}], 
+     NCache[{Rational[13, 32], 1}, {0.40625, 1}]]}, 
+   {RGBColor[0.1968333042026944, 0.40458318711674673`, 0.49300850069569396`], 
+    RectangleBox[NCache[{Rational[13, 32], 0}, {0.40625, 0}], 
+     NCache[{Rational[105, 256], 1}, {0.41015625, 1}]]}, 
+   {RGBColor[0.19669415386022865`, 0.4092447994884352, 0.4941778381102105], 
+    RectangleBox[NCache[{Rational[105, 256], 0}, {0.41015625, 0}], 
+     NCache[{Rational[53, 128], 1}, {0.4140625, 1}]]}, 
+   {RGBColor[0.19704353816754916`, 0.413872365698915, 0.495063947613171], 
+    RectangleBox[NCache[{Rational[53, 128], 0}, {0.4140625, 0}], 
+     NCache[{Rational[107, 256], 1}, {0.41796875, 1}]]}, 
+   {RGBColor[0.19789037961345854`, 0.4184655029346248, 0.4956729769020573], 
+    RectangleBox[NCache[{Rational[107, 256], 0}, {0.41796875, 0}], 
+     NCache[{Rational[27, 64], 1}, {0.421875, 1}]]}, 
+   {RGBColor[0.1992382287308598, 0.42302386113748564`, 0.49601179679228674`], 
+    RectangleBox[NCache[{Rational[27, 64], 0}, {0.421875, 0}], 
+     NCache[{Rational[109, 256], 1}, {0.42578125, 1}]]}, 
+   {RGBColor[0.2010853204568291, 0.42754711945721985`, 0.49608798068981425`], 
+    RectangleBox[NCache[{Rational[109, 256], 0}, {0.42578125, 0}], 
+     NCache[{Rational[55, 128], 1}, {0.4296875, 1}]]}, 
+   {RGBColor[0.2034248352656346, 0.43203498280815883`, 0.4959097824327271], 
+    RectangleBox[NCache[{Rational[55, 128], 0}, {0.4296875, 0}], 
+     NCache[{Rational[111, 256], 1}, {0.43359375, 1}]]}, 
+   {RGBColor[
+    0.20624534131942612`, 0.43648717855767377`, 0.49548611264470677`], 
+    RectangleBox[NCache[{Rational[111, 256], 0}, {0.43359375, 0}], 
+     NCache[{Rational[7, 16], 1}, {0.4375, 1}]]}, 
+   {RGBColor[0.20953137975607733`, 0.44090345337209885`, 0.4948265137483489], 
+    RectangleBox[NCache[{Rational[7, 16], 0}, {0.4375, 0}], 
+     NCache[{Rational[113, 256], 1}, {0.44140625, 1}]]}, 
+   {RGBColor[0.21326414663244422`, 0.4452835702445032, 0.49394113379004395`], 
+    RectangleBox[NCache[{Rational[113, 256], 0}, {0.44140625, 0}], 
+     NCache[{Rational[57, 128], 1}, {0.4453125, 1}]]}, 
+   {RGBColor[0.2174222225898086, 0.44962730572693005`, 0.49284069923026724`], 
+    RectangleBox[NCache[{Rational[57, 128], 0}, {0.4453125, 0}], 
+     NCache[{Rational[115, 256], 1}, {0.44921875, 1}]]}, 
+   {RGBColor[
+    0.22198230444846517`, 0.45393444738777805`, 0.49153648685353785`], 
+    RectangleBox[NCache[{Rational[115, 256], 0}, {0.44921875, 0}], 
+     NCache[{Rational[29, 64], 1}, {0.453125, 1}]]}, 
+   {RGBColor[0.226919900253015, 0.45820479151288523`, 0.49004029495080687`], 
+    RectangleBox[NCache[{Rational[29, 64], 0}, {0.453125, 0}], 
+     NCache[{Rational[117, 256], 1}, {0.45703125, 1}]]}, 
+   {RGBColor[0.23220995897186236`, 0.4624381410666177, 0.4883644139234548], 
+    RectangleBox[NCache[{Rational[117, 256], 0}, {0.45703125, 0}], 
+     NCache[{Rational[59, 128], 1}, {0.4609375, 1}]]}, 
+   {RGBColor[
+    0.23782741635416169`, 0.46663430392689803`, 0.48652159645225074`], 
+    RectangleBox[NCache[{Rational[59, 128], 0}, {0.4609375, 0}], 
+     NCache[{Rational[119, 256], 1}, {0.46484375, 1}]]}, 
+   {RGBColor[0.24374764798401996`, 0.47079309140565534`, 0.4845250273663884], 
+    RectangleBox[NCache[{Rational[119, 256], 0}, {0.46484375, 0}], 
+     NCache[{Rational[15, 32], 1}, {0.46875, 1}]]}, 
+   {RGBColor[0.24994682846946703`, 0.47491431706369075`, 0.4823882933369373], 
+    RectangleBox[NCache[{Rational[15, 32], 0}, {0.46875, 0}], 
+     NCache[{Rational[121, 256], 1}, {0.47265625, 1}]]}, 
+   {RGBColor[0.2564022015799132, 0.4789977958264337, 0.4801253525056192], 
+    RectangleBox[NCache[{Rational[121, 256], 0}, {0.47265625, 0}], 
+     NCache[{Rational[61, 128], 1}, {0.4765625, 1}]]}, 
+   {RGBColor[0.2630922700060573, 0.48304334340457983`, 0.47775050414367043`], 
+    RectangleBox[NCache[{Rational[61, 128], 0}, {0.4765625, 0}], 
+     NCache[{Rational[123, 256], 1}, {0.48046875, 1}]]}, 
+   {RGBColor[0.2699969155157998, 0.4870507760211445, 0.47527835841666655`], 
+    RectangleBox[NCache[{Rational[123, 256], 0}, {0.48046875, 0}], 
+     NCache[{Rational[31, 64], 1}, {0.484375, 1}]]}, 
+   {RGBColor[
+    0.27709746099401517`, 0.49101991044409316`, 0.47272380630962113`], 
+    RectangleBox[NCache[{Rational[31, 64], 0}, {0.484375, 0}], 
+     NCache[{Rational[125, 256], 1}, {0.48828125, 1}]]}, 
+   {RGBColor[0.2843766855807584, 0.4949505643214345, 0.4701019897425714], 
+    RectangleBox[NCache[{Rational[125, 256], 0}, {0.48828125, 0}], 
+     NCache[{Rational[63, 128], 1}, {0.4921875, 1}]]}, 
+   {RGBColor[0.2918188032197407, 0.4988425568134894, 0.4674282718804635], 
+    RectangleBox[NCache[{Rational[63, 128], 0}, {0.4921875, 0}], 
+     NCache[{Rational[127, 256], 1}, {0.49609375, 1}]]}, 
+   {RGBColor[0.2994094136861262, 0.5026957095150372, 0.4647182076128325], 
+    RectangleBox[NCache[{Rational[127, 256], 0}, {0.49609375, 0}], 
+     NCache[{Rational[1, 2], 1}, {0.5, 1}]]}, 
+   {RGBColor[0.30713543379305785`, 0.5065098476581554, 0.461987514149046], 
+    RectangleBox[NCache[{Rational[1, 2], 0}, {0.5, 0}], 
+     NCache[{Rational[129, 256], 1}, {0.50390625, 1}]]}, 
+   {RGBColor[0.31498501512379884`, 0.510284801584868, 0.4592520416444356], 
+    RectangleBox[NCache[{Rational[129, 256], 0}, {0.50390625, 0}], 
+     NCache[{Rational[65, 128], 1}, {0.5078125, 1}]]}, 
+   {RGBColor[0.32294745338815534`, 0.5140204084771628, 0.4565277437422836], 
+    RectangleBox[NCache[{Rational[65, 128], 0}, {0.5078125, 0}], 
+     NCache[{Rational[131, 256], 1}, {0.51171875, 1}]]}, 
+   {RGBColor[0.3310130934029441, 0.5177165143305835, 0.4538306478874858], 
+    RectangleBox[NCache[{Rational[131, 256], 0}, {0.51171875, 0}], 
+     NCache[{Rational[33, 64], 1}, {0.515625, 1}]]}, 
+   {RGBColor[0.33917323276226136`, 0.521372976156395, 0.45117682524089203`], 
+    RectangleBox[NCache[{Rational[33, 64], 0}, {0.515625, 0}], 
+     NCache[{Rational[133, 256], 1}, {0.51953125, 1}]]}, 
+   {RGBColor[0.34742002649135895`, 0.5249896643963008, 0.44858236000032314`], 
+    RectangleBox[NCache[{Rational[133, 256], 0}, {0.51953125, 0}], 
+     NCache[{Rational[67, 128], 1}, {0.5234375, 1}]]}, 
+   {RGBColor[0.3557463943543129, 0.5285664655328268, 0.44606331791654336`], 
+    RectangleBox[NCache[{Rational[67, 128], 0}, {0.5234375, 0}], 
+     NCache[{Rational[135, 256], 1}, {0.52734375, 1}]]}, 
+   {RGBColor[0.36414593199168405`, 0.5321032848777818, 0.4436357137817325], 
+    RectangleBox[NCache[{Rational[135, 256], 0}, {0.52734375, 0}], 
+     NCache[{Rational[17, 32], 1}, {0.53125, 1}]]}, 
+   {RGBColor[0.37261282667986395`, 0.5356000495206296, 0.44131547766589296`], 
+    RectangleBox[NCache[{Rational[17, 32], 0}, {0.53125, 0}], 
+     NCache[{Rational[137, 256], 1}, {0.53515625, 1}]]}, 
+   {RGBColor[0.3811417782092229, 0.5390567114181851, 0.43911841968479404`], 
+    RectangleBox[NCache[{Rational[137, 256], 0}, {0.53515625, 0}], 
+     NCache[{Rational[69, 128], 1}, {0.5390625, 1}]]}, 
+   {RGBColor[0.3897279251560661, 0.5424732506067097, 0.4370601931029884], 
+    RectangleBox[NCache[{Rational[69, 128], 0}, {0.5390625, 0}], 
+     NCache[{Rational[139, 256], 1}, {0.54296875, 1}]]}, 
+   {RGBColor[0.39836677665848724`, 0.5458496785172593, 0.4351562556082915], 
+    RectangleBox[NCache[{Rational[139, 256], 0}, {0.54296875, 0}], 
+     NCache[{Rational[35, 64], 1}, {0.546875, 1}]]}, 
+   {RGBColor[0.4070541496859188, 0.5491860413749962, 0.4334218286406867], 
+    RectangleBox[NCache[{Rational[35, 64], 0}, {0.546875, 0}], 
+     NCache[{Rational[141, 256], 1}, {0.55078125, 1}]]}, 
+   {RGBColor[0.4157861117060971, 0.5524824236630778, 0.43187185471904527`], 
+    RectangleBox[NCache[{Rational[141, 256], 0}, {0.55078125, 0}], 
+     NCache[{Rational[71, 128], 1}, {0.5546875, 1}]]}, 
+   {RGBColor[0.4245589285931605, 0.5557389516317083, 0.43052095278282676`], 
+    RectangleBox[NCache[{Rational[71, 128], 0}, {0.5546875, 0}], 
+     NCache[{Rational[143, 256], 1}, {0.55859375, 1}]]}, 
+   {RGBColor[0.4333690175800776, 0.5589557968329216, 0.4293833716515864], 
+    RectangleBox[NCache[{Rational[143, 256], 0}, {0.55859375, 0}], 
+     NCache[{Rational[9, 16], 1}, {0.5625, 1}]]}, 
+   {RGBColor[0.4422129050327188, 0.5621331796616653, 0.4284729418003805], 
+    RectangleBox[NCache[{Rational[9, 16], 0}, {0.5625, 0}], 
+     NCache[{Rational[145, 256], 1}, {0.56640625, 1}]]}, 
+   {RGBColor[0.451087188807679, 0.5652713728837657, 0.42780302575067225`], 
+    RectangleBox[NCache[{Rational[145, 256], 0}, {0.56640625, 0}], 
+     NCache[{Rational[73, 128], 1}, {0.5703125, 1}]]}, 
+   {RGBColor[0.45998850494865334`, 0.5683707051313407, 0.4273864674799085], 
+    RectangleBox[NCache[{Rational[73, 128], 0}, {0.5703125, 0}], 
+     NCache[{Rational[147, 256], 1}, {0.57421875, 1}]]}, 
+   {RGBColor[0.4689134984745686, 0.5714315643462079, 0.4272355413535298], 
+    RectangleBox[NCache[{Rational[147, 256], 0}, {0.57421875, 0}], 
+     NCache[{Rational[37, 64], 1}, {0.578125, 1}]]}, 
+   {RGBColor[0.47785879801517755`, 0.574454401151777, 0.4273619011752731], 
+    RectangleBox[NCache[{Rational[37, 64], 0}, {0.578125, 0}], 
+     NCache[{Rational[149, 256], 1}, {0.58203125, 1}]]}, 
+   {RGBColor[0.48682099405528995`, 0.5774397321338388, 0.42777653002942817`], 
+    RectangleBox[NCache[{Rational[149, 256], 0}, {0.58203125, 0}], 
+     NCache[{Rational[75, 128], 1}, {0.5859375, 1}]]}, 
+   {RGBColor[0.49579662055633184`, 0.5803881430105472, 0.4284896916466328], 
+    RectangleBox[NCache[{Rational[75, 128], 0}, {0.5859375, 0}], 
+     NCache[{Rational[151, 256], 1}, {0.58984375, 1}]]}, 
+   {RGBColor[0.5047821397329011, 0.583300291671758, 0.4295108840578834], 
+    RectangleBox[NCache[{Rational[151, 256], 0}, {0.58984375, 0}], 
+     NCache[{Rational[19, 32], 1}, {0.59375, 1}]]}, 
+   {RGBColor[0.5137739297718854, 0.5861769110677157, 0.4308487963057849], 
+    RectangleBox[NCache[{Rational[19, 32], 0}, {0.59375, 0}], 
+     NCache[{Rational[153, 256], 1}, {0.59765625, 1}]]}, 
+   {RGBColor[0.522768275292231, 0.5890188119269117, 0.43251126895529046`], 
+    RectangleBox[NCache[{Rational[153, 256], 0}, {0.59765625, 0}], 
+     NCache[{Rational[77, 128], 1}, {0.6015625, 1}]]}, 
+   {RGBColor[0.5317613603542702, 0.5918268852827537, 0.43450525908772486`], 
+    RectangleBox[NCache[{Rational[77, 128], 0}, {0.6015625, 0}], 
+     NCache[{Rational[155, 256], 1}, {0.60546875, 1}]]}, 
+   {RGBColor[0.5407492638384059, 0.5946021047885187, 0.4368368103731295], 
+    RectangleBox[NCache[{Rational[155, 256], 0}, {0.60546875, 0}], 
+     NCache[{Rational[39, 64], 1}, {0.609375, 1}]]}, 
+   {RGBColor[0.5497279570237593, 0.5973455287999239, 0.43951102870042047`], 
+    RectangleBox[NCache[{Rational[39, 64], 0}, {0.609375, 0}], 
+     NCache[{Rational[157, 256], 1}, {0.61328125, 1}]]}, 
+   {RGBColor[0.5586933032079174, 0.6000583022045516, 0.4425320637077743], 
+    RectangleBox[NCache[{Rational[157, 256], 0}, {0.61328125, 0}], 
+     NCache[{Rational[79, 128], 1}, {0.6171875, 1}]]}, 
+   {RGBColor[0.5676410592190582, 0.6027416579773464, 0.4459030964038789], 
+    RectangleBox[NCache[{Rational[79, 128], 0}, {0.6171875, 0}], 
+     NCache[{Rational[159, 256], 1}, {0.62109375, 1}]]}, 
+   {RGBColor[0.5765668786813342, 0.6053969184414572, 0.4496263329120341], 
+    RectangleBox[NCache[{Rational[159, 256], 0}, {0.62109375, 0}], 
+     NCache[{Rational[5, 8], 1}, {0.625, 1}]]}, 
+   {RGBColor[0.5854663169033912, 0.6080254962138943, 0.45370300421183024`], 
+    RectangleBox[NCache[{Rational[5, 8], 0}, {0.625, 0}], 
+     NCache[{Rational[161, 256], 1}, {0.62890625, 1}]]}, 
+   {RGBColor[0.5943348372681693, 0.6106288948157613, 0.4581333716052534], 
+    RectangleBox[NCache[{Rational[161, 256], 0}, {0.62890625, 0}], 
+     NCache[{Rational[81, 128], 1}, {0.6328125, 1}]]}, 
+   {RGBColor[0.6031678190096111, 0.6132087089273368, 0.4629167375029121], 
+    RectangleBox[NCache[{Rational[81, 128], 0}, {0.6328125, 0}], 
+     NCache[{Rational[163, 256], 1}, {0.63671875, 1}]]}, 
+   {RGBColor[0.6119605662685341, 0.6157666242689159, 0.4680514610174233], 
+    RectangleBox[NCache[{Rational[163, 256], 0}, {0.63671875, 0}], 
+     NCache[{Rational[41, 64], 1}, {0.640625, 1}]]}, 
+   {RGBColor[0.6207083183256614, 0.6183044170892292, 0.47353497776922177`], 
+    RectangleBox[NCache[{Rational[41, 64], 0}, {0.640625, 0}], 
+     NCache[{Rational[165, 256], 1}, {0.64453125, 1}]]}, 
+   {RGBColor[0.6294062609146185, 0.6208239532443401, 0.4793638232573701], 
+    RectangleBox[NCache[{Rational[165, 256], 0}, {0.64453125, 0}], 
+     NCache[{Rational[83, 128], 1}, {0.6484375, 1}]]}, 
+   {RGBColor[0.638049538521607, 0.6233271868513104, 0.4855336591248863], 
+    RectangleBox[NCache[{Rational[83, 128], 0}, {0.6484375, 0}], 
+     NCache[{Rational[167, 256], 1}, {0.65234375, 1}]]}, 
+   {RGBColor[0.6466332675814146, 0.6258161585025295, 0.4920393016532543], 
+    RectangleBox[NCache[{Rational[167, 256], 0}, {0.65234375, 0}], 
+     NCache[{Rational[21, 32], 1}, {0.65625, 1}]]}, 
+   {RGBColor[0.6551525504815179, 0.628292993028529, 0.4988747518513175], 
+    RectangleBox[NCache[{Rational[21, 32], 0}, {0.65625, 0}], 
+     NCache[{Rational[169, 256], 1}, {0.66015625, 1}]]}, 
+   {RGBColor[0.6636024902872283, 0.6307598967993001, 0.5060332265556928], 
+    RectangleBox[NCache[{Rational[169, 256], 0}, {0.66015625, 0}], 
+     NCache[{Rational[85, 128], 1}, {0.6640625, 1}]]}, 
+   {RGBColor[0.6719782061012696, 0.6332191545566189, 0.5135071900283993], 
+    RectangleBox[NCache[{Rational[85, 128], 0}, {0.6640625, 0}], 
+     NCache[{Rational[171, 256], 1}, {0.66796875, 1}]]}, 
+   {RGBColor[0.6802748489708438, 0.6356731257726801, 0.5212883856175639], 
+    RectangleBox[NCache[{Rational[171, 256], 0}, {0.66796875, 0}], 
+     NCache[{Rational[43, 64], 1}, {0.671875, 1}]]}, 
+   {RGBColor[0.6884876182542741, 0.6381242405334038, 0.5293678671337586], 
+    RectangleBox[NCache[{Rational[43, 64], 0}, {0.671875, 0}], 
+     NCache[{Rational[173, 256], 1}, {0.67578125, 1}]]}, 
+   {RGBColor[0.6966117783577783, 0.6405749949481269, 0.5377360296830843], 
+    RectangleBox[NCache[{Rational[173, 256], 0}, {0.67578125, 0}], 
+     NCache[{Rational[87, 128], 1}, {0.6796875, 1}]]}, 
+   {RGBColor[0.7046426757509289, 0.6430279460909876, 0.5463826397844355], 
+    RectangleBox[NCache[{Rational[87, 128], 0}, {0.6796875, 0}], 
+     NCache[{Rational[175, 256], 1}, {0.68359375, 1}]]}, 
+   {RGBColor[0.7125757561669782, 0.645485706483127, 0.5552968646790701], 
+    RectangleBox[NCache[{Rational[175, 256], 0}, {0.68359375, 0}], 
+     NCache[{Rational[11, 16], 1}, {0.6875, 1}]]}, 
+   {RGBColor[0.7204065818916331, 0.6479509381288556, 0.564467300813089], 
+    RectangleBox[NCache[{Rational[11, 16], 0}, {0.6875, 0}], 
+     NCache[{Rational[177, 256], 1}, {0.69140625, 1}]]}, 
+   {RGBColor[0.7281308490410893, 0.6504263461230912, 0.5738820015359358], 
+    RectangleBox[NCache[{Rational[177, 256], 0}, {0.69140625, 0}], 
+     NCache[{Rational[89, 128], 1}, {0.6953125, 1}]]}, 
+   {RGBColor[0.7357444047273731, 0.6529146718516464, 0.5835285041095046], 
+    RectangleBox[NCache[{Rational[89, 128], 0}, {0.6953125, 0}], 
+     NCache[{Rational[179, 256], 1}, {0.69921875, 1}]]}, 
+   {RGBColor[0.7432432640063522, 0.6554186858102766, 0.5933938561625602], 
+    RectangleBox[NCache[{Rational[179, 256], 0}, {0.69921875, 0}], 
+     NCache[{Rational[45, 64], 1}, {0.703125, 1}]]}, 
+   {RGBColor[0.7506236265012847, 0.6579411800727061, 0.6034646417540911], 
+    RectangleBox[NCache[{Rational[45, 64], 0}, {0.703125, 0}], 
+     NCache[{Rational[181, 256], 1}, {0.70703125, 1}]]}, 
+   {RGBColor[0.757881892592645, 0.6604849604421037, 0.6137270072275768], 
+    RectangleBox[NCache[{Rational[181, 256], 0}, {0.70703125, 0}], 
+     NCache[{Rational[91, 128], 1}, {0.7109375, 1}]]}, 
+   {RGBColor[0.765014679063202, 0.6630528383245965, 0.624166687046882], 
+    RectangleBox[NCache[{Rational[91, 128], 0}, {0.7109375, 0}], 
+     NCache[{Rational[183, 256], 1}, {0.71484375, 1}]]}, 
+   {RGBColor[0.7720188340861572, 0.6656476223672991, 0.6347690298047464], 
+    RectangleBox[NCache[{Rational[183, 256], 0}, {0.71484375, 0}], 
+     NCache[{Rational[23, 32], 1}, {0.71875, 1}]]}, 
+   {RGBColor[0.778891451443572, 0.6682721099069843, 0.6455190245878589], 
+    RectangleBox[NCache[{Rational[23, 32], 0}, {0.71875, 0}], 
+     NCache[{Rational[185, 256], 1}, {0.72265625, 1}]]}, 
+   {RGBColor[0.7856298838624869, 0.6709290782787779, 0.6564013278696097], 
+    RectangleBox[NCache[{Rational[185, 256], 0}, {0.72265625, 0}], 
+     NCache[{Rational[93, 128], 1}, {0.7265625, 1}]]}, 
+   {RGBColor[0.7922317553571229, 0.6736212760371393, 0.6674002910840082], 
+    RectangleBox[NCache[{Rational[93, 128], 0}, {0.7265625, 0}], 
+     NCache[{Rational[187, 256], 1}, {0.73046875, 1}]]}, 
+   {RGBColor[0.7986949724674474, 0.6763514141437491, 0.6784999890131805], 
+    RectangleBox[NCache[{Rational[187, 256], 0}, {0.73046875, 0}], 
+     NCache[{Rational[47, 64], 1}, {0.734375, 1}]]}, 
+   {RGBColor[0.8050177342872352, 0.6791221571787622, 0.6896842490973372], 
+    RectangleBox[NCache[{Rational[47, 64], 0}, {0.734375, 0}], 
+     NCache[{Rational[189, 256], 1}, {0.73828125, 1}]]}, 
+   {RGBColor[0.8111985411786794, 0.6819361146331226, 0.700936681751136], 
+    RectangleBox[NCache[{Rational[189, 256], 0}, {0.73828125, 0}], 
+     NCache[{Rational[95, 128], 1}, {0.7421875, 1}]]}, 
+   {RGBColor[0.8172362020755903, 0.6847958323402102, 0.7122407117447287], 
+    RectangleBox[NCache[{Rational[95, 128], 0}, {0.7421875, 0}], 
+     NCache[{Rational[191, 256], 1}, {0.74609375, 1}]]}, 
+   {RGBColor[0.8231298402833719, 0.6877037841050104, 0.7235796106821919], 
+    RectangleBox[NCache[{Rational[191, 256], 0}, {0.74609375, 0}], 
+     NCache[{Rational[3, 4], 1}, {0.75, 1}]]}, 
+   {RGBColor[0.8288788976913017, 0.6906623635881931, 0.7349365305850731], 
+    RectangleBox[NCache[{Rational[3, 4], 0}, {0.75, 0}], 
+     NCache[{Rational[193, 256], 1}, {0.75390625, 1}]]}, 
+   {RGBColor[0.8344831373211414, 0.6936738765009876, 0.746294538564842], 
+    RectangleBox[NCache[{Rational[193, 256], 0}, {0.75390625, 0}], 
+     NCache[{Rational[97, 128], 1}, {0.7578125, 1}]]}, 
+   {RGBColor[0.8399426441458906, 0.6967405331645077, 0.7576366525455175], 
+    RectangleBox[NCache[{Rational[97, 128], 0}, {0.7578125, 0}], 
+     NCache[{Rational[195, 256], 1}, {0.76171875, 1}]]}, 
+   {RGBColor[0.8452578241233965, 0.6998644414842765, 0.7689458779768439], 
+    RectangleBox[NCache[{Rational[195, 256], 0}, {0.76171875, 0}], 
+     NCache[{Rational[49, 64], 1}, {0.765625, 1}]]}, 
+   {RGBColor[0.850429401401725, 0.7030476003871028, 0.7802052454593379], 
+    RectangleBox[NCache[{Rational[49, 64], 0}, {0.765625, 0}], 
+     NCache[{Rational[197, 256], 1}, {0.76953125, 1}]]}, 
+   {RGBColor[0.8554584136664454, 0.70629189376327, 0.791397849185383], 
+    RectangleBox[NCache[{Rational[197, 256], 0}, {0.76953125, 0}], 
+     NCache[{Rational[99, 128], 1}, {0.7734375, 1}]]}, 
+   {RGBColor[0.8603462056143842, 0.7095990849522156, 0.8025068860853917], 
+    RectangleBox[NCache[{Rational[99, 128], 0}, {0.7734375, 0}], 
+     NCache[{Rational[199, 256], 1}, {0.77734375, 1}]]}, 
+   {RGBColor[0.8650944205537978, 0.7129708118046255, 0.813515695554903], 
+    RectangleBox[NCache[{Rational[199, 256], 0}, {0.77734375, 0}], 
+     NCache[{Rational[25, 32], 1}, {0.78125, 1}]]}, 
+   {RGBColor[0.8697049901472033, 0.7164085823481718, 0.8244077996272672], 
+    RectangleBox[NCache[{Rational[25, 32], 0}, {0.78125, 0}], 
+     NCache[{Rational[201, 256], 1}, {0.78515625, 1}]]}, 
+   {RGBColor[0.8741801223302178, 0.7199137710781333, 0.8351669434473096], 
+    RectangleBox[NCache[{Rational[201, 256], 0}, {0.78515625, 0}], 
+     NCache[{Rational[101, 128], 1}, {0.7890625, 1}]]}, 
+   {RGBColor[0.8785222874574837, 0.7234876158878804, 0.8457771358939189], 
+    RectangleBox[NCache[{Rational[101, 128], 0}, {0.7890625, 0}], 
+     NCache[{Rational[203, 256], 1}, {0.79296875, 1}]]}, 
+   {RGBColor[0.8827342027449506, 0.727131215647855, 0.8562226901938538], 
+    RectangleBox[NCache[{Rational[203, 256], 0}, {0.79296875, 0}], 
+     NCache[{Rational[51, 64], 1}, {0.796875, 1}]]}, 
+   {RGBColor[0.8868188150962691, 0.7308455284352732, 0.8664882643650689], 
+    RectangleBox[NCache[{Rational[51, 64], 0}, {0.796875, 0}], 
+     NCache[{Rational[205, 256], 1}, {0.80078125, 1}]]}, 
+   {RGBColor[0.8907792824195595, 0.7346313704104621, 0.8765589013254552], 
+    RectangleBox[NCache[{Rational[205, 256], 0}, {0.80078125, 0}], 
+     NCache[{Rational[103, 128], 1}, {0.8046875, 1}]]}, 
+   {RGBColor[0.8946189535591524, 0.7384894153296175, 0.8864200685019699], 
+    RectangleBox[NCache[{Rational[103, 128], 0}, {0.8046875, 0}], 
+     NCache[{Rational[207, 256], 1}, {0.80859375, 1}]]}, 
+   {RGBColor[0.8983413469847661, 0.7424201946778858, 0.896057696775582], 
+    RectangleBox[NCache[{Rational[207, 256], 0}, {0.80859375, 0}], 
+     NCache[{Rational[13, 16], 1}, {0.8125, 1}]]}, 
+   {RGBColor[0.9019501283977174, 0.7464240984011918, 0.9054582185992166], 
+    RectangleBox[NCache[{Rational[13, 16], 0}, {0.8125, 0}], 
+     NCache[{Rational[209, 256], 1}, {0.81640625, 1}]]}, 
+   {RGBColor[0.9054490874298735, 0.7505013762101761, 0.9146086051288054], 
+    RectangleBox[NCache[{Rational[209, 256], 0}, {0.81640625, 0}], 
+     NCache[{Rational[105, 128], 1}, {0.8203125, 1}]]}, 
+   {RGBColor[0.9088421136258261, 0.7546521394250556, 0.9234964022115921], 
+    RectangleBox[NCache[{Rational[105, 128], 0}, {0.8203125, 0}], 
+     NCache[{Rational[211, 256], 1}, {0.82421875, 1}]]}, 
+   {RGBColor[0.9121331719119183, 0.7588763633262677, 0.9321097650808874], 
+    RectangleBox[NCache[{Rational[211, 256], 0}, {0.82421875, 0}], 
+     NCache[{Rational[53, 64], 1}, {0.828125, 1}]]}, 
+   {RGBColor[0.9153262777669796, 0.7631738899723933, 0.9404374916124372], 
+    RectangleBox[NCache[{Rational[53, 64], 0}, {0.828125, 0}], 
+     NCache[{Rational[213, 256], 1}, {0.83203125, 1}]]}, 
+   {RGBColor[0.918425472318628, 0.7675444314441587, 0.9484690540043755], 
+    RectangleBox[NCache[{Rational[213, 256], 0}, {0.83203125, 0}], 
+     NCache[{Rational[107, 128], 1}, {0.8359375, 1}]]}, 
+   {RGBColor[0.9214347975955534, 0.7719875734712753, 0.9561946287503148], 
+    RectangleBox[NCache[{Rational[107, 128], 0}, {0.8359375, 0}], 
+     NCache[{Rational[215, 256], 1}, {0.83984375, 1}]]}, 
+   {RGBColor[0.9243582721700068, 0.7765027793975091, 0.9636051247833978], 
+    RectangleBox[NCache[{Rational[215, 256], 0}, {0.83984375, 0}], 
+     NCache[{Rational[27, 32], 1}, {0.84375, 1}]]}, 
+   {RGBColor[0.927199867425656, 0.781089394438662, 0.9706922096779939], 
+    RectangleBox[NCache[{Rational[27, 32], 0}, {0.84375, 0}], 
+     NCache[{Rational[217, 256], 1}, {0.84765625, 1}]]}, 
+   {RGBColor[0.9299634846838329, 0.7857466501880835, 0.9774483338051733], 
+    RectangleBox[NCache[{Rational[217, 256], 0}, {0.84765625, 0}], 
+     NCache[{Rational[109, 128], 1}, {0.8515625, 1}]]}, 
+   {RGBColor[0.9326529334158838, 0.7904736693248682, 0.9838667523479676], 
+    RectangleBox[NCache[{Rational[109, 128], 0}, {0.8515625, 0}], 
+     NCache[{Rational[219, 256], 1}, {0.85546875, 1}]]}, 
+   {RGBColor[0.9352719107608463, 0.795269470480992, 0.9899415450927546], 
+    RectangleBox[NCache[{Rational[219, 256], 0}, {0.85546875, 0}], 
+     NCache[{Rational[55, 64], 1}, {0.859375, 1}]]}, 
+   {RGBColor[0.9378239825559634, 0.8001329732252686, 0.9956676339237255], 
+    RectangleBox[NCache[{Rational[55, 64], 0}, {0.859375, 0}], 
+     NCache[{Rational[221, 256], 1}, {0.86328125, 1}]]}, 
+   {RGBColor[0.9403125660727598, 0.8050630031240745, 1.], 
+    RectangleBox[NCache[{Rational[221, 256], 0}, {0.86328125, 0}], 
+     NCache[{Rational[111, 128], 1}, {0.8671875, 1}]]}, 
+   {RGBColor[0.9427409146336475, 0.8100582968412506, 1.], 
+    RectangleBox[NCache[{Rational[111, 128], 0}, {0.8671875, 0}], 
+     NCache[{Rational[223, 256], 1}, {0.87109375, 1}]]}, 
+   {RGBColor[0.9451121042635348, 0.8151175072423954, 1.], 
+    RectangleBox[NCache[{Rational[223, 256], 0}, {0.87109375, 0}], 
+     NCache[{Rational[7, 8], 1}, {0.875, 1}]]}, 
+   {RGBColor[0.9474290225079861, 0.820239208471811, 1.], 
+    RectangleBox[NCache[{Rational[7, 8], 0}, {0.875, 0}], 
+     NCache[{Rational[225, 256], 1}, {0.87890625, 1}]]}, 
+   {RGBColor[0.9496943595244144, 0.825421900973602, 1.], 
+    RectangleBox[NCache[{Rational[225, 256], 0}, {0.87890625, 0}], 
+     NCache[{Rational[113, 128], 1}, {0.8828125, 1}]]}, 
+   {RGBColor[0.951910601526025, 0.8306640164318079, 1.], 
+    RectangleBox[NCache[{Rational[113, 128], 0}, {0.8828125, 0}], 
+     NCache[{Rational[227, 256], 1}, {0.88671875, 1}]]}, 
+   {RGBColor[0.9540800266301613, 0.835963922607861, 1.], 
+    RectangleBox[NCache[{Rational[227, 256], 0}, {0.88671875, 0}], 
+     NCache[{Rational[57, 64], 1}, {0.890625, 1}]]}, 
+   {RGBColor[0.9562047031338351, 0.8413199280571033, 1.], 
+    RectangleBox[NCache[{Rational[57, 64], 0}, {0.890625, 0}], 
+     NCache[{Rational[229, 256], 1}, {0.89453125, 1}]]}, 
+   {RGBColor[0.9582864902100118, 0.8467302867094464, 1.], 
+    RectangleBox[NCache[{Rational[229, 256], 0}, {0.89453125, 0}], 
+     NCache[{Rational[115, 128], 1}, {0.8984375, 1}]]}, 
+   {RGBColor[0.9603270409891808, 0.8521932023025315, 1.], 
+    RectangleBox[NCache[{Rational[115, 128], 0}, {0.8984375, 0}], 
+     NCache[{Rational[231, 256], 1}, {0.90234375, 1}]]}, 
+   {RGBColor[0.9623278079623682, 0.8577068326588367, 1.], 
+    RectangleBox[NCache[{Rational[231, 256], 0}, {0.90234375, 0}], 
+     NCache[{Rational[29, 32], 1}, {0.90625, 1}]]}, 
+   {RGBColor[0.9642900506144807, 0.8632692938011011, 1.], 
+    RectangleBox[NCache[{Rational[29, 32], 0}, {0.90625, 0}], 
+     NCache[{Rational[233, 256], 1}, {0.91015625, 1}]]}, 
+   {RGBColor[0.9662148451712204, 0.8688786639031081, 1.], 
+    RectangleBox[NCache[{Rational[233, 256], 0}, {0.91015625, 0}], 
+     NCache[{Rational[117, 128], 1}, {0.9140625, 1}]]}, 
+   {RGBColor[0.9681030963191041, 0.8745329870753211, 1.], 
+    RectangleBox[NCache[{Rational[117, 128], 0}, {0.9140625, 0}], 
+     NCache[{Rational[235, 256], 1}, {0.91796875, 1}]]}, 
+   {RGBColor[0.9699555507367942, 0.8802302769870136, 1.], 
+    RectangleBox[NCache[{Rational[235, 256], 0}, {0.91796875, 0}], 
+     NCache[{Rational[59, 64], 1}, {0.921875, 1}]]}, 
+   {RGBColor[0.9717728122572156, 0.8859685203284349, 1.], 
+    RectangleBox[NCache[{Rational[59, 64], 0}, {0.921875, 0}], 
+     NCache[{Rational[237, 256], 1}, {0.92578125, 1}]]}, 
+   {RGBColor[0.9735553584641264, 0.8917456801181453, 1.], 
+    RectangleBox[NCache[{Rational[237, 256], 0}, {0.92578125, 0}], 
+     NCache[{Rational[119, 128], 1}, {0.9296875, 1}]]}, 
+   {RGBColor[0.9753035585140043, 0.8975596988619662, 1.], 
+    RectangleBox[NCache[{Rational[119, 128], 0}, {0.9296875, 0}], 
+     NCache[{Rational[239, 256], 1}, {0.93359375, 1}]]}, 
+   {RGBColor[0.9770176919644922, 0.9034085015710185, 1.], 
+    RectangleBox[NCache[{Rational[239, 256], 0}, {0.93359375, 0}], 
+     NCache[{Rational[15, 16], 1}, {0.9375, 1}]]}, 
+   {RGBColor[0.978697968384186, 0.9092899986470824, 1.], 
+    RectangleBox[NCache[{Rational[15, 16], 0}, {0.9375, 0}], 
+     NCache[{Rational[241, 256], 1}, {0.94140625, 1}]]}, 
+   {RGBColor[0.9803445475152625, 0.9152020886440076, 1.], 
+    RectangleBox[NCache[{Rational[241, 256], 0}, {0.94140625, 0}], 
+     NCache[{Rational[121, 128], 1}, {0.9453125, 1}]]}, 
+   {RGBColor[0.9819575597602309, 0.9211426609141606, 1.], 
+    RectangleBox[NCache[{Rational[121, 128], 0}, {0.9453125, 0}], 
+     NCache[{Rational[243, 256], 1}, {0.94921875, 1}]]}, 
+   {RGBColor[0.9835371267668073, 0.9271095981489347, 1.], 
+    RectangleBox[NCache[{Rational[243, 256], 0}, {0.94921875, 0}], 
+     NCache[{Rational[61, 64], 1}, {0.953125, 1}]]}, 
+   {RGBColor[0.9850833818903765, 0.9331007788221813, 1.], 
+    RectangleBox[NCache[{Rational[61, 64], 0}, {0.953125, 0}], 
+     NCache[{Rational[245, 256], 1}, {0.95703125, 1}]]}, 
+   {RGBColor[0.9865964903215029, 0.9391140795450937, 1.], 
+    RectangleBox[NCache[{Rational[245, 256], 0}, {0.95703125, 0}], 
+     NCache[{Rational[123, 128], 1}, {0.9609375, 1}]]}, 
+   {RGBColor[0.9880766686761934, 0.9451473773405822, 1.], 
+    RectangleBox[NCache[{Rational[123, 128], 0}, {0.9609375, 0}], 
+     NCache[{Rational[247, 256], 1}, {0.96484375, 1}]]}, 
+   {RGBColor[0.9895242038588957, 0.9511985518445815, 1.], 
+    RectangleBox[NCache[{Rational[247, 256], 0}, {0.96484375, 0}], 
+     NCache[{Rational[31, 32], 1}, {0.96875, 1}]]}, 
+   {RGBColor[0.990939471022143, 0.957265487441017, 1.], 
+    RectangleBox[NCache[{Rational[31, 32], 0}, {0.96875, 0}], 
+     NCache[{Rational[249, 256], 1}, {0.97265625, 1}]]}, 
+   {RGBColor[0.9923229504621377, 0.9633460753363925, 1.], 
+    RectangleBox[NCache[{Rational[249, 256], 0}, {0.97265625, 0}], 
+     NCache[{Rational[125, 128], 1}, {0.9765625, 1}]]}, 
+   {RGBColor[0.9936752433060454, 0.9694382155791211, 1.], 
+    RectangleBox[NCache[{Rational[125, 128], 0}, {0.9765625, 0}], 
+     NCache[{Rational[251, 256], 1}, {0.98046875, 1}]]}, 
+   {RGBColor[0.9949970858640694, 0.9755398190278924, 1.], 
+    RectangleBox[NCache[{Rational[251, 256], 0}, {0.98046875, 0}], 
+     NCache[{Rational[63, 64], 1}, {0.984375, 1}]]}, 
+   {RGBColor[0.9962893625372552, 0.9816488092724923, 1.], 
+    RectangleBox[NCache[{Rational[63, 64], 0}, {0.984375, 0}], 
+     NCache[{Rational[253, 256], 1}, {0.98828125, 1}]]}, 
+   {RGBColor[0.9975531171901121, 0.9877631245096746, 1.], 
+    RectangleBox[NCache[{Rational[253, 256], 0}, {0.98828125, 0}], 
+     NCache[{Rational[127, 128], 1}, {0.9921875, 1}]]}, 
+   {RGBColor[0.9987895629154125, 0.9938807193758611, 1.], 
+    RectangleBox[NCache[{Rational[127, 128], 0}, {0.9921875, 0}], 
+     NCache[{Rational[255, 256], 1}, {0.99609375, 1}]]}, 
+   {RGBColor[1., 0.9999995667376941, 0.9999992604295981], 
+    RectangleBox[NCache[{Rational[255, 256], 0}, {0.99609375, 0}], {1, 1}]}},
+  AspectRatio->0.2]], "Output",
+ CellChangeTimes->{{3.648062884414217*^9, 3.6480628953909807`*^9}, 
+   3.648063105349577*^9, 3.648064907742105*^9, 3.648067624216043*^9, {
+   3.648068138573605*^9, 3.64806815115517*^9}, 3.648216287726901*^9, 
+   3.649608460321231*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"colorbar", "[", "mplrainbow", "]"}]], "Input",
+ CellChangeTimes->{{3.648068188048293*^9, 3.648068193352982*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {RGBColor[0., 0., 0.], 
+    RectangleBox[{0, 0}, NCache[{Rational[1, 256], 1}, {0.00390625, 1}]]}, 
+   {RGBColor[0.00123208396, 0.00095547309, 0.00139798823], 
+    RectangleBox[NCache[{Rational[1, 256], 0}, {0.00390625, 0}], 
+     NCache[{Rational[1, 128], 1}, {0.0078125, 1}]]}, 
+   {RGBColor[0.00229615544, 0.00178942817, 0.00287482272], 
+    RectangleBox[NCache[{Rational[1, 128], 0}, {0.0078125, 0}], 
+     NCache[{Rational[3, 256], 1}, {0.01171875, 1}]]}, 
+   {RGBColor[0.00365605723, 0.00283344018, 0.00492480921], 
+    RectangleBox[NCache[{Rational[3, 256], 0}, {0.01171875, 0}], 
+     NCache[{Rational[1, 64], 1}, {0.015625, 1}]]}, 
+   {RGBColor[0.00530551794, 0.00406778716, 0.00760691909], 
+    RectangleBox[NCache[{Rational[1, 64], 0}, {0.015625, 0}], 
+     NCache[{Rational[5, 256], 1}, {0.01953125, 1}]]}, 
+   {RGBColor[0.00723736344, 0.00548161371, 0.0109431791], 
+    RectangleBox[NCache[{Rational[5, 256], 0}, {0.01953125, 0}], 
+     NCache[{Rational[3, 128], 1}, {0.0234375, 1}]]}, 
+   {RGBColor[0.00945254296, 0.00705778542, 0.0150171636], 
+    RectangleBox[NCache[{Rational[3, 128], 0}, {0.0234375, 0}], 
+     NCache[{Rational[7, 256], 1}, {0.02734375, 1}]]}, 
+   {RGBColor[0.0119482347, 0.00878720053, 0.0198667312], 
+    RectangleBox[NCache[{Rational[7, 256], 0}, {0.02734375, 0}], 
+     NCache[{Rational[1, 32], 1}, {0.03125, 1}]]}, 
+   {RGBColor[0.0147228881, 0.0106611909, 0.025534909], 
+    RectangleBox[NCache[{Rational[1, 32], 0}, {0.03125, 0}], 
+     NCache[{Rational[9, 256], 1}, {0.03515625, 1}]]}, 
+   {RGBColor[0.0177835018, 0.0126603657, 0.0321519132], 
+    RectangleBox[NCache[{Rational[9, 256], 0}, {0.03515625, 0}], 
+     NCache[{Rational[5, 128], 1}, {0.0390625, 1}]]}, 
+   {RGBColor[0.0211220928, 0.0147877065, 0.039687175], 
+    RectangleBox[NCache[{Rational[5, 128], 0}, {0.0390625, 0}], 
+     NCache[{Rational[11, 256], 1}, {0.04296875, 1}]]}, 
+   {RGBColor[0.0247515394, 0.0170167645, 0.0478036366], 
+    RectangleBox[NCache[{Rational[11, 256], 0}, {0.04296875, 0}], 
+     NCache[{Rational[3, 64], 1}, {0.046875, 1}]]}, 
+   {RGBColor[0.0286638456, 0.0193519218, 0.0559687827], 
+    RectangleBox[NCache[{Rational[3, 64], 0}, {0.046875, 0}], 
+     NCache[{Rational[13, 256], 1}, {0.05078125, 1}]]}, 
+   {RGBColor[0.0328682397, 0.0217723779, 0.0642706842], 
+    RectangleBox[NCache[{Rational[13, 256], 0}, {0.05078125, 0}], 
+     NCache[{Rational[7, 128], 1}, {0.0546875, 1}]]}, 
+   {RGBColor[0.0373641166, 0.0242719221, 0.0726898674], 
+    RectangleBox[NCache[{Rational[7, 128], 0}, {0.0546875, 0}], 
+     NCache[{Rational[15, 256], 1}, {0.05859375, 1}]]}, 
+   {RGBColor[0.0421050647, 0.0268397654, 0.0812355395], 
+    RectangleBox[NCache[{Rational[15, 256], 0}, {0.05859375, 0}], 
+     NCache[{Rational[1, 16], 1}, {0.0625, 1}]]}, 
+   {RGBColor[0.0468284728, 0.0294586559, 0.0899433646], 
+    RectangleBox[NCache[{Rational[1, 16], 0}, {0.0625, 0}], 
+     NCache[{Rational[17, 256], 1}, {0.06640625, 1}]]}, 
+   {RGBColor[0.0515141518, 0.032125641, 0.09878169], 
+    RectangleBox[NCache[{Rational[17, 256], 0}, {0.06640625, 0}], 
+     NCache[{Rational[9, 128], 1}, {0.0703125, 1}]]}, 
+   {RGBColor[0.0561710528, 0.0348169996, 0.107806321], 
+    RectangleBox[NCache[{Rational[9, 128], 0}, {0.0703125, 0}], 
+     NCache[{Rational[19, 256], 1}, {0.07421875, 1}]]}, 
+   {RGBColor[0.0607964611, 0.0375295002, 0.116986953], 
+    RectangleBox[NCache[{Rational[19, 256], 0}, {0.07421875, 0}], 
+     NCache[{Rational[5, 64], 1}, {0.078125, 1}]]}, 
+   {RGBColor[0.0653942936, 0.0402451065, 0.126350147], 
+    RectangleBox[NCache[{Rational[5, 64], 0}, {0.078125, 0}], 
+     NCache[{Rational[21, 256], 1}, {0.08203125, 1}]]}, 
+   {RGBColor[0.0699678963, 0.042858932, 0.135923729], 
+    RectangleBox[NCache[{Rational[21, 256], 0}, {0.08203125, 0}], 
+     NCache[{Rational[11, 128], 1}, {0.0859375, 1}]]}, 
+   {RGBColor[0.0745082197, 0.0453694998, 0.145639655], 
+    RectangleBox[NCache[{Rational[11, 128], 0}, {0.0859375, 0}], 
+     NCache[{Rational[23, 256], 1}, {0.08984375, 1}]]}, 
+   {RGBColor[0.0790330506, 0.0477307435, 0.155656679], 
+    RectangleBox[NCache[{Rational[23, 256], 0}, {0.08984375, 0}], 
+     NCache[{Rational[3, 32], 1}, {0.09375, 1}]]}, 
+   {RGBColor[0.0835202958, 0.0499952955, 0.165809116], 
+    RectangleBox[NCache[{Rational[3, 32], 0}, {0.09375, 0}], 
+     NCache[{Rational[25, 256], 1}, {0.09765625, 1}]]}, 
+   {RGBColor[0.0879834474, 0.0521177479, 0.176237541], 
+    RectangleBox[NCache[{Rational[25, 256], 0}, {0.09765625, 0}], 
+     NCache[{Rational[13, 128], 1}, {0.1015625, 1}]]}, 
+   {RGBColor[0.0924150207, 0.0541059968, 0.186915608], 
+    RectangleBox[NCache[{Rational[13, 128], 0}, {0.1015625, 0}], 
+     NCache[{Rational[27, 256], 1}, {0.10546875, 1}]]}, 
+   {RGBColor[0.0968029626, 0.0559815865, 0.197781923], 
+    RectangleBox[NCache[{Rational[27, 256], 0}, {0.10546875, 0}], 
+     NCache[{Rational[7, 64], 1}, {0.109375, 1}]]}, 
+   {RGBColor[0.101151155, 0.0577100082, 0.208936447], 
+    RectangleBox[NCache[{Rational[7, 64], 0}, {0.109375, 0}], 
+     NCache[{Rational[29, 256], 1}, {0.11328125, 1}]]}, 
+   {RGBColor[0.105451837, 0.0592849001, 0.220396438], 
+    RectangleBox[NCache[{Rational[29, 256], 0}, {0.11328125, 0}], 
+     NCache[{Rational[15, 128], 1}, {0.1171875, 1}]]}, 
+   {RGBColor[0.10968688, 0.0607326502, 0.232095082], 
+    RectangleBox[NCache[{Rational[15, 128], 0}, {0.1171875, 0}], 
+     NCache[{Rational[31, 256], 1}, {0.12109375, 1}]]}, 
+   {RGBColor[0.113843713, 0.0620506875, 0.244050536], 
+    RectangleBox[NCache[{Rational[31, 256], 0}, {0.12109375, 0}], 
+     NCache[{Rational[1, 8], 1}, {0.125, 1}]]}, 
+   {RGBColor[0.117904959, 0.0632397421, 0.256278], 
+    RectangleBox[NCache[{Rational[1, 8], 0}, {0.125, 0}], 
+     NCache[{Rational[33, 256], 1}, {0.12890625, 1}]]}, 
+   {RGBColor[0.121846598, 0.064306871, 0.268785988], 
+    RectangleBox[NCache[{Rational[33, 256], 0}, {0.12890625, 0}], 
+     NCache[{Rational[17, 128], 1}, {0.1328125, 1}]]}, 
+   {RGBColor[0.1256355, 0.0652701612, 0.281570678], 
+    RectangleBox[NCache[{Rational[17, 128], 0}, {0.1328125, 0}], 
+     NCache[{Rational[35, 256], 1}, {0.13671875, 1}]]}, 
+   {RGBColor[0.129226271, 0.0661657005, 0.294607743], 
+    RectangleBox[NCache[{Rational[35, 256], 0}, {0.13671875, 0}], 
+     NCache[{Rational[9, 64], 1}, {0.140625, 1}]]}, 
+   {RGBColor[0.132557443, 0.0670572149, 0.307841226], 
+    RectangleBox[NCache[{Rational[9, 64], 0}, {0.140625, 0}], 
+     NCache[{Rational[37, 256], 1}, {0.14453125, 1}]]}, 
+   {RGBColor[0.135547409, 0.0680479794, 0.321169632], 
+    RectangleBox[NCache[{Rational[37, 256], 0}, {0.14453125, 0}], 
+     NCache[{Rational[19, 128], 1}, {0.1484375, 1}]]}, 
+   {RGBColor[0.138091076, 0.0692926359, 0.334430764], 
+    RectangleBox[NCache[{Rational[19, 128], 0}, {0.1484375, 0}], 
+     NCache[{Rational[39, 256], 1}, {0.15234375, 1}]]}, 
+   {RGBColor[0.140040521, 0.0709626931, 0.34750866], 
+    RectangleBox[NCache[{Rational[39, 256], 0}, {0.15234375, 0}], 
+     NCache[{Rational[5, 32], 1}, {0.15625, 1}]]}, 
+   {RGBColor[0.141240948, 0.0733731827, 0.359972935], 
+    RectangleBox[NCache[{Rational[5, 32], 0}, {0.15625, 0}], 
+     NCache[{Rational[41, 256], 1}, {0.16015625, 1}]]}, 
+   {RGBColor[0.141507741, 0.0768055544, 0.371470975], 
+    RectangleBox[NCache[{Rational[41, 256], 0}, {0.16015625, 0}], 
+     NCache[{Rational[21, 128], 1}, {0.1640625, 1}]]}, 
+   {RGBColor[0.140750085, 0.0815085404, 0.381459968], 
+    RectangleBox[NCache[{Rational[21, 128], 0}, {0.1640625, 0}], 
+     NCache[{Rational[43, 256], 1}, {0.16796875, 1}]]}, 
+   {RGBColor[0.138978078, 0.0875006802, 0.389596616], 
+    RectangleBox[NCache[{Rational[43, 256], 0}, {0.16796875, 0}], 
+     NCache[{Rational[11, 64], 1}, {0.171875, 1}]]}, 
+   {RGBColor[0.136328543, 0.0945637193, 0.395783386], 
+    RectangleBox[NCache[{Rational[11, 64], 0}, {0.171875, 0}], 
+     NCache[{Rational[45, 256], 1}, {0.17578125, 1}]]}, 
+   {RGBColor[0.133020255, 0.102337765, 0.400175258], 
+    RectangleBox[NCache[{Rational[45, 256], 0}, {0.17578125, 0}], 
+     NCache[{Rational[23, 128], 1}, {0.1796875, 1}]]}, 
+   {RGBColor[0.129250417, 0.110478799, 0.403074022], 
+    RectangleBox[NCache[{Rational[23, 128], 0}, {0.1796875, 0}], 
+     NCache[{Rational[47, 256], 1}, {0.18359375, 1}]]}, 
+   {RGBColor[0.125151398, 0.118742158, 0.404788627], 
+    RectangleBox[NCache[{Rational[47, 256], 0}, {0.18359375, 0}], 
+     NCache[{Rational[3, 16], 1}, {0.1875, 1}]]}, 
+   {RGBColor[0.120897791, 0.126928615, 0.405612684], 
+    RectangleBox[NCache[{Rational[3, 16], 0}, {0.1875, 0}], 
+     NCache[{Rational[49, 256], 1}, {0.19140625, 1}]]}, 
+   {RGBColor[0.116503773, 0.134976096, 0.405743218], 
+    RectangleBox[NCache[{Rational[49, 256], 0}, {0.19140625, 0}], 
+     NCache[{Rational[25, 128], 1}, {0.1953125, 1}]]}, 
+   {RGBColor[0.112091791, 0.142800379, 0.405380296], 
+    RectangleBox[NCache[{Rational[25, 128], 0}, {0.1953125, 0}], 
+     NCache[{Rational[51, 256], 1}, {0.19921875, 1}]]}, 
+   {RGBColor[0.10766772, 0.150397779, 0.404637066], 
+    RectangleBox[NCache[{Rational[51, 256], 0}, {0.19921875, 0}], 
+     NCache[{Rational[13, 64], 1}, {0.203125, 1}]]}, 
+   {RGBColor[0.103261075, 0.157763499, 0.403610287], 
+    RectangleBox[NCache[{Rational[13, 64], 0}, {0.203125, 0}], 
+     NCache[{Rational[53, 256], 1}, {0.20703125, 1}]]}, 
+   {RGBColor[0.0989139075, 0.164894349, 0.40238618], 
+    RectangleBox[NCache[{Rational[53, 256], 0}, {0.20703125, 0}], 
+     NCache[{Rational[27, 128], 1}, {0.2109375, 1}]]}, 
+   {RGBColor[0.0946605957, 0.171795271, 0.401032857], 
+    RectangleBox[NCache[{Rational[27, 128], 0}, {0.2109375, 0}], 
+     NCache[{Rational[55, 256], 1}, {0.21484375, 1}]]}, 
+   {RGBColor[0.0904966075, 0.178488051, 0.399581412], 
+    RectangleBox[NCache[{Rational[55, 256], 0}, {0.21484375, 0}], 
+     NCache[{Rational[7, 32], 1}, {0.21875, 1}]]}, 
+   {RGBColor[0.0864400964, 0.184985184, 0.398068674], 
+    RectangleBox[NCache[{Rational[7, 32], 0}, {0.21875, 0}], 
+     NCache[{Rational[57, 256], 1}, {0.22265625, 1}]]}, 
+   {RGBColor[0.0825068783, 0.191299899, 0.396523264], 
+    RectangleBox[NCache[{Rational[57, 256], 0}, {0.22265625, 0}], 
+     NCache[{Rational[29, 128], 1}, {0.2265625, 1}]]}, 
+   {RGBColor[0.0787110863, 0.197445454, 0.394967383], 
+    RectangleBox[NCache[{Rational[29, 128], 0}, {0.2265625, 0}], 
+     NCache[{Rational[59, 256], 1}, {0.23046875, 1}]]}, 
+   {RGBColor[0.075065626, 0.203434722, 0.393418199], 
+    RectangleBox[NCache[{Rational[59, 256], 0}, {0.23046875, 0}], 
+     NCache[{Rational[15, 64], 1}, {0.234375, 1}]]}, 
+   {RGBColor[0.0715824638, 0.209279955, 0.391888928], 
+    RectangleBox[NCache[{Rational[15, 64], 0}, {0.234375, 0}], 
+     NCache[{Rational[61, 256], 1}, {0.23828125, 1}]]}, 
+   {RGBColor[0.0682727786, 0.214992675, 0.390389666], 
+    RectangleBox[NCache[{Rational[61, 256], 0}, {0.23828125, 0}], 
+     NCache[{Rational[31, 128], 1}, {0.2421875, 1}]]}, 
+   {RGBColor[0.0651469969, 0.220583627, 0.388928035], 
+    RectangleBox[NCache[{Rational[31, 128], 0}, {0.2421875, 0}], 
+     NCache[{Rational[63, 256], 1}, {0.24609375, 1}]]}, 
+   {RGBColor[0.0622147318, 0.226062789, 0.387509681], 
+    RectangleBox[NCache[{Rational[63, 256], 0}, {0.24609375, 0}], 
+     NCache[{Rational[1, 4], 1}, {0.25, 1}]]}, 
+   {RGBColor[0.0594846413, 0.2314394, 0.386138652], 
+    RectangleBox[NCache[{Rational[1, 4], 0}, {0.25, 0}], 
+     NCache[{Rational[65, 256], 1}, {0.25390625, 1}]]}, 
+   {RGBColor[0.0569642263, 0.236722005, 0.384817703], 
+    RectangleBox[NCache[{Rational[65, 256], 0}, {0.25390625, 0}], 
+     NCache[{Rational[33, 128], 1}, {0.2578125, 1}]]}, 
+   {RGBColor[0.0546595872, 0.241918503, 0.383548521], 
+    RectangleBox[NCache[{Rational[33, 128], 0}, {0.2578125, 0}], 
+     NCache[{Rational[67, 256], 1}, {0.26171875, 1}]]}, 
+   {RGBColor[0.0525751624, 0.247036203, 0.382331902], 
+    RectangleBox[NCache[{Rational[67, 256], 0}, {0.26171875, 0}], 
+     NCache[{Rational[17, 64], 1}, {0.265625, 1}]]}, 
+   {RGBColor[0.0507134751, 0.25208187, 0.38116789], 
+    RectangleBox[NCache[{Rational[17, 64], 0}, {0.265625, 0}], 
+     NCache[{Rational[69, 256], 1}, {0.26953125, 1}]]}, 
+   {RGBColor[0.0490749156, 0.257061774, 0.380055881], 
+    RectangleBox[NCache[{Rational[69, 256], 0}, {0.26953125, 0}], 
+     NCache[{Rational[35, 128], 1}, {0.2734375, 1}]]}, 
+   {RGBColor[0.0476575847, 0.261981734, 0.378994708], 
+    RectangleBox[NCache[{Rational[35, 128], 0}, {0.2734375, 0}], 
+     NCache[{Rational[71, 256], 1}, {0.27734375, 1}]]}, 
+   {RGBColor[0.0464572218, 0.266847155, 0.377982702], 
+    RectangleBox[NCache[{Rational[71, 256], 0}, {0.27734375, 0}], 
+     NCache[{Rational[9, 32], 1}, {0.28125, 1}]]}, 
+   {RGBColor[0.0454672343, 0.271663063, 0.377017741], 
+    RectangleBox[NCache[{Rational[9, 32], 0}, {0.28125, 0}], 
+     NCache[{Rational[73, 256], 1}, {0.28515625, 1}]]}, 
+   {RGBColor[0.0446840991, 0.276433278, 0.376100669], 
+    RectangleBox[NCache[{Rational[73, 256], 0}, {0.28515625, 0}], 
+     NCache[{Rational[37, 128], 1}, {0.2890625, 1}]]}, 
+   {RGBColor[0.0440912972, 0.281163132, 0.375224852], 
+    RectangleBox[NCache[{Rational[37, 128], 0}, {0.2890625, 0}], 
+     NCache[{Rational[75, 256], 1}, {0.29296875, 1}]]}, 
+   {RGBColor[0.0436760356, 0.285856732, 0.374386744], 
+    RectangleBox[NCache[{Rational[75, 256], 0}, {0.29296875, 0}], 
+     NCache[{Rational[19, 64], 1}, {0.296875, 1}]]}, 
+   {RGBColor[0.0434247319, 0.290517832, 0.373582732], 
+    RectangleBox[NCache[{Rational[19, 64], 0}, {0.296875, 0}], 
+     NCache[{Rational[77, 256], 1}, {0.30078125, 1}]]}, 
+   {RGBColor[0.0433230538, 0.295149919, 0.372808888], 
+    RectangleBox[NCache[{Rational[77, 256], 0}, {0.30078125, 0}], 
+     NCache[{Rational[39, 128], 1}, {0.3046875, 1}]]}, 
+   {RGBColor[0.0433563883, 0.299756226, 0.372060986], 
+    RectangleBox[NCache[{Rational[39, 128], 0}, {0.3046875, 0}], 
+     NCache[{Rational[79, 256], 1}, {0.30859375, 1}]]}, 
+   {RGBColor[0.0435103092, 0.30433974, 0.371334509], 
+    RectangleBox[NCache[{Rational[79, 256], 0}, {0.30859375, 0}], 
+     NCache[{Rational[5, 16], 1}, {0.3125, 1}]]}, 
+   {RGBColor[0.0437710212, 0.308903211, 0.370624672], 
+    RectangleBox[NCache[{Rational[5, 16], 0}, {0.3125, 0}], 
+     NCache[{Rational[81, 256], 1}, {0.31640625, 1}]]}, 
+   {RGBColor[0.0441282904, 0.313448805, 0.369928058], 
+    RectangleBox[NCache[{Rational[81, 256], 0}, {0.31640625, 0}], 
+     NCache[{Rational[41, 128], 1}, {0.3203125, 1}]]}, 
+   {RGBColor[0.0445674054, 0.317979294, 0.369237225], 
+    RectangleBox[NCache[{Rational[41, 128], 0}, {0.3203125, 0}], 
+     NCache[{Rational[83, 256], 1}, {0.32421875, 1}]]}, 
+   {RGBColor[0.0450786065, 0.322496756, 0.368546588], 
+    RectangleBox[NCache[{Rational[83, 256], 0}, {0.32421875, 0}], 
+     NCache[{Rational[21, 64], 1}, {0.328125, 1}]]}, 
+   {RGBColor[0.0456542782, 0.327003032, 0.367850463], 
+    RectangleBox[NCache[{Rational[21, 64], 0}, {0.328125, 0}], 
+     NCache[{Rational[85, 256], 1}, {0.33203125, 1}]]}, 
+   {RGBColor[0.0462889953, 0.331499739, 0.367142985], 
+    RectangleBox[NCache[{Rational[85, 256], 0}, {0.33203125, 0}], 
+     NCache[{Rational[43, 128], 1}, {0.3359375, 1}]]}, 
+   {RGBColor[0.0469796908, 0.335988283, 0.366418129], 
+    RectangleBox[NCache[{Rational[43, 128], 0}, {0.3359375, 0}], 
+     NCache[{Rational[87, 256], 1}, {0.33984375, 1}]]}, 
+   {RGBColor[0.0477257788, 0.340469852, 0.365669737], 
+    RectangleBox[NCache[{Rational[87, 256], 0}, {0.33984375, 0}], 
+     NCache[{Rational[11, 32], 1}, {0.34375, 1}]]}, 
+   {RGBColor[0.0485291489, 0.344945431, 0.364891487], 
+    RectangleBox[NCache[{Rational[11, 32], 0}, {0.34375, 0}], 
+     NCache[{Rational[89, 256], 1}, {0.34765625, 1}]]}, 
+   {RGBColor[0.0493936792, 0.349415875, 0.364076553], 
+    RectangleBox[NCache[{Rational[89, 256], 0}, {0.34765625, 0}], 
+     NCache[{Rational[45, 128], 1}, {0.3515625, 1}]]}, 
+   {RGBColor[0.0503265816, 0.353881729, 0.363218552], 
+    RectangleBox[NCache[{Rational[45, 128], 0}, {0.3515625, 0}], 
+     NCache[{Rational[91, 256], 1}, {0.35546875, 1}]]}, 
+   {RGBColor[0.0513376114, 0.35834333, 0.362311095], 
+    RectangleBox[NCache[{Rational[91, 256], 0}, {0.35546875, 0}], 
+     NCache[{Rational[23, 64], 1}, {0.359375, 1}]]}, 
+   {RGBColor[0.0524389267, 0.362800809, 0.361347801], 
+    RectangleBox[NCache[{Rational[23, 64], 0}, {0.359375, 0}], 
+     NCache[{Rational[93, 256], 1}, {0.36328125, 1}]]}, 
+   {RGBColor[0.0536449018, 0.367254102, 0.360322329], 
+    RectangleBox[NCache[{Rational[93, 256], 0}, {0.36328125, 0}], 
+     NCache[{Rational[47, 128], 1}, {0.3671875, 1}]]}, 
+   {RGBColor[0.0549718276, 0.371702955, 0.359228375], 
+    RectangleBox[NCache[{Rational[47, 128], 0}, {0.3671875, 0}], 
+     NCache[{Rational[95, 256], 1}, {0.37109375, 1}]]}, 
+   {RGBColor[0.0564358645, 0.376147176, 0.358058223], 
+    RectangleBox[NCache[{Rational[95, 256], 0}, {0.37109375, 0}], 
+     NCache[{Rational[3, 8], 1}, {0.375, 1}]]}, 
+   {RGBColor[0.0580577474, 0.380585934, 0.356806935], 
+    RectangleBox[NCache[{Rational[3, 8], 0}, {0.375, 0}], 
+     NCache[{Rational[97, 256], 1}, {0.37890625, 1}]]}, 
+   {RGBColor[0.0598575991, 0.385018417, 0.355468636], 
+    RectangleBox[NCache[{Rational[97, 256], 0}, {0.37890625, 0}], 
+     NCache[{Rational[49, 128], 1}, {0.3828125, 1}]]}, 
+   {RGBColor[0.06185582, 0.389443647, 0.354037625], 
+    RectangleBox[NCache[{Rational[49, 128], 0}, {0.3828125, 0}], 
+     NCache[{Rational[99, 256], 1}, {0.38671875, 1}]]}, 
+   {RGBColor[0.064072551, 0.393860487, 0.352508403], 
+    RectangleBox[NCache[{Rational[99, 256], 0}, {0.38671875, 0}], 
+     NCache[{Rational[25, 64], 1}, {0.390625, 1}]]}, 
+   {RGBColor[0.0665271332, 0.398267655, 0.350875686], 
+    RectangleBox[NCache[{Rational[25, 64], 0}, {0.390625, 0}], 
+     NCache[{Rational[101, 256], 1}, {0.39453125, 1}]]}, 
+   {RGBColor[0.0692375954, 0.402663728, 0.349134426], 
+    RectangleBox[NCache[{Rational[101, 256], 0}, {0.39453125, 0}], 
+     NCache[{Rational[51, 128], 1}, {0.3984375, 1}]]}, 
+   {RGBColor[0.0722190954, 0.407047379, 0.347278053], 
+    RectangleBox[NCache[{Rational[51, 128], 0}, {0.3984375, 0}], 
+     NCache[{Rational[103, 256], 1}, {0.40234375, 1}]]}, 
+   {RGBColor[0.075486454, 0.411416856, 0.345302457], 
+    RectangleBox[NCache[{Rational[103, 256], 0}, {0.40234375, 0}], 
+     NCache[{Rational[13, 32], 1}, {0.40625, 1}]]}, 
+   {RGBColor[0.0790521742, 0.415770242, 0.343204352], 
+    RectangleBox[NCache[{Rational[13, 32], 0}, {0.40625, 0}], 
+     NCache[{Rational[105, 256], 1}, {0.41015625, 1}]]}, 
+   {RGBColor[0.0829254846, 0.420105651, 0.34097977], 
+    RectangleBox[NCache[{Rational[105, 256], 0}, {0.41015625, 0}], 
+     NCache[{Rational[53, 128], 1}, {0.4140625, 1}]]}, 
+   {RGBColor[0.0871129773, 0.42442111, 0.338625025], 
+    RectangleBox[NCache[{Rational[53, 128], 0}, {0.4140625, 0}], 
+     NCache[{Rational[107, 256], 1}, {0.41796875, 1}]]}, 
+   {RGBColor[0.091618667, 0.428714566, 0.336136719], 
+    RectangleBox[NCache[{Rational[107, 256], 0}, {0.41796875, 0}], 
+     NCache[{Rational[27, 64], 1}, {0.421875, 1}]]}, 
+   {RGBColor[0.0964441393, 0.432983895, 0.333511739], 
+    RectangleBox[NCache[{Rational[27, 64], 0}, {0.421875, 0}], 
+     NCache[{Rational[109, 256], 1}, {0.42578125, 1}]]}, 
+   {RGBColor[0.101588767, 0.437226916, 0.330747257], 
+    RectangleBox[NCache[{Rational[109, 256], 0}, {0.42578125, 0}], 
+     NCache[{Rational[55, 128], 1}, {0.4296875, 1}]]}, 
+   {RGBColor[0.107049974, 0.441441396, 0.327840728], 
+    RectangleBox[NCache[{Rational[55, 128], 0}, {0.4296875, 0}], 
+     NCache[{Rational[111, 256], 1}, {0.43359375, 1}]]}, 
+   {RGBColor[0.112823855, 0.445625238, 0.324786969], 
+    RectangleBox[NCache[{Rational[111, 256], 0}, {0.43359375, 0}], 
+     NCache[{Rational[7, 16], 1}, {0.4375, 1}]]}, 
+   {RGBColor[0.118904971, 0.449775948, 0.321586143], 
+    RectangleBox[NCache[{Rational[7, 16], 0}, {0.4375, 0}], 
+     NCache[{Rational[113, 256], 1}, {0.44140625, 1}]]}, 
+   {RGBColor[0.125286565, 0.453891139, 0.318237146], 
+    RectangleBox[NCache[{Rational[113, 256], 0}, {0.44140625, 0}], 
+     NCache[{Rational[57, 128], 1}, {0.4453125, 1}]]}, 
+   {RGBColor[0.131961058, 0.457968449, 0.314738541], 
+    RectangleBox[NCache[{Rational[57, 128], 0}, {0.4453125, 0}], 
+     NCache[{Rational[115, 256], 1}, {0.44921875, 1}]]}, 
+   {RGBColor[0.138920254, 0.462005502, 0.311089142], 
+    RectangleBox[NCache[{Rational[115, 256], 0}, {0.44921875, 0}], 
+     NCache[{Rational[29, 64], 1}, {0.453125, 1}]]}, 
+   {RGBColor[0.14615554, 0.465999917, 0.307288006], 
+    RectangleBox[NCache[{Rational[29, 64], 0}, {0.453125, 0}], 
+     NCache[{Rational[117, 256], 1}, {0.45703125, 1}]]}, 
+   {RGBColor[0.153658052, 0.469949317, 0.303334418], 
+    RectangleBox[NCache[{Rational[117, 256], 0}, {0.45703125, 0}], 
+     NCache[{Rational[59, 128], 1}, {0.4609375, 1}]]}, 
+   {RGBColor[0.16141881, 0.473851329, 0.299227888], 
+    RectangleBox[NCache[{Rational[59, 128], 0}, {0.4609375, 0}], 
+     NCache[{Rational[119, 256], 1}, {0.46484375, 1}]]}, 
+   {RGBColor[0.169428819, 0.477703598, 0.294968134], 
+    RectangleBox[NCache[{Rational[119, 256], 0}, {0.46484375, 0}], 
+     NCache[{Rational[15, 32], 1}, {0.46875, 1}]]}, 
+   {RGBColor[0.177679155, 0.481503786, 0.290555072], 
+    RectangleBox[NCache[{Rational[15, 32], 0}, {0.46875, 0}], 
+     NCache[{Rational[121, 256], 1}, {0.47265625, 1}]]}, 
+   {RGBColor[0.186161019, 0.485249581, 0.285988805], 
+    RectangleBox[NCache[{Rational[121, 256], 0}, {0.47265625, 0}], 
+     NCache[{Rational[61, 128], 1}, {0.4765625, 1}]]}, 
+   {RGBColor[0.194865778, 0.488938703, 0.281269612], 
+    RectangleBox[NCache[{Rational[61, 128], 0}, {0.4765625, 0}], 
+     NCache[{Rational[123, 256], 1}, {0.48046875, 1}]]}, 
+   {RGBColor[0.203784988, 0.492568909, 0.276397933], 
+    RectangleBox[NCache[{Rational[123, 256], 0}, {0.48046875, 0}], 
+     NCache[{Rational[31, 64], 1}, {0.484375, 1}]]}, 
+   {RGBColor[0.212910409, 0.496137998, 0.271374357], 
+    RectangleBox[NCache[{Rational[31, 64], 0}, {0.484375, 0}], 
+     NCache[{Rational[125, 256], 1}, {0.48828125, 1}]]}, 
+   {RGBColor[0.222234002, 0.499643819, 0.266199611], 
+    RectangleBox[NCache[{Rational[125, 256], 0}, {0.48828125, 0}], 
+     NCache[{Rational[63, 128], 1}, {0.4921875, 1}]]}, 
+   {RGBColor[0.231747934, 0.503084276, 0.260874541], 
+    RectangleBox[NCache[{Rational[63, 128], 0}, {0.4921875, 0}], 
+     NCache[{Rational[127, 256], 1}, {0.49609375, 1}]]}, 
+   {RGBColor[0.241444557, 0.506457333, 0.255400105], 
+    RectangleBox[NCache[{Rational[127, 256], 0}, {0.49609375, 0}], 
+     NCache[{Rational[1, 2], 1}, {0.5, 1}]]}, 
+   {RGBColor[0.251316401, 0.509761021, 0.249777354], 
+    RectangleBox[NCache[{Rational[1, 2], 0}, {0.5, 0}], 
+     NCache[{Rational[129, 256], 1}, {0.50390625, 1}]]}, 
+   {RGBColor[0.261356155, 0.512993445, 0.24400742], 
+    RectangleBox[NCache[{Rational[129, 256], 0}, {0.50390625, 0}], 
+     NCache[{Rational[65, 128], 1}, {0.5078125, 1}]]}, 
+   {RGBColor[0.271556645, 0.516152793, 0.238091502], 
+    RectangleBox[NCache[{Rational[65, 128], 0}, {0.5078125, 0}], 
+     NCache[{Rational[131, 256], 1}, {0.51171875, 1}]]}, 
+   {RGBColor[0.281910816, 0.519237338, 0.232030849], 
+    RectangleBox[NCache[{Rational[131, 256], 0}, {0.51171875, 0}], 
+     NCache[{Rational[33, 64], 1}, {0.515625, 1}]]}, 
+   {RGBColor[0.292411709, 0.522245452, 0.22582675], 
+    RectangleBox[NCache[{Rational[33, 64], 0}, {0.515625, 0}], 
+     NCache[{Rational[133, 256], 1}, {0.51953125, 1}]]}, 
+   {RGBColor[0.303052439, 0.525175609, 0.219480519], 
+    RectangleBox[NCache[{Rational[133, 256], 0}, {0.51953125, 0}], 
+     NCache[{Rational[67, 128], 1}, {0.5234375, 1}]]}, 
+   {RGBColor[0.313826172, 0.528026396, 0.212993484], 
+    RectangleBox[NCache[{Rational[67, 128], 0}, {0.5234375, 0}], 
+     NCache[{Rational[135, 256], 1}, {0.52734375, 1}]]}, 
+   {RGBColor[0.324726102, 0.530796524, 0.206366974], 
+    RectangleBox[NCache[{Rational[135, 256], 0}, {0.52734375, 0}], 
+     NCache[{Rational[17, 32], 1}, {0.53125, 1}]]}, 
+   {RGBColor[0.33574543, 0.533484834, 0.199602318], 
+    RectangleBox[NCache[{Rational[17, 32], 0}, {0.53125, 0}], 
+     NCache[{Rational[137, 256], 1}, {0.53515625, 1}]]}, 
+   {RGBColor[0.346877341, 0.536090309, 0.192700836], 
+    RectangleBox[NCache[{Rational[137, 256], 0}, {0.53515625, 0}], 
+     NCache[{Rational[69, 128], 1}, {0.5390625, 1}]]}, 
+   {RGBColor[0.358114982, 0.538612089, 0.185663845], 
+    RectangleBox[NCache[{Rational[69, 128], 0}, {0.5390625, 0}], 
+     NCache[{Rational[139, 256], 1}, {0.54296875, 1}]]}, 
+   {RGBColor[0.369451439, 0.541049476, 0.178492672], 
+    RectangleBox[NCache[{Rational[139, 256], 0}, {0.54296875, 0}], 
+     NCache[{Rational[35, 64], 1}, {0.546875, 1}]]}, 
+   {RGBColor[0.380879719, 0.543401953, 0.171188671], 
+    RectangleBox[NCache[{Rational[35, 64], 0}, {0.546875, 0}], 
+     NCache[{Rational[141, 256], 1}, {0.55078125, 1}]]}, 
+   {RGBColor[0.392392725, 0.545669194, 0.163753271], 
+    RectangleBox[NCache[{Rational[141, 256], 0}, {0.55078125, 0}], 
+     NCache[{Rational[71, 128], 1}, {0.5546875, 1}]]}, 
+   {RGBColor[0.40398324, 0.547851079, 0.156188035], 
+    RectangleBox[NCache[{Rational[71, 128], 0}, {0.5546875, 0}], 
+     NCache[{Rational[143, 256], 1}, {0.55859375, 1}]]}, 
+   {RGBColor[0.415643905, 0.54994771, 0.148494759], 
+    RectangleBox[NCache[{Rational[143, 256], 0}, {0.55859375, 0}], 
+     NCache[{Rational[9, 16], 1}, {0.5625, 1}]]}, 
+   {RGBColor[0.427367201, 0.551959427, 0.140675619], 
+    RectangleBox[NCache[{Rational[9, 16], 0}, {0.5625, 0}], 
+     NCache[{Rational[145, 256], 1}, {0.56640625, 1}]]}, 
+   {RGBColor[0.439145431, 0.553886824, 0.132733383], 
+    RectangleBox[NCache[{Rational[145, 256], 0}, {0.56640625, 0}], 
+     NCache[{Rational[73, 128], 1}, {0.5703125, 1}]]}, 
+   {RGBColor[0.450975035, 0.555729609, 0.124665418], 
+    RectangleBox[NCache[{Rational[73, 128], 0}, {0.5703125, 0}], 
+     NCache[{Rational[147, 256], 1}, {0.57421875, 1}]]}, 
+   {RGBColor[0.46284498, 0.557489617, 0.116480779], 
+    RectangleBox[NCache[{Rational[147, 256], 0}, {0.57421875, 0}], 
+     NCache[{Rational[37, 64], 1}, {0.578125, 1}]]}, 
+   {RGBColor[0.474745559, 0.559168661, 0.108188475], 
+    RectangleBox[NCache[{Rational[37, 64], 0}, {0.578125, 0}], 
+     NCache[{Rational[149, 256], 1}, {0.58203125, 1}]]}, 
+   {RGBColor[0.48666813, 0.560768549, 0.09979869], 
+    RectangleBox[NCache[{Rational[149, 256], 0}, {0.58203125, 0}], 
+     NCache[{Rational[75, 128], 1}, {0.5859375, 1}]]}, 
+   {RGBColor[0.498603802, 0.562291436, 0.0913261437], 
+    RectangleBox[NCache[{Rational[75, 128], 0}, {0.5859375, 0}], 
+     NCache[{Rational[151, 256], 1}, {0.58984375, 1}]]}, 
+   {RGBColor[0.510543429, 0.563739843, 0.0827923167], 
+    RectangleBox[NCache[{Rational[151, 256], 0}, {0.58984375, 0}], 
+     NCache[{Rational[19, 32], 1}, {0.59375, 1}]]}, 
+   {RGBColor[0.522477839, 0.565116597, 0.0742284389], 
+    RectangleBox[NCache[{Rational[19, 32], 0}, {0.59375, 0}], 
+     NCache[{Rational[153, 256], 1}, {0.59765625, 1}]]}, 
+   {RGBColor[0.534402935, 0.566423108, 0.0656717853], 
+    RectangleBox[NCache[{Rational[153, 256], 0}, {0.59765625, 0}], 
+     NCache[{Rational[77, 128], 1}, {0.6015625, 1}]]}, 
+   {RGBColor[0.54630255, 0.567665088, 0.0572025049], 
+    RectangleBox[NCache[{Rational[77, 128], 0}, {0.6015625, 0}], 
+     NCache[{Rational[155, 256], 1}, {0.60546875, 1}]]}, 
+   {RGBColor[0.558166439, 0.568846718, 0.0489257073], 
+    RectangleBox[NCache[{Rational[155, 256], 0}, {0.60546875, 0}], 
+     NCache[{Rational[39, 64], 1}, {0.609375, 1}]]}, 
+   {RGBColor[0.569984146, 0.569972607, 0.0409987564], 
+    RectangleBox[NCache[{Rational[39, 64], 0}, {0.609375, 0}], 
+     NCache[{Rational[157, 256], 1}, {0.61328125, 1}]]}, 
+   {RGBColor[0.581745024, 0.5710478, 0.033879614], 
+    RectangleBox[NCache[{Rational[157, 256], 0}, {0.61328125, 0}], 
+     NCache[{Rational[79, 128], 1}, {0.6171875, 1}]]}, 
+   {RGBColor[0.593441855, 0.572076359, 0.0282747543], 
+    RectangleBox[NCache[{Rational[79, 128], 0}, {0.6171875, 0}], 
+     NCache[{Rational[159, 256], 1}, {0.62109375, 1}]]}, 
+   {RGBColor[0.605060162, 0.573065496, 0.024267021], 
+    RectangleBox[NCache[{Rational[159, 256], 0}, {0.62109375, 0}], 
+     NCache[{Rational[5, 8], 1}, {0.625, 1}]]}, 
+   {RGBColor[0.616587919, 0.574021935, 0.0219268218], 
+    RectangleBox[NCache[{Rational[5, 8], 0}, {0.625, 0}], 
+     NCache[{Rational[161, 256], 1}, {0.62890625, 1}]]}, 
+   {RGBColor[0.62801405, 0.574952422, 0.0213281856], 
+    RectangleBox[NCache[{Rational[161, 256], 0}, {0.62890625, 0}], 
+     NCache[{Rational[81, 128], 1}, {0.6328125, 1}]]}, 
+   {RGBColor[0.639327939, 0.575863873, 0.0225506518], 
+    RectangleBox[NCache[{Rational[81, 128], 0}, {0.6328125, 0}], 
+     NCache[{Rational[163, 256], 1}, {0.63671875, 1}]]}, 
+   {RGBColor[0.650519264, 0.576763426, 0.0256803655], 
+    RectangleBox[NCache[{Rational[163, 256], 0}, {0.63671875, 0}], 
+     NCache[{Rational[41, 64], 1}, {0.640625, 1}]]}, 
+   {RGBColor[0.661575187, 0.577659706, 0.0308113161], 
+    RectangleBox[NCache[{Rational[41, 64], 0}, {0.640625, 0}], 
+     NCache[{Rational[165, 256], 1}, {0.64453125, 1}]]}, 
+   {RGBColor[0.672485257, 0.578560654, 0.0380424961], 
+    RectangleBox[NCache[{Rational[165, 256], 0}, {0.64453125, 0}], 
+     NCache[{Rational[83, 128], 1}, {0.6484375, 1}]]}, 
+   {RGBColor[0.683239371, 0.579474363, 0.047040586], 
+    RectangleBox[NCache[{Rational[83, 128], 0}, {0.6484375, 0}], 
+     NCache[{Rational[167, 256], 1}, {0.65234375, 1}]]}, 
+   {RGBColor[0.693826945, 0.58040947, 0.0568940115], 
+    RectangleBox[NCache[{Rational[167, 256], 0}, {0.65234375, 0}], 
+     NCache[{Rational[21, 32], 1}, {0.65625, 1}]]}, 
+   {RGBColor[0.704238654, 0.581374288, 0.0673716976], 
+    RectangleBox[NCache[{Rational[21, 32], 0}, {0.65625, 0}], 
+     NCache[{Rational[169, 256], 1}, {0.66015625, 1}]]}, 
+   {RGBColor[0.714466086, 0.582376907, 0.0783172031], 
+    RectangleBox[NCache[{Rational[169, 256], 0}, {0.66015625, 0}], 
+     NCache[{Rational[85, 128], 1}, {0.6640625, 1}]]}, 
+   {RGBColor[0.724501348, 0.583425344, 0.0896249873], 
+    RectangleBox[NCache[{Rational[85, 128], 0}, {0.6640625, 0}], 
+     NCache[{Rational[171, 256], 1}, {0.66796875, 1}]]}, 
+   {RGBColor[0.73433617, 0.584528004, 0.101222566], 
+    RectangleBox[NCache[{Rational[171, 256], 0}, {0.66796875, 0}], 
+     NCache[{Rational[43, 64], 1}, {0.671875, 1}]]}, 
+   {RGBColor[0.743962862, 0.585693159, 0.113059557], 
+    RectangleBox[NCache[{Rational[43, 64], 0}, {0.671875, 0}], 
+     NCache[{Rational[173, 256], 1}, {0.67578125, 1}]]}, 
+   {RGBColor[0.753377595, 0.586927042, 0.125105089], 
+    RectangleBox[NCache[{Rational[173, 256], 0}, {0.67578125, 0}], 
+     NCache[{Rational[87, 128], 1}, {0.6796875, 1}]]}, 
+   {RGBColor[0.762575552, 0.588236442, 0.137336358], 
+    RectangleBox[NCache[{Rational[87, 128], 0}, {0.6796875, 0}], 
+     NCache[{Rational[175, 256], 1}, {0.68359375, 1}]]}, 
+   {RGBColor[0.771552684, 0.589627716, 0.149737263], 
+    RectangleBox[NCache[{Rational[175, 256], 0}, {0.68359375, 0}], 
+     NCache[{Rational[11, 16], 1}, {0.6875, 1}]]}, 
+   {RGBColor[0.780304203, 0.591107689, 0.162292912], 
+    RectangleBox[NCache[{Rational[11, 16], 0}, {0.6875, 0}], 
+     NCache[{Rational[177, 256], 1}, {0.69140625, 1}]]}, 
+   {RGBColor[0.788827159, 0.592682093, 0.174992652], 
+    RectangleBox[NCache[{Rational[177, 256], 0}, {0.69140625, 0}], 
+     NCache[{Rational[89, 128], 1}, {0.6953125, 1}]]}, 
+   {RGBColor[0.797121904, 0.594354494, 0.18783365], 
+    RectangleBox[NCache[{Rational[89, 128], 0}, {0.6953125, 0}], 
+     NCache[{Rational[179, 256], 1}, {0.69921875, 1}]]}, 
+   {RGBColor[0.80518742, 0.596129166, 0.200810256], 
+    RectangleBox[NCache[{Rational[179, 256], 0}, {0.69921875, 0}], 
+     NCache[{Rational[45, 64], 1}, {0.703125, 1}]]}, 
+   {RGBColor[0.813023314, 0.598009857, 0.213917489], 
+    RectangleBox[NCache[{Rational[45, 64], 0}, {0.703125, 0}], 
+     NCache[{Rational[181, 256], 1}, {0.70703125, 1}]]}, 
+   {RGBColor[0.820629771, 0.599999799, 0.2271507], 
+    RectangleBox[NCache[{Rational[181, 256], 0}, {0.70703125, 0}], 
+     NCache[{Rational[91, 128], 1}, {0.7109375, 1}]]}, 
+   {RGBColor[0.828007021, 0.602102078, 0.240503564], 
+    RectangleBox[NCache[{Rational[91, 128], 0}, {0.7109375, 0}], 
+     NCache[{Rational[183, 256], 1}, {0.71484375, 1}]]}, 
+   {RGBColor[0.835155259, 0.604319751, 0.253966787], 
+    RectangleBox[NCache[{Rational[183, 256], 0}, {0.71484375, 0}], 
+     NCache[{Rational[23, 32], 1}, {0.71875, 1}]]}, 
+   {RGBColor[0.842077988, 0.606653209, 0.267542263], 
+    RectangleBox[NCache[{Rational[23, 32], 0}, {0.71875, 0}], 
+     NCache[{Rational[185, 256], 1}, {0.72265625, 1}]]}, 
+   {RGBColor[0.848777144, 0.6091038, 0.281225295], 
+    RectangleBox[NCache[{Rational[185, 256], 0}, {0.72265625, 0}], 
+     NCache[{Rational[93, 128], 1}, {0.7265625, 1}]]}, 
+   {RGBColor[0.855254945, 0.611672485, 0.295010966], 
+    RectangleBox[NCache[{Rational[93, 128], 0}, {0.7265625, 0}], 
+     NCache[{Rational[187, 256], 1}, {0.73046875, 1}]]}, 
+   {RGBColor[0.861513837, 0.614359877, 0.308894128], 
+    RectangleBox[NCache[{Rational[187, 256], 0}, {0.73046875, 0}], 
+     NCache[{Rational[47, 64], 1}, {0.734375, 1}]]}, 
+   {RGBColor[0.867556445, 0.617166278, 0.322869395], 
+    RectangleBox[NCache[{Rational[47, 64], 0}, {0.734375, 0}], 
+     NCache[{Rational[189, 256], 1}, {0.73828125, 1}]]}, 
+   {RGBColor[0.873385523, 0.62009171, 0.336931148], 
+    RectangleBox[NCache[{Rational[189, 256], 0}, {0.73828125, 0}], 
+     NCache[{Rational[95, 128], 1}, {0.7421875, 1}]]}, 
+   {RGBColor[0.879003914, 0.623135957, 0.351073543], 
+    RectangleBox[NCache[{Rational[95, 128], 0}, {0.7421875, 0}], 
+     NCache[{Rational[191, 256], 1}, {0.74609375, 1}]]}, 
+   {RGBColor[0.884414511, 0.626298593, 0.365290519], 
+    RectangleBox[NCache[{Rational[191, 256], 0}, {0.74609375, 0}], 
+     NCache[{Rational[3, 4], 1}, {0.75, 1}]]}, 
+   {RGBColor[0.889620221, 0.629579022, 0.379575807], 
+    RectangleBox[NCache[{Rational[3, 4], 0}, {0.75, 0}], 
+     NCache[{Rational[193, 256], 1}, {0.75390625, 1}]]}, 
+   {RGBColor[0.894623936, 0.632976504, 0.393922939], 
+    RectangleBox[NCache[{Rational[193, 256], 0}, {0.75390625, 0}], 
+     NCache[{Rational[97, 128], 1}, {0.7578125, 1}]]}, 
+   {RGBColor[0.899428507, 0.636490186, 0.408325253], 
+    RectangleBox[NCache[{Rational[97, 128], 0}, {0.7578125, 0}], 
+     NCache[{Rational[195, 256], 1}, {0.76171875, 1}]]}, 
+   {RGBColor[0.904036723, 0.640119127, 0.422775895], 
+    RectangleBox[NCache[{Rational[195, 256], 0}, {0.76171875, 0}], 
+     NCache[{Rational[49, 64], 1}, {0.765625, 1}]]}, 
+   {RGBColor[0.908451317, 0.643862346, 0.437267309], 
+    RectangleBox[NCache[{Rational[49, 64], 0}, {0.765625, 0}], 
+     NCache[{Rational[197, 256], 1}, {0.76953125, 1}]]}, 
+   {RGBColor[0.912674913, 0.647718773, 0.451792549], 
+    RectangleBox[NCache[{Rational[197, 256], 0}, {0.76953125, 0}], 
+     NCache[{Rational[99, 128], 1}, {0.7734375, 1}]]}, 
+   {RGBColor[0.916709977, 0.651687316, 0.466344842], 
+    RectangleBox[NCache[{Rational[99, 128], 0}, {0.7734375, 0}], 
+     NCache[{Rational[199, 256], 1}, {0.77734375, 1}]]}, 
+   {RGBColor[0.920558895, 0.655766912, 0.480916487], 
+    RectangleBox[NCache[{Rational[199, 256], 0}, {0.77734375, 0}], 
+     NCache[{Rational[25, 32], 1}, {0.78125, 1}]]}, 
+   {RGBColor[0.924223945, 0.659956497, 0.495499568], 
+    RectangleBox[NCache[{Rational[25, 32], 0}, {0.78125, 0}], 
+     NCache[{Rational[201, 256], 1}, {0.78515625, 1}]]}, 
+   {RGBColor[0.927707304, 0.664255023, 0.510085944], 
+    RectangleBox[NCache[{Rational[201, 256], 0}, {0.78515625, 0}], 
+     NCache[{Rational[101, 128], 1}, {0.7890625, 1}]]}, 
+   {RGBColor[0.931011045, 0.668661459, 0.52466724], 
+    RectangleBox[NCache[{Rational[101, 128], 0}, {0.7890625, 0}], 
+     NCache[{Rational[203, 256], 1}, {0.79296875, 1}]]}, 
+   {RGBColor[0.934137216, 0.673174796, 0.539234468], 
+    RectangleBox[NCache[{Rational[203, 256], 0}, {0.79296875, 0}], 
+     NCache[{Rational[51, 64], 1}, {0.796875, 1}]]}, 
+   {RGBColor[0.937087683, 0.677794059, 0.553778998], 
+    RectangleBox[NCache[{Rational[51, 64], 0}, {0.796875, 0}], 
+     NCache[{Rational[205, 256], 1}, {0.80078125, 1}]]}, 
+   {RGBColor[0.939864212, 0.682518315, 0.568291979], 
+    RectangleBox[NCache[{Rational[205, 256], 0}, {0.80078125, 0}], 
+     NCache[{Rational[103, 128], 1}, {0.8046875, 1}]]}, 
+   {RGBColor[0.942468542, 0.687346665, 0.582764066], 
+    RectangleBox[NCache[{Rational[103, 128], 0}, {0.8046875, 0}], 
+     NCache[{Rational[207, 256], 1}, {0.80859375, 1}]]}, 
+   {RGBColor[0.944902364, 0.692278238, 0.597185613], 
+    RectangleBox[NCache[{Rational[207, 256], 0}, {0.80859375, 0}], 
+     NCache[{Rational[13, 16], 1}, {0.8125, 1}]]}, 
+   {RGBColor[0.947167346, 0.697312194, 0.611546658], 
+    RectangleBox[NCache[{Rational[13, 16], 0}, {0.8125, 0}], 
+     NCache[{Rational[209, 256], 1}, {0.81640625, 1}]]}, 
+   {RGBColor[0.949265154, 0.702447712, 0.625836915], 
+    RectangleBox[NCache[{Rational[209, 256], 0}, {0.81640625, 0}], 
+     NCache[{Rational[105, 128], 1}, {0.8203125, 1}]]}, 
+   {RGBColor[0.951197479, 0.707683987, 0.640045758], 
+    RectangleBox[NCache[{Rational[105, 128], 0}, {0.8203125, 0}], 
+     NCache[{Rational[211, 256], 1}, {0.82421875, 1}]]}, 
+   {RGBColor[0.952966062, 0.713020218, 0.654162211], 
+    RectangleBox[NCache[{Rational[211, 256], 0}, {0.82421875, 0}], 
+     NCache[{Rational[53, 64], 1}, {0.828125, 1}]]}, 
+   {RGBColor[0.954572726, 0.718455599, 0.668174947], 
+    RectangleBox[NCache[{Rational[53, 64], 0}, {0.828125, 0}], 
+     NCache[{Rational[213, 256], 1}, {0.83203125, 1}]]}, 
+   {RGBColor[0.956019406, 0.723989311, 0.682072273], 
+    RectangleBox[NCache[{Rational[213, 256], 0}, {0.83203125, 0}], 
+     NCache[{Rational[107, 128], 1}, {0.8359375, 1}]]}, 
+   {RGBColor[0.95730818, 0.729620507, 0.695842134], 
+    RectangleBox[NCache[{Rational[107, 128], 0}, {0.8359375, 0}], 
+     NCache[{Rational[215, 256], 1}, {0.83984375, 1}]]}, 
+   {RGBColor[0.958441302, 0.735348303, 0.70947211], 
+    RectangleBox[NCache[{Rational[215, 256], 0}, {0.83984375, 0}], 
+     NCache[{Rational[27, 32], 1}, {0.84375, 1}]]}, 
+   {RGBColor[0.959421236, 0.741171767, 0.722949416], 
+    RectangleBox[NCache[{Rational[27, 32], 0}, {0.84375, 0}], 
+     NCache[{Rational[217, 256], 1}, {0.84765625, 1}]]}, 
+   {RGBColor[0.960250683, 0.747089909, 0.736260905], 
+    RectangleBox[NCache[{Rational[217, 256], 0}, {0.84765625, 0}], 
+     NCache[{Rational[109, 128], 1}, {0.8515625, 1}]]}, 
+   {RGBColor[0.960932615, 0.753101675, 0.749393068], 
+    RectangleBox[NCache[{Rational[109, 128], 0}, {0.8515625, 0}], 
+     NCache[{Rational[219, 256], 1}, {0.85546875, 1}]]}, 
+   {RGBColor[0.961470299, 0.759205936, 0.762332032], 
+    RectangleBox[NCache[{Rational[219, 256], 0}, {0.85546875, 0}], 
+     NCache[{Rational[55, 64], 1}, {0.859375, 1}]]}, 
+   {RGBColor[0.961867319, 0.765401491, 0.775063555], 
+    RectangleBox[NCache[{Rational[55, 64], 0}, {0.859375, 0}], 
+     NCache[{Rational[221, 256], 1}, {0.86328125, 1}]]}, 
+   {RGBColor[0.962127596, 0.771687064, 0.787573001], 
+    RectangleBox[NCache[{Rational[221, 256], 0}, {0.86328125, 0}], 
+     NCache[{Rational[111, 128], 1}, {0.8671875, 1}]]}, 
+   {RGBColor[0.962255401, 0.778061314, 0.799845309], 
+    RectangleBox[NCache[{Rational[111, 128], 0}, {0.8671875, 0}], 
+     NCache[{Rational[223, 256], 1}, {0.87109375, 1}]]}, 
+   {RGBColor[0.962255368, 0.784522837, 0.811864934], 
+    RectangleBox[NCache[{Rational[223, 256], 0}, {0.87109375, 0}], 
+     NCache[{Rational[7, 8], 1}, {0.875, 1}]]}, 
+   {RGBColor[0.962132504, 0.791070186, 0.823615749], 
+    RectangleBox[NCache[{Rational[7, 8], 0}, {0.875, 0}], 
+     NCache[{Rational[225, 256], 1}, {0.87890625, 1}]]}, 
+   {RGBColor[0.961892203, 0.797701884, 0.835080911], 
+    RectangleBox[NCache[{Rational[225, 256], 0}, {0.87890625, 0}], 
+     NCache[{Rational[113, 128], 1}, {0.8828125, 1}]]}, 
+   {RGBColor[0.961535931, 0.804418041, 0.846247612], 
+    RectangleBox[NCache[{Rational[113, 128], 0}, {0.8828125, 0}], 
+     NCache[{Rational[227, 256], 1}, {0.88671875, 1}]]}, 
+   {RGBColor[0.961069177, 0.811217509, 0.857096621], 
+    RectangleBox[NCache[{Rational[227, 256], 0}, {0.88671875, 0}], 
+     NCache[{Rational[57, 64], 1}, {0.890625, 1}]]}, 
+   {RGBColor[0.960501198, 0.818097944, 0.867603854], 
+    RectangleBox[NCache[{Rational[57, 64], 0}, {0.890625, 0}], 
+     NCache[{Rational[229, 256], 1}, {0.89453125, 1}]]}, 
+   {RGBColor[0.959839454, 0.825057914, 0.877746324], 
+    RectangleBox[NCache[{Rational[229, 256], 0}, {0.89453125, 0}], 
+     NCache[{Rational[115, 128], 1}, {0.8984375, 1}]]}, 
+   {RGBColor[0.959092622, 0.832095826, 0.887498342], 
+    RectangleBox[NCache[{Rational[115, 128], 0}, {0.8984375, 0}], 
+     NCache[{Rational[231, 256], 1}, {0.90234375, 1}]]}, 
+   {RGBColor[0.958271129, 0.839209776, 0.896830951], 
+    RectangleBox[NCache[{Rational[231, 256], 0}, {0.90234375, 0}], 
+     NCache[{Rational[29, 32], 1}, {0.90625, 1}]]}, 
+   {RGBColor[0.957379148, 0.846400731, 0.905716781], 
+    RectangleBox[NCache[{Rational[29, 32], 0}, {0.90625, 0}], 
+     NCache[{Rational[233, 256], 1}, {0.91015625, 1}]]}, 
+   {RGBColor[0.956426557, 0.853668016, 0.914119954], 
+    RectangleBox[NCache[{Rational[233, 256], 0}, {0.91015625, 0}], 
+     NCache[{Rational[117, 128], 1}, {0.9140625, 1}]]}, 
+   {RGBColor[0.955450902, 0.861000457, 0.9219881], 
+    RectangleBox[NCache[{Rational[117, 128], 0}, {0.9140625, 0}], 
+     NCache[{Rational[235, 256], 1}, {0.91796875, 1}]]}, 
+   {RGBColor[0.954482975, 0.86838976, 0.929276063], 
+    RectangleBox[NCache[{Rational[235, 256], 0}, {0.91796875, 0}], 
+     NCache[{Rational[59, 64], 1}, {0.921875, 1}]]}, 
+   {RGBColor[0.953544413, 0.875831712, 0.935942516], 
+    RectangleBox[NCache[{Rational[59, 64], 0}, {0.921875, 0}], 
+     NCache[{Rational[237, 256], 1}, {0.92578125, 1}]]}, 
+   {RGBColor[0.952715057, 0.883298026, 0.941937385], 
+    RectangleBox[NCache[{Rational[237, 256], 0}, {0.92578125, 0}], 
+     NCache[{Rational[119, 128], 1}, {0.9296875, 1}]]}, 
+   {RGBColor[0.95206017, 0.890765365, 0.947234674], 
+    RectangleBox[NCache[{Rational[119, 128], 0}, {0.9296875, 0}], 
+     NCache[{Rational[239, 256], 1}, {0.93359375, 1}]]}, 
+   {RGBColor[0.951663891, 0.898200733, 0.951831906], 
+    RectangleBox[NCache[{Rational[239, 256], 0}, {0.93359375, 0}], 
+     NCache[{Rational[15, 16], 1}, {0.9375, 1}]]}, 
+   {RGBColor[0.951600045, 0.905573176, 0.955758457], 
+    RectangleBox[NCache[{Rational[15, 16], 0}, {0.9375, 0}], 
+     NCache[{Rational[241, 256], 1}, {0.94140625, 1}]]}, 
+   {RGBColor[0.951948354, 0.912845998, 0.959081968], 
+    RectangleBox[NCache[{Rational[241, 256], 0}, {0.94140625, 0}], 
+     NCache[{Rational[121, 128], 1}, {0.9453125, 1}]]}, 
+   {RGBColor[0.952754314, 0.919994695, 0.961896029], 
+    RectangleBox[NCache[{Rational[121, 128], 0}, {0.9453125, 0}], 
+     NCache[{Rational[243, 256], 1}, {0.94921875, 1}]]}, 
+   {RGBColor[0.954024962, 0.927010498, 0.964296862], 
+    RectangleBox[NCache[{Rational[243, 256], 0}, {0.94921875, 0}], 
+     NCache[{Rational[61, 64], 1}, {0.953125, 1}]]}, 
+   {RGBColor[0.955761682, 0.933885958, 0.966387156], 
+    RectangleBox[NCache[{Rational[61, 64], 0}, {0.953125, 0}], 
+     NCache[{Rational[245, 256], 1}, {0.95703125, 1}]]}, 
+   {RGBColor[0.957951675, 0.940619651, 0.968263946], 
+    RectangleBox[NCache[{Rational[245, 256], 0}, {0.95703125, 0}], 
+     NCache[{Rational[123, 128], 1}, {0.9609375, 1}]]}, 
+   {RGBColor[0.960573473, 0.947214333, 0.970013814], 
+    RectangleBox[NCache[{Rational[123, 128], 0}, {0.9609375, 0}], 
+     NCache[{Rational[247, 256], 1}, {0.96484375, 1}]]}, 
+   {RGBColor[0.963602865, 0.953674551, 0.971712469], 
+    RectangleBox[NCache[{Rational[247, 256], 0}, {0.96484375, 0}], 
+     NCache[{Rational[31, 32], 1}, {0.96875, 1}]]}, 
+   {RGBColor[0.967018286, 0.960004011, 0.973429691], 
+    RectangleBox[NCache[{Rational[31, 32], 0}, {0.96875, 0}], 
+     NCache[{Rational[249, 256], 1}, {0.97265625, 1}]]}, 
+   {RGBColor[0.970802859, 0.966203343, 0.975243531], 
+    RectangleBox[NCache[{Rational[249, 256], 0}, {0.97265625, 0}], 
+     NCache[{Rational[125, 128], 1}, {0.9765625, 1}]]}, 
+   {RGBColor[0.974923592, 0.972274812, 0.977275094], 
+    RectangleBox[NCache[{Rational[125, 128], 0}, {0.9765625, 0}], 
+     NCache[{Rational[251, 256], 1}, {0.98046875, 1}]]}, 
+   {RGBColor[0.9791844, 0.978278064, 0.979710814], 
+    RectangleBox[NCache[{Rational[251, 256], 0}, {0.98046875, 0}], 
+     NCache[{Rational[63, 64], 1}, {0.984375, 1}]]}, 
+   {RGBColor[0.983037174, 0.984450133, 0.982356003], 
+    RectangleBox[NCache[{Rational[63, 64], 0}, {0.984375, 0}], 
+     NCache[{Rational[253, 256], 1}, {0.98828125, 1}]]}, 
+   {RGBColor[0.98648033, 0.990875647, 0.984384974], 
+    RectangleBox[NCache[{Rational[253, 256], 0}, {0.98828125, 0}], 
+     NCache[{Rational[127, 128], 1}, {0.9921875, 1}]]}, 
+   {RGBColor[0.98990622, 0.997424842, 0.985544042], 
+    RectangleBox[NCache[{Rational[127, 128], 0}, {0.9921875, 0}], 
+     NCache[{Rational[255, 256], 1}, {0.99609375, 1}]]}, 
+   {RGBColor[1., 1., 1.], 
+    RectangleBox[NCache[{Rational[255, 256], 0}, {0.99609375, 0}], {1, 1}]}},
+  AspectRatio->0.2]], "Output",
+ CellChangeTimes->{
+  3.648068194708489*^9, 3.648068229268454*^9, 3.64807215537418*^9, {
+   3.648216290927319*^9, 3.648216310453807*^9}, 3.649608461240103*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"idlcolorbardir", "=", 
+  "\"\<../IDL_rgb_values\>\""}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"idlcolorbarnames", "=", 
+   RowBox[{"FileNames", "[", 
+    RowBox[{"idlcolorbardir", "<>", "\"\</*\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SortBy", "[", 
+   RowBox[{"idlcolorbarnames", ",", "\"\<\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"idlcolorbars", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Import", "[", 
+       RowBox[{"#", ",", "\"\<CSV\>\""}], "]"}], "&"}], "/@", 
+     "idlcolorbarnames"}], "/", "255."}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.648062902022546*^9, 3.648062996949477*^9}, {
+   3.648063031185025*^9, 3.648063077516027*^9}, {3.648063230093691*^9, 
+   3.64806324055767*^9}, {3.6480633314417686`*^9, 3.648063332057694*^9}, 
+   3.648216335976091*^9, {3.649608450060532*^9, 3.649608450339407*^9}}],
+
+Cell[BoxData["\<\"../IDL_rgb_values\"\>"], "Output",
+ CellChangeTimes->{{3.648062945522917*^9, 3.648063078030589*^9}, {
+   3.6480633269716063`*^9, 3.6480633324864273`*^9}, 3.648064911428491*^9, 
+   3.648069238483214*^9, 3.6482163406467133`*^9, 3.64960846371311*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"colorbar", "[", 
+  RowBox[{"idlcolorbars", "[", 
+   RowBox[{"[", 
+    RowBox[{"-", "10"}], "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6480630208923492`*^9, 3.648063027971355*^9}, {
+   3.648063086944867*^9, 3.648063112376309*^9}, {3.648063146740756*^9, 
+   3.648063147028215*^9}, {3.648063185645021*^9, 3.64806319739754*^9}, 
+   3.648216346404454*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {RGBColor[0.403921568627451, 0., 0.12156862745098039`], 
+    RectangleBox[{0, 0}, NCache[{Rational[1, 256], 1}, {0.00390625, 1}]]}, 
+   {RGBColor[0.4156862745098039, 0.00392156862745098, 0.12156862745098039`], 
+    RectangleBox[NCache[{Rational[1, 256], 0}, {0.00390625, 0}], 
+     NCache[{Rational[1, 128], 1}, {0.0078125, 1}]]}, 
+   {RGBColor[0.42745098039215684`, 0.00784313725490196, 0.12549019607843137`],
+     RectangleBox[NCache[{Rational[1, 128], 0}, {0.0078125, 0}], 
+     NCache[{Rational[3, 256], 1}, {0.01171875, 1}]]}, 
+   {RGBColor[0.4392156862745098, 0.011764705882352941`, 0.12549019607843137`],
+     RectangleBox[NCache[{Rational[3, 256], 0}, {0.01171875, 0}], 
+     NCache[{Rational[1, 64], 1}, {0.015625, 1}]]}, 
+   {RGBColor[0.45098039215686275`, 0.01568627450980392, 0.12941176470588234`],
+     RectangleBox[NCache[{Rational[1, 64], 0}, {0.015625, 0}], 
+     NCache[{Rational[5, 256], 1}, {0.01953125, 1}]]}, 
+   {RGBColor[0.4627450980392157, 0.0196078431372549, 0.12941176470588234`], 
+    RectangleBox[NCache[{Rational[5, 256], 0}, {0.01953125, 0}], 
+     NCache[{Rational[3, 128], 1}, {0.0234375, 1}]]}, 
+   {RGBColor[0.4745098039215686, 0.023529411764705882`, 0.13333333333333333`],
+     RectangleBox[NCache[{Rational[3, 128], 0}, {0.0234375, 0}], 
+     NCache[{Rational[7, 256], 1}, {0.02734375, 1}]]}, 
+   {RGBColor[
+    0.48627450980392156`, 0.027450980392156862`, 0.13333333333333333`], 
+    RectangleBox[NCache[{Rational[7, 256], 0}, {0.02734375, 0}], 
+     NCache[{Rational[1, 32], 1}, {0.03125, 1}]]}, 
+   {RGBColor[0.4980392156862745, 0.03137254901960784, 0.13725490196078433`], 
+    RectangleBox[NCache[{Rational[1, 32], 0}, {0.03125, 0}], 
+     NCache[{Rational[9, 256], 1}, {0.03515625, 1}]]}, 
+   {RGBColor[0.5098039215686274, 0.03529411764705882, 0.13725490196078433`], 
+    RectangleBox[NCache[{Rational[9, 256], 0}, {0.03515625, 0}], 
+     NCache[{Rational[5, 128], 1}, {0.0390625, 1}]]}, 
+   {RGBColor[0.5215686274509804, 0.0392156862745098, 0.1411764705882353], 
+    RectangleBox[NCache[{Rational[5, 128], 0}, {0.0390625, 0}], 
+     NCache[{Rational[11, 256], 1}, {0.04296875, 1}]]}, 
+   {RGBColor[0.5333333333333333, 0.043137254901960784`, 0.1411764705882353], 
+    RectangleBox[NCache[{Rational[11, 256], 0}, {0.04296875, 0}], 
+     NCache[{Rational[3, 64], 1}, {0.046875, 1}]]}, 
+   {RGBColor[0.5450980392156862, 0.047058823529411764`, 0.14509803921568626`],
+     RectangleBox[NCache[{Rational[3, 64], 0}, {0.046875, 0}], 
+     NCache[{Rational[13, 256], 1}, {0.05078125, 1}]]}, 
+   {RGBColor[0.5568627450980392, 0.047058823529411764`, 0.14509803921568626`],
+     RectangleBox[NCache[{Rational[13, 256], 0}, {0.05078125, 0}], 
+     NCache[{Rational[7, 128], 1}, {0.0546875, 1}]]}, 
+   {RGBColor[0.5686274509803921, 0.050980392156862744`, 0.14901960784313725`],
+     RectangleBox[NCache[{Rational[7, 128], 0}, {0.0546875, 0}], 
+     NCache[{Rational[15, 256], 1}, {0.05859375, 1}]]}, 
+   {RGBColor[0.580392156862745, 0.054901960784313725`, 0.14901960784313725`], 
+    RectangleBox[NCache[{Rational[15, 256], 0}, {0.05859375, 0}], 
+     NCache[{Rational[1, 16], 1}, {0.0625, 1}]]}, 
+   {RGBColor[0.592156862745098, 0.058823529411764705`, 0.15294117647058825`], 
+    RectangleBox[NCache[{Rational[1, 16], 0}, {0.0625, 0}], 
+     NCache[{Rational[17, 256], 1}, {0.06640625, 1}]]}, 
+   {RGBColor[0.6039215686274509, 0.06274509803921569, 0.15294117647058825`], 
+    RectangleBox[NCache[{Rational[17, 256], 0}, {0.06640625, 0}], 
+     NCache[{Rational[9, 128], 1}, {0.0703125, 1}]]}, 
+   {RGBColor[0.615686274509804, 0.06666666666666667, 0.1568627450980392], 
+    RectangleBox[NCache[{Rational[9, 128], 0}, {0.0703125, 0}], 
+     NCache[{Rational[19, 256], 1}, {0.07421875, 1}]]}, 
+   {RGBColor[0.6274509803921569, 0.07058823529411765, 0.1568627450980392], 
+    RectangleBox[NCache[{Rational[19, 256], 0}, {0.07421875, 0}], 
+     NCache[{Rational[5, 64], 1}, {0.078125, 1}]]}, 
+   {RGBColor[0.6392156862745098, 0.07450980392156863, 0.16078431372549018`], 
+    RectangleBox[NCache[{Rational[5, 64], 0}, {0.078125, 0}], 
+     NCache[{Rational[21, 256], 1}, {0.08203125, 1}]]}, 
+   {RGBColor[0.6509803921568628, 0.0784313725490196, 0.16078431372549018`], 
+    RectangleBox[NCache[{Rational[21, 256], 0}, {0.08203125, 0}], 
+     NCache[{Rational[11, 128], 1}, {0.0859375, 1}]]}, 
+   {RGBColor[0.6627450980392157, 0.08235294117647059, 0.16470588235294117`], 
+    RectangleBox[NCache[{Rational[11, 128], 0}, {0.0859375, 0}], 
+     NCache[{Rational[23, 256], 1}, {0.08984375, 1}]]}, 
+   {RGBColor[0.6745098039215687, 0.08627450980392157, 0.16470588235294117`], 
+    RectangleBox[NCache[{Rational[23, 256], 0}, {0.08984375, 0}], 
+     NCache[{Rational[3, 32], 1}, {0.09375, 1}]]}, 
+   {RGBColor[0.6862745098039216, 0.09019607843137255, 0.16862745098039217`], 
+    RectangleBox[NCache[{Rational[3, 32], 0}, {0.09375, 0}], 
+     NCache[{Rational[25, 256], 1}, {0.09765625, 1}]]}, 
+   {RGBColor[0.6980392156862745, 0.09411764705882353, 0.16862745098039217`], 
+    RectangleBox[NCache[{Rational[25, 256], 0}, {0.09765625, 0}], 
+     NCache[{Rational[13, 128], 1}, {0.1015625, 1}]]}, 
+   {RGBColor[0.7019607843137254, 0.10588235294117647`, 0.17254901960784313`], 
+    RectangleBox[NCache[{Rational[13, 128], 0}, {0.1015625, 0}], 
+     NCache[{Rational[27, 256], 1}, {0.10546875, 1}]]}, 
+   {RGBColor[0.7098039215686275, 0.11764705882352941`, 0.1803921568627451], 
+    RectangleBox[NCache[{Rational[27, 256], 0}, {0.10546875, 0}], 
+     NCache[{Rational[7, 64], 1}, {0.109375, 1}]]}, 
+   {RGBColor[0.7137254901960784, 0.12549019607843137`, 0.1843137254901961], 
+    RectangleBox[NCache[{Rational[7, 64], 0}, {0.109375, 0}], 
+     NCache[{Rational[29, 256], 1}, {0.11328125, 1}]]}, 
+   {RGBColor[0.7215686274509804, 0.13725490196078433`, 0.18823529411764706`], 
+    RectangleBox[NCache[{Rational[29, 256], 0}, {0.11328125, 0}], 
+     NCache[{Rational[15, 128], 1}, {0.1171875, 1}]]}, 
+   {RGBColor[0.7254901960784313, 0.14901960784313725`, 0.19607843137254902`], 
+    RectangleBox[NCache[{Rational[15, 128], 0}, {0.1171875, 0}], 
+     NCache[{Rational[31, 256], 1}, {0.12109375, 1}]]}, 
+   {RGBColor[0.7294117647058823, 0.16078431372549018`, 0.2], 
+    RectangleBox[NCache[{Rational[31, 256], 0}, {0.12109375, 0}], 
+     NCache[{Rational[1, 8], 1}, {0.125, 1}]]}, 
+   {RGBColor[0.7372549019607844, 0.16862745098039217`, 0.20392156862745098`], 
+    RectangleBox[NCache[{Rational[1, 8], 0}, {0.125, 0}], 
+     NCache[{Rational[33, 256], 1}, {0.12890625, 1}]]}, 
+   {RGBColor[0.7411764705882353, 0.1803921568627451, 0.20784313725490194`], 
+    RectangleBox[NCache[{Rational[33, 256], 0}, {0.12890625, 0}], 
+     NCache[{Rational[17, 128], 1}, {0.1328125, 1}]]}, 
+   {RGBColor[0.7450980392156863, 0.19215686274509802`, 0.21568627450980393`], 
+    RectangleBox[NCache[{Rational[17, 128], 0}, {0.1328125, 0}], 
+     NCache[{Rational[35, 256], 1}, {0.13671875, 1}]]}, 
+   {RGBColor[0.7529411764705882, 0.20392156862745098`, 0.2196078431372549], 
+    RectangleBox[NCache[{Rational[35, 256], 0}, {0.13671875, 0}], 
+     NCache[{Rational[9, 64], 1}, {0.140625, 1}]]}, 
+   {RGBColor[0.7568627450980392, 0.21176470588235294`, 0.22352941176470587`], 
+    RectangleBox[NCache[{Rational[9, 64], 0}, {0.140625, 0}], 
+     NCache[{Rational[37, 256], 1}, {0.14453125, 1}]]}, 
+   {RGBColor[0.7647058823529411, 0.22352941176470587`, 0.23137254901960785`], 
+    RectangleBox[NCache[{Rational[37, 256], 0}, {0.14453125, 0}], 
+     NCache[{Rational[19, 128], 1}, {0.1484375, 1}]]}, 
+   {RGBColor[0.7686274509803921, 0.23529411764705882`, 0.23529411764705882`], 
+    RectangleBox[NCache[{Rational[19, 128], 0}, {0.1484375, 0}], 
+     NCache[{Rational[39, 256], 1}, {0.15234375, 1}]]}, 
+   {RGBColor[0.7725490196078432, 0.24705882352941178`, 0.2392156862745098], 
+    RectangleBox[NCache[{Rational[39, 256], 0}, {0.15234375, 0}], 
+     NCache[{Rational[5, 32], 1}, {0.15625, 1}]]}, 
+   {RGBColor[0.7803921568627451, 0.2588235294117647, 0.24705882352941178`], 
+    RectangleBox[NCache[{Rational[5, 32], 0}, {0.15625, 0}], 
+     NCache[{Rational[41, 256], 1}, {0.16015625, 1}]]}, 
+   {RGBColor[0.7843137254901961, 0.26666666666666666`, 0.25098039215686274`], 
+    RectangleBox[NCache[{Rational[41, 256], 0}, {0.16015625, 0}], 
+     NCache[{Rational[21, 128], 1}, {0.1640625, 1}]]}, 
+   {RGBColor[0.792156862745098, 0.2784313725490196, 0.2549019607843137], 
+    RectangleBox[NCache[{Rational[21, 128], 0}, {0.1640625, 0}], 
+     NCache[{Rational[43, 256], 1}, {0.16796875, 1}]]}, 
+   {RGBColor[0.796078431372549, 0.2901960784313725, 0.2627450980392157], 
+    RectangleBox[NCache[{Rational[43, 256], 0}, {0.16796875, 0}], 
+     NCache[{Rational[11, 64], 1}, {0.171875, 1}]]}, 
+   {RGBColor[0.8, 0.30196078431372547`, 0.26666666666666666`], 
+    RectangleBox[NCache[{Rational[11, 64], 0}, {0.171875, 0}], 
+     NCache[{Rational[45, 256], 1}, {0.17578125, 1}]]}, 
+   {RGBColor[0.807843137254902, 0.30980392156862746`, 0.27058823529411763`], 
+    RectangleBox[NCache[{Rational[45, 256], 0}, {0.17578125, 0}], 
+     NCache[{Rational[23, 128], 1}, {0.1796875, 1}]]}, 
+   {RGBColor[0.8117647058823529, 0.32156862745098036`, 0.27450980392156865`], 
+    RectangleBox[NCache[{Rational[23, 128], 0}, {0.1796875, 0}], 
+     NCache[{Rational[47, 256], 1}, {0.18359375, 1}]]}, 
+   {RGBColor[0.8156862745098039, 0.3333333333333333, 0.2823529411764706], 
+    RectangleBox[NCache[{Rational[47, 256], 0}, {0.18359375, 0}], 
+     NCache[{Rational[3, 16], 1}, {0.1875, 1}]]}, 
+   {RGBColor[0.8235294117647058, 0.34509803921568627`, 0.28627450980392155`], 
+    RectangleBox[NCache[{Rational[3, 16], 0}, {0.1875, 0}], 
+     NCache[{Rational[49, 256], 1}, {0.19140625, 1}]]}, 
+   {RGBColor[0.8274509803921568, 0.3529411764705882, 0.2901960784313725], 
+    RectangleBox[NCache[{Rational[49, 256], 0}, {0.19140625, 0}], 
+     NCache[{Rational[25, 128], 1}, {0.1953125, 1}]]}, 
+   {RGBColor[0.8352941176470589, 0.36470588235294116`, 0.2980392156862745], 
+    RectangleBox[NCache[{Rational[25, 128], 0}, {0.1953125, 0}], 
+     NCache[{Rational[51, 256], 1}, {0.19921875, 1}]]}, 
+   {RGBColor[0.8392156862745098, 0.3764705882352941, 0.30196078431372547`], 
+    RectangleBox[NCache[{Rational[51, 256], 0}, {0.19921875, 0}], 
+     NCache[{Rational[13, 64], 1}, {0.203125, 1}]]}, 
+   {RGBColor[0.8431372549019608, 0.38823529411764707`, 0.30980392156862746`], 
+    RectangleBox[NCache[{Rational[13, 64], 0}, {0.203125, 0}], 
+     NCache[{Rational[53, 256], 1}, {0.20703125, 1}]]}, 
+   {RGBColor[0.8470588235294118, 0.4, 0.3176470588235294], 
+    RectangleBox[NCache[{Rational[53, 256], 0}, {0.20703125, 0}], 
+     NCache[{Rational[27, 128], 1}, {0.2109375, 1}]]}, 
+   {RGBColor[0.8549019607843137, 0.40784313725490196`, 0.3254901960784314], 
+    RectangleBox[NCache[{Rational[27, 128], 0}, {0.2109375, 0}], 
+     NCache[{Rational[55, 256], 1}, {0.21484375, 1}]]}, 
+   {RGBColor[0.8588235294117647, 0.4196078431372549, 0.3333333333333333], 
+    RectangleBox[NCache[{Rational[55, 256], 0}, {0.21484375, 0}], 
+     NCache[{Rational[7, 32], 1}, {0.21875, 1}]]}, 
+   {RGBColor[0.8627450980392157, 0.43137254901960786`, 0.34509803921568627`], 
+    RectangleBox[NCache[{Rational[7, 32], 0}, {0.21875, 0}], 
+     NCache[{Rational[57, 256], 1}, {0.22265625, 1}]]}, 
+   {RGBColor[0.8666666666666667, 0.44313725490196076`, 0.3529411764705882], 
+    RectangleBox[NCache[{Rational[57, 256], 0}, {0.22265625, 0}], 
+     NCache[{Rational[29, 128], 1}, {0.2265625, 1}]]}, 
+   {RGBColor[0.8705882352941177, 0.45098039215686275`, 0.3607843137254902], 
+    RectangleBox[NCache[{Rational[29, 128], 0}, {0.2265625, 0}], 
+     NCache[{Rational[59, 256], 1}, {0.23046875, 1}]]}, 
+   {RGBColor[0.8784313725490196, 0.4627450980392157, 0.3686274509803922], 
+    RectangleBox[NCache[{Rational[59, 256], 0}, {0.23046875, 0}], 
+     NCache[{Rational[15, 64], 1}, {0.234375, 1}]]}, 
+   {RGBColor[0.8823529411764706, 0.4745098039215686, 0.3764705882352941], 
+    RectangleBox[NCache[{Rational[15, 64], 0}, {0.234375, 0}], 
+     NCache[{Rational[61, 256], 1}, {0.23828125, 1}]]}, 
+   {RGBColor[0.8862745098039215, 0.48627450980392156`, 0.38431372549019605`], 
+    RectangleBox[NCache[{Rational[61, 256], 0}, {0.23828125, 0}], 
+     NCache[{Rational[31, 128], 1}, {0.2421875, 1}]]}, 
+   {RGBColor[0.8901960784313725, 0.49411764705882355`, 0.39215686274509803`], 
+    RectangleBox[NCache[{Rational[31, 128], 0}, {0.2421875, 0}], 
+     NCache[{Rational[63, 256], 1}, {0.24609375, 1}]]}, 
+   {RGBColor[0.8941176470588235, 0.5058823529411764, 0.4], 
+    RectangleBox[NCache[{Rational[63, 256], 0}, {0.24609375, 0}], 
+     NCache[{Rational[1, 4], 1}, {0.25, 1}]]}, 
+   {RGBColor[0.9019607843137255, 0.5176470588235293, 0.4117647058823529], 
+    RectangleBox[NCache[{Rational[1, 4], 0}, {0.25, 0}], 
+     NCache[{Rational[65, 256], 1}, {0.25390625, 1}]]}, 
+   {RGBColor[0.9058823529411765, 0.5294117647058824, 0.4196078431372549], 
+    RectangleBox[NCache[{Rational[65, 256], 0}, {0.25390625, 0}], 
+     NCache[{Rational[33, 128], 1}, {0.2578125, 1}]]}, 
+   {RGBColor[0.9098039215686274, 0.5372549019607843, 0.42745098039215684`], 
+    RectangleBox[NCache[{Rational[33, 128], 0}, {0.2578125, 0}], 
+     NCache[{Rational[67, 256], 1}, {0.26171875, 1}]]}, 
+   {RGBColor[0.9137254901960784, 0.5490196078431373, 0.43529411764705883`], 
+    RectangleBox[NCache[{Rational[67, 256], 0}, {0.26171875, 0}], 
+     NCache[{Rational[17, 64], 1}, {0.265625, 1}]]}, 
+   {RGBColor[0.9176470588235294, 0.5607843137254902, 0.44313725490196076`], 
+    RectangleBox[NCache[{Rational[17, 64], 0}, {0.265625, 0}], 
+     NCache[{Rational[69, 256], 1}, {0.26953125, 1}]]}, 
+   {RGBColor[0.9254901960784314, 0.5725490196078431, 0.45098039215686275`], 
+    RectangleBox[NCache[{Rational[69, 256], 0}, {0.26953125, 0}], 
+     NCache[{Rational[35, 128], 1}, {0.2734375, 1}]]}, 
+   {RGBColor[0.9294117647058824, 0.580392156862745, 0.4588235294117647], 
+    RectangleBox[NCache[{Rational[35, 128], 0}, {0.2734375, 0}], 
+     NCache[{Rational[71, 256], 1}, {0.27734375, 1}]]}, 
+   {RGBColor[0.9333333333333333, 0.592156862745098, 0.4666666666666667], 
+    RectangleBox[NCache[{Rational[71, 256], 0}, {0.27734375, 0}], 
+     NCache[{Rational[9, 32], 1}, {0.28125, 1}]]}, 
+   {RGBColor[0.9372549019607843, 0.6039215686274509, 0.4784313725490196], 
+    RectangleBox[NCache[{Rational[9, 32], 0}, {0.28125, 0}], 
+     NCache[{Rational[73, 256], 1}, {0.28515625, 1}]]}, 
+   {RGBColor[0.9411764705882353, 0.615686274509804, 0.48627450980392156`], 
+    RectangleBox[NCache[{Rational[73, 256], 0}, {0.28515625, 0}], 
+     NCache[{Rational[37, 128], 1}, {0.2890625, 1}]]}, 
+   {RGBColor[0.9490196078431372, 0.6235294117647059, 0.49411764705882355`], 
+    RectangleBox[NCache[{Rational[37, 128], 0}, {0.2890625, 0}], 
+     NCache[{Rational[75, 256], 1}, {0.29296875, 1}]]}, 
+   {RGBColor[0.9529411764705882, 0.6352941176470588, 0.5019607843137255], 
+    RectangleBox[NCache[{Rational[75, 256], 0}, {0.29296875, 0}], 
+     NCache[{Rational[19, 64], 1}, {0.296875, 1}]]}, 
+   {RGBColor[0.9568627450980391, 0.6470588235294118, 0.5098039215686274], 
+    RectangleBox[NCache[{Rational[19, 64], 0}, {0.296875, 0}], 
+     NCache[{Rational[77, 256], 1}, {0.30078125, 1}]]}, 
+   {RGBColor[0.9568627450980391, 0.6549019607843137, 0.5215686274509804], 
+    RectangleBox[NCache[{Rational[77, 256], 0}, {0.30078125, 0}], 
+     NCache[{Rational[39, 128], 1}, {0.3046875, 1}]]}, 
+   {RGBColor[0.9607843137254902, 0.6627450980392157, 0.5294117647058824], 
+    RectangleBox[NCache[{Rational[39, 128], 0}, {0.3046875, 0}], 
+     NCache[{Rational[79, 256], 1}, {0.30859375, 1}]]}, 
+   {RGBColor[0.9607843137254902, 0.6705882352941176, 0.5411764705882353], 
+    RectangleBox[NCache[{Rational[79, 256], 0}, {0.30859375, 0}], 
+     NCache[{Rational[5, 16], 1}, {0.3125, 1}]]}, 
+   {RGBColor[0.9607843137254902, 0.6784313725490196, 0.5529411764705883], 
+    RectangleBox[NCache[{Rational[5, 16], 0}, {0.3125, 0}], 
+     NCache[{Rational[81, 256], 1}, {0.31640625, 1}]]}, 
+   {RGBColor[0.9647058823529412, 0.6862745098039216, 0.5607843137254902], 
+    RectangleBox[NCache[{Rational[81, 256], 0}, {0.31640625, 0}], 
+     NCache[{Rational[41, 128], 1}, {0.3203125, 1}]]}, 
+   {RGBColor[0.9647058823529412, 0.6941176470588235, 0.5725490196078431], 
+    RectangleBox[NCache[{Rational[41, 128], 0}, {0.3203125, 0}], 
+     NCache[{Rational[83, 256], 1}, {0.32421875, 1}]]}, 
+   {RGBColor[0.9647058823529412, 0.7058823529411764, 0.5843137254901961], 
+    RectangleBox[NCache[{Rational[83, 256], 0}, {0.32421875, 0}], 
+     NCache[{Rational[21, 64], 1}, {0.328125, 1}]]}, 
+   {RGBColor[0.9686274509803922, 0.7137254901960784, 0.592156862745098], 
+    RectangleBox[NCache[{Rational[21, 64], 0}, {0.328125, 0}], 
+     NCache[{Rational[85, 256], 1}, {0.33203125, 1}]]}, 
+   {RGBColor[0.9686274509803922, 0.7215686274509804, 0.6039215686274509], 
+    RectangleBox[NCache[{Rational[85, 256], 0}, {0.33203125, 0}], 
+     NCache[{Rational[43, 128], 1}, {0.3359375, 1}]]}, 
+   {RGBColor[0.9686274509803922, 0.7294117647058823, 0.615686274509804], 
+    RectangleBox[NCache[{Rational[43, 128], 0}, {0.3359375, 0}], 
+     NCache[{Rational[87, 256], 1}, {0.33984375, 1}]]}, 
+   {RGBColor[0.9725490196078431, 0.7372549019607844, 0.6235294117647059], 
+    RectangleBox[NCache[{Rational[87, 256], 0}, {0.33984375, 0}], 
+     NCache[{Rational[11, 32], 1}, {0.34375, 1}]]}, 
+   {RGBColor[0.9725490196078431, 0.7450980392156863, 0.6352941176470588], 
+    RectangleBox[NCache[{Rational[11, 32], 0}, {0.34375, 0}], 
+     NCache[{Rational[89, 256], 1}, {0.34765625, 1}]]}, 
+   {RGBColor[0.9764705882352941, 0.7529411764705882, 0.6470588235294118], 
+    RectangleBox[NCache[{Rational[89, 256], 0}, {0.34765625, 0}], 
+     NCache[{Rational[45, 128], 1}, {0.3515625, 1}]]}, 
+   {RGBColor[0.9764705882352941, 0.7607843137254902, 0.6549019607843137], 
+    RectangleBox[NCache[{Rational[45, 128], 0}, {0.3515625, 0}], 
+     NCache[{Rational[91, 256], 1}, {0.35546875, 1}]]}, 
+   {RGBColor[0.9764705882352941, 0.7686274509803921, 0.6666666666666666], 
+    RectangleBox[NCache[{Rational[91, 256], 0}, {0.35546875, 0}], 
+     NCache[{Rational[23, 64], 1}, {0.359375, 1}]]}, 
+   {RGBColor[0.9803921568627451, 0.7764705882352941, 0.6745098039215687], 
+    RectangleBox[NCache[{Rational[23, 64], 0}, {0.359375, 0}], 
+     NCache[{Rational[93, 256], 1}, {0.36328125, 1}]]}, 
+   {RGBColor[0.9803921568627451, 0.7843137254901961, 0.6862745098039216], 
+    RectangleBox[NCache[{Rational[93, 256], 0}, {0.36328125, 0}], 
+     NCache[{Rational[47, 128], 1}, {0.3671875, 1}]]}, 
+   {RGBColor[0.9803921568627451, 0.792156862745098, 0.6980392156862745], 
+    RectangleBox[NCache[{Rational[47, 128], 0}, {0.3671875, 0}], 
+     NCache[{Rational[95, 256], 1}, {0.37109375, 1}]]}, 
+   {RGBColor[0.984313725490196, 0.8, 0.7058823529411764], 
+    RectangleBox[NCache[{Rational[95, 256], 0}, {0.37109375, 0}], 
+     NCache[{Rational[3, 8], 1}, {0.375, 1}]]}, 
+   {RGBColor[0.984313725490196, 0.8117647058823529, 0.7176470588235294], 
+    RectangleBox[NCache[{Rational[3, 8], 0}, {0.375, 0}], 
+     NCache[{Rational[97, 256], 1}, {0.37890625, 1}]]}, 
+   {RGBColor[0.984313725490196, 0.8196078431372549, 0.7294117647058823], 
+    RectangleBox[NCache[{Rational[97, 256], 0}, {0.37890625, 0}], 
+     NCache[{Rational[49, 128], 1}, {0.3828125, 1}]]}, 
+   {RGBColor[0.9882352941176471, 0.8274509803921568, 0.7372549019607844], 
+    RectangleBox[NCache[{Rational[49, 128], 0}, {0.3828125, 0}], 
+     NCache[{Rational[99, 256], 1}, {0.38671875, 1}]]}, 
+   {RGBColor[0.9882352941176471, 0.8352941176470589, 0.7490196078431373], 
+    RectangleBox[NCache[{Rational[99, 256], 0}, {0.38671875, 0}], 
+     NCache[{Rational[25, 64], 1}, {0.390625, 1}]]}, 
+   {RGBColor[0.9882352941176471, 0.8431372549019608, 0.7607843137254902], 
+    RectangleBox[NCache[{Rational[25, 64], 0}, {0.390625, 0}], 
+     NCache[{Rational[101, 256], 1}, {0.39453125, 1}]]}, 
+   {RGBColor[0.9921568627450981, 0.8509803921568627, 0.7686274509803921], 
+    RectangleBox[NCache[{Rational[101, 256], 0}, {0.39453125, 0}], 
+     NCache[{Rational[51, 128], 1}, {0.3984375, 1}]]}, 
+   {RGBColor[0.9921568627450981, 0.8588235294117647, 0.7803921568627451], 
+    RectangleBox[NCache[{Rational[51, 128], 0}, {0.3984375, 0}], 
+     NCache[{Rational[103, 256], 1}, {0.40234375, 1}]]}, 
+   {RGBColor[0.9921568627450981, 0.8627450980392157, 0.788235294117647], 
+    RectangleBox[NCache[{Rational[103, 256], 0}, {0.40234375, 0}], 
+     NCache[{Rational[13, 32], 1}, {0.40625, 1}]]}, 
+   {RGBColor[0.9921568627450981, 0.8705882352941177, 0.796078431372549], 
+    RectangleBox[NCache[{Rational[13, 32], 0}, {0.40625, 0}], 
+     NCache[{Rational[105, 256], 1}, {0.41015625, 1}]]}, 
+   {RGBColor[0.9921568627450981, 0.8745098039215686, 0.807843137254902], 
+    RectangleBox[NCache[{Rational[105, 256], 0}, {0.41015625, 0}], 
+     NCache[{Rational[53, 128], 1}, {0.4140625, 1}]]}, 
+   {RGBColor[0.9921568627450981, 0.8823529411764706, 0.8156862745098039], 
+    RectangleBox[NCache[{Rational[53, 128], 0}, {0.4140625, 0}], 
+     NCache[{Rational[107, 256], 1}, {0.41796875, 1}]]}, 
+   {RGBColor[0.9921568627450981, 0.8862745098039215, 0.8235294117647058], 
+    RectangleBox[NCache[{Rational[107, 256], 0}, {0.41796875, 0}], 
+     NCache[{Rational[27, 64], 1}, {0.421875, 1}]]}, 
+   {RGBColor[0.9921568627450981, 0.8941176470588235, 0.8313725490196078], 
+    RectangleBox[NCache[{Rational[27, 64], 0}, {0.421875, 0}], 
+     NCache[{Rational[109, 256], 1}, {0.42578125, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.8980392156862745, 0.8431372549019608], 
+    RectangleBox[NCache[{Rational[109, 256], 0}, {0.42578125, 0}], 
+     NCache[{Rational[55, 128], 1}, {0.4296875, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9058823529411765, 0.8509803921568627], 
+    RectangleBox[NCache[{Rational[55, 128], 0}, {0.4296875, 0}], 
+     NCache[{Rational[111, 256], 1}, {0.43359375, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9098039215686274, 0.8588235294117647], 
+    RectangleBox[NCache[{Rational[111, 256], 0}, {0.43359375, 0}], 
+     NCache[{Rational[7, 16], 1}, {0.4375, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9137254901960784, 0.8666666666666667], 
+    RectangleBox[NCache[{Rational[7, 16], 0}, {0.4375, 0}], 
+     NCache[{Rational[113, 256], 1}, {0.44140625, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9215686274509803, 0.8784313725490196], 
+    RectangleBox[NCache[{Rational[113, 256], 0}, {0.44140625, 0}], 
+     NCache[{Rational[57, 128], 1}, {0.4453125, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9254901960784314, 0.8862745098039215], 
+    RectangleBox[NCache[{Rational[57, 128], 0}, {0.4453125, 0}], 
+     NCache[{Rational[115, 256], 1}, {0.44921875, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9333333333333333, 0.8941176470588235], 
+    RectangleBox[NCache[{Rational[115, 256], 0}, {0.44921875, 0}], 
+     NCache[{Rational[29, 64], 1}, {0.453125, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9372549019607843, 0.9019607843137255], 
+    RectangleBox[NCache[{Rational[29, 64], 0}, {0.453125, 0}], 
+     NCache[{Rational[117, 256], 1}, {0.45703125, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9450980392156862, 0.9137254901960784], 
+    RectangleBox[NCache[{Rational[117, 256], 0}, {0.45703125, 0}], 
+     NCache[{Rational[59, 128], 1}, {0.4609375, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9490196078431372, 0.9215686274509803], 
+    RectangleBox[NCache[{Rational[59, 128], 0}, {0.4609375, 0}], 
+     NCache[{Rational[119, 256], 1}, {0.46484375, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9529411764705882, 0.9294117647058824], 
+    RectangleBox[NCache[{Rational[119, 256], 0}, {0.46484375, 0}], 
+     NCache[{Rational[15, 32], 1}, {0.46875, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.9607843137254902, 0.9372549019607843], 
+    RectangleBox[NCache[{Rational[15, 32], 0}, {0.46875, 0}], 
+     NCache[{Rational[121, 256], 1}, {0.47265625, 1}]]}, 
+   {RGBColor[1., 0.9647058823529412, 0.9490196078431372], 
+    RectangleBox[NCache[{Rational[121, 256], 0}, {0.47265625, 0}], 
+     NCache[{Rational[61, 128], 1}, {0.4765625, 1}]]}, 
+   {RGBColor[1., 0.9725490196078431, 0.9568627450980391], 
+    RectangleBox[NCache[{Rational[61, 128], 0}, {0.4765625, 0}], 
+     NCache[{Rational[123, 256], 1}, {0.48046875, 1}]]}, 
+   {RGBColor[1., 0.9764705882352941, 0.9647058823529412], 
+    RectangleBox[NCache[{Rational[123, 256], 0}, {0.48046875, 0}], 
+     NCache[{Rational[31, 64], 1}, {0.484375, 1}]]}, 
+   {RGBColor[1., 0.984313725490196, 0.9725490196078431], 
+    RectangleBox[NCache[{Rational[31, 64], 0}, {0.484375, 0}], 
+     NCache[{Rational[125, 256], 1}, {0.48828125, 1}]]}, 
+   {RGBColor[1., 0.9882352941176471, 0.984313725490196], 
+    RectangleBox[NCache[{Rational[125, 256], 0}, {0.48828125, 0}], 
+     NCache[{Rational[63, 128], 1}, {0.4921875, 1}]]}, 
+   {RGBColor[1., 0.996078431372549, 0.9921568627450981], 
+    RectangleBox[NCache[{Rational[63, 128], 0}, {0.4921875, 0}], 
+     NCache[{Rational[127, 256], 1}, {0.49609375, 1}]]}, 
+   {RGBColor[1., 1., 1.], 
+    RectangleBox[NCache[{Rational[127, 256], 0}, {0.49609375, 0}], 
+     NCache[{Rational[1, 2], 1}, {0.5, 1}]]}, 
+   {RGBColor[0.996078431372549, 0.996078431372549, 0.996078431372549], 
+    RectangleBox[NCache[{Rational[1, 2], 0}, {0.5, 0}], 
+     NCache[{Rational[129, 256], 1}, {0.50390625, 1}]]}, 
+   {RGBColor[0.9921568627450981, 0.9921568627450981, 0.9921568627450981], 
+    RectangleBox[NCache[{Rational[129, 256], 0}, {0.50390625, 0}], 
+     NCache[{Rational[65, 128], 1}, {0.5078125, 1}]]}, 
+   {RGBColor[0.984313725490196, 0.984313725490196, 0.984313725490196], 
+    RectangleBox[NCache[{Rational[65, 128], 0}, {0.5078125, 0}], 
+     NCache[{Rational[131, 256], 1}, {0.51171875, 1}]]}, 
+   {RGBColor[0.9803921568627451, 0.9803921568627451, 0.9803921568627451], 
+    RectangleBox[NCache[{Rational[131, 256], 0}, {0.51171875, 0}], 
+     NCache[{Rational[33, 64], 1}, {0.515625, 1}]]}, 
+   {RGBColor[0.9764705882352941, 0.9764705882352941, 0.9764705882352941], 
+    RectangleBox[NCache[{Rational[33, 64], 0}, {0.515625, 0}], 
+     NCache[{Rational[133, 256], 1}, {0.51953125, 1}]]}, 
+   {RGBColor[0.9725490196078431, 0.9725490196078431, 0.9725490196078431], 
+    RectangleBox[NCache[{Rational[133, 256], 0}, {0.51953125, 0}], 
+     NCache[{Rational[67, 128], 1}, {0.5234375, 1}]]}, 
+   {RGBColor[0.9686274509803922, 0.9686274509803922, 0.9686274509803922], 
+    RectangleBox[NCache[{Rational[67, 128], 0}, {0.5234375, 0}], 
+     NCache[{Rational[135, 256], 1}, {0.52734375, 1}]]}, 
+   {RGBColor[0.9607843137254902, 0.9607843137254902, 0.9607843137254902], 
+    RectangleBox[NCache[{Rational[135, 256], 0}, {0.52734375, 0}], 
+     NCache[{Rational[17, 32], 1}, {0.53125, 1}]]}, 
+   {RGBColor[0.9568627450980391, 0.9568627450980391, 0.9568627450980391], 
+    RectangleBox[NCache[{Rational[17, 32], 0}, {0.53125, 0}], 
+     NCache[{Rational[137, 256], 1}, {0.53515625, 1}]]}, 
+   {RGBColor[0.9529411764705882, 0.9529411764705882, 0.9529411764705882], 
+    RectangleBox[NCache[{Rational[137, 256], 0}, {0.53515625, 0}], 
+     NCache[{Rational[69, 128], 1}, {0.5390625, 1}]]}, 
+   {RGBColor[0.9490196078431372, 0.9490196078431372, 0.9490196078431372], 
+    RectangleBox[NCache[{Rational[69, 128], 0}, {0.5390625, 0}], 
+     NCache[{Rational[139, 256], 1}, {0.54296875, 1}]]}, 
+   {RGBColor[0.9450980392156862, 0.9450980392156862, 0.9450980392156862], 
+    RectangleBox[NCache[{Rational[139, 256], 0}, {0.54296875, 0}], 
+     NCache[{Rational[35, 64], 1}, {0.546875, 1}]]}, 
+   {RGBColor[0.9411764705882353, 0.9411764705882353, 0.9411764705882353], 
+    RectangleBox[NCache[{Rational[35, 64], 0}, {0.546875, 0}], 
+     NCache[{Rational[141, 256], 1}, {0.55078125, 1}]]}, 
+   {RGBColor[0.9333333333333333, 0.9333333333333333, 0.9333333333333333], 
+    RectangleBox[NCache[{Rational[141, 256], 0}, {0.55078125, 0}], 
+     NCache[{Rational[71, 128], 1}, {0.5546875, 1}]]}, 
+   {RGBColor[0.9294117647058824, 0.9294117647058824, 0.9294117647058824], 
+    RectangleBox[NCache[{Rational[71, 128], 0}, {0.5546875, 0}], 
+     NCache[{Rational[143, 256], 1}, {0.55859375, 1}]]}, 
+   {RGBColor[0.9254901960784314, 0.9254901960784314, 0.9254901960784314], 
+    RectangleBox[NCache[{Rational[143, 256], 0}, {0.55859375, 0}], 
+     NCache[{Rational[9, 16], 1}, {0.5625, 1}]]}, 
+   {RGBColor[0.9215686274509803, 0.9215686274509803, 0.9215686274509803], 
+    RectangleBox[NCache[{Rational[9, 16], 0}, {0.5625, 0}], 
+     NCache[{Rational[145, 256], 1}, {0.56640625, 1}]]}, 
+   {RGBColor[0.9176470588235294, 0.9176470588235294, 0.9176470588235294], 
+    RectangleBox[NCache[{Rational[145, 256], 0}, {0.56640625, 0}], 
+     NCache[{Rational[73, 128], 1}, {0.5703125, 1}]]}, 
+   {RGBColor[0.9098039215686274, 0.9098039215686274, 0.9098039215686274], 
+    RectangleBox[NCache[{Rational[73, 128], 0}, {0.5703125, 0}], 
+     NCache[{Rational[147, 256], 1}, {0.57421875, 1}]]}, 
+   {RGBColor[0.9058823529411765, 0.9058823529411765, 0.9058823529411765], 
+    RectangleBox[NCache[{Rational[147, 256], 0}, {0.57421875, 0}], 
+     NCache[{Rational[37, 64], 1}, {0.578125, 1}]]}, 
+   {RGBColor[0.9019607843137255, 0.9019607843137255, 0.9019607843137255], 
+    RectangleBox[NCache[{Rational[37, 64], 0}, {0.578125, 0}], 
+     NCache[{Rational[149, 256], 1}, {0.58203125, 1}]]}, 
+   {RGBColor[0.8980392156862745, 0.8980392156862745, 0.8980392156862745], 
+    RectangleBox[NCache[{Rational[149, 256], 0}, {0.58203125, 0}], 
+     NCache[{Rational[75, 128], 1}, {0.5859375, 1}]]}, 
+   {RGBColor[0.8941176470588235, 0.8941176470588235, 0.8941176470588235], 
+    RectangleBox[NCache[{Rational[75, 128], 0}, {0.5859375, 0}], 
+     NCache[{Rational[151, 256], 1}, {0.58984375, 1}]]}, 
+   {RGBColor[0.8862745098039215, 0.8862745098039215, 0.8862745098039215], 
+    RectangleBox[NCache[{Rational[151, 256], 0}, {0.58984375, 0}], 
+     NCache[{Rational[19, 32], 1}, {0.59375, 1}]]}, 
+   {RGBColor[0.8823529411764706, 0.8823529411764706, 0.8823529411764706], 
+    RectangleBox[NCache[{Rational[19, 32], 0}, {0.59375, 0}], 
+     NCache[{Rational[153, 256], 1}, {0.59765625, 1}]]}, 
+   {RGBColor[0.8784313725490196, 0.8784313725490196, 0.8784313725490196], 
+    RectangleBox[NCache[{Rational[153, 256], 0}, {0.59765625, 0}], 
+     NCache[{Rational[77, 128], 1}, {0.6015625, 1}]]}, 
+   {RGBColor[0.8705882352941177, 0.8705882352941177, 0.8705882352941177], 
+    RectangleBox[NCache[{Rational[77, 128], 0}, {0.6015625, 0}], 
+     NCache[{Rational[155, 256], 1}, {0.60546875, 1}]]}, 
+   {RGBColor[0.8666666666666667, 0.8666666666666667, 0.8666666666666667], 
+    RectangleBox[NCache[{Rational[155, 256], 0}, {0.60546875, 0}], 
+     NCache[{Rational[39, 64], 1}, {0.609375, 1}]]}, 
+   {RGBColor[0.8588235294117647, 0.8588235294117647, 0.8588235294117647], 
+    RectangleBox[NCache[{Rational[39, 64], 0}, {0.609375, 0}], 
+     NCache[{Rational[157, 256], 1}, {0.61328125, 1}]]}, 
+   {RGBColor[0.8549019607843137, 0.8549019607843137, 0.8549019607843137], 
+    RectangleBox[NCache[{Rational[157, 256], 0}, {0.61328125, 0}], 
+     NCache[{Rational[79, 128], 1}, {0.6171875, 1}]]}, 
+   {RGBColor[0.8470588235294118, 0.8470588235294118, 0.8470588235294118], 
+    RectangleBox[NCache[{Rational[79, 128], 0}, {0.6171875, 0}], 
+     NCache[{Rational[159, 256], 1}, {0.62109375, 1}]]}, 
+   {RGBColor[0.8431372549019608, 0.8431372549019608, 0.8431372549019608], 
+    RectangleBox[NCache[{Rational[159, 256], 0}, {0.62109375, 0}], 
+     NCache[{Rational[5, 8], 1}, {0.625, 1}]]}, 
+   {RGBColor[0.8352941176470589, 0.8352941176470589, 0.8352941176470589], 
+    RectangleBox[NCache[{Rational[5, 8], 0}, {0.625, 0}], 
+     NCache[{Rational[161, 256], 1}, {0.62890625, 1}]]}, 
+   {RGBColor[0.8313725490196078, 0.8313725490196078, 0.8313725490196078], 
+    RectangleBox[NCache[{Rational[161, 256], 0}, {0.62890625, 0}], 
+     NCache[{Rational[81, 128], 1}, {0.6328125, 1}]]}, 
+   {RGBColor[0.8235294117647058, 0.8235294117647058, 0.8235294117647058], 
+    RectangleBox[NCache[{Rational[81, 128], 0}, {0.6328125, 0}], 
+     NCache[{Rational[163, 256], 1}, {0.63671875, 1}]]}, 
+   {RGBColor[0.8196078431372549, 0.8196078431372549, 0.8196078431372549], 
+    RectangleBox[NCache[{Rational[163, 256], 0}, {0.63671875, 0}], 
+     NCache[{Rational[41, 64], 1}, {0.640625, 1}]]}, 
+   {RGBColor[0.8117647058823529, 0.8117647058823529, 0.8117647058823529], 
+    RectangleBox[NCache[{Rational[41, 64], 0}, {0.640625, 0}], 
+     NCache[{Rational[165, 256], 1}, {0.64453125, 1}]]}, 
+   {RGBColor[0.807843137254902, 0.807843137254902, 0.807843137254902], 
+    RectangleBox[NCache[{Rational[165, 256], 0}, {0.64453125, 0}], 
+     NCache[{Rational[83, 128], 1}, {0.6484375, 1}]]}, 
+   {RGBColor[0.8, 0.8, 0.8], 
+    RectangleBox[NCache[{Rational[83, 128], 0}, {0.6484375, 0}], 
+     NCache[{Rational[167, 256], 1}, {0.65234375, 1}]]}, 
+   {RGBColor[0.796078431372549, 0.796078431372549, 0.796078431372549], 
+    RectangleBox[NCache[{Rational[167, 256], 0}, {0.65234375, 0}], 
+     NCache[{Rational[21, 32], 1}, {0.65625, 1}]]}, 
+   {RGBColor[0.788235294117647, 0.788235294117647, 0.788235294117647], 
+    RectangleBox[NCache[{Rational[21, 32], 0}, {0.65625, 0}], 
+     NCache[{Rational[169, 256], 1}, {0.66015625, 1}]]}, 
+   {RGBColor[0.7843137254901961, 0.7843137254901961, 0.7843137254901961], 
+    RectangleBox[NCache[{Rational[169, 256], 0}, {0.66015625, 0}], 
+     NCache[{Rational[85, 128], 1}, {0.6640625, 1}]]}, 
+   {RGBColor[0.7764705882352941, 0.7764705882352941, 0.7764705882352941], 
+    RectangleBox[NCache[{Rational[85, 128], 0}, {0.6640625, 0}], 
+     NCache[{Rational[171, 256], 1}, {0.66796875, 1}]]}, 
+   {RGBColor[0.7725490196078432, 0.7725490196078432, 0.7725490196078432], 
+    RectangleBox[NCache[{Rational[171, 256], 0}, {0.66796875, 0}], 
+     NCache[{Rational[43, 64], 1}, {0.671875, 1}]]}, 
+   {RGBColor[0.7647058823529411, 0.7647058823529411, 0.7647058823529411], 
+    RectangleBox[NCache[{Rational[43, 64], 0}, {0.671875, 0}], 
+     NCache[{Rational[173, 256], 1}, {0.67578125, 1}]]}, 
+   {RGBColor[0.7607843137254902, 0.7607843137254902, 0.7607843137254902], 
+    RectangleBox[NCache[{Rational[173, 256], 0}, {0.67578125, 0}], 
+     NCache[{Rational[87, 128], 1}, {0.6796875, 1}]]}, 
+   {RGBColor[0.7529411764705882, 0.7529411764705882, 0.7529411764705882], 
+    RectangleBox[NCache[{Rational[87, 128], 0}, {0.6796875, 0}], 
+     NCache[{Rational[175, 256], 1}, {0.68359375, 1}]]}, 
+   {RGBColor[0.7490196078431373, 0.7490196078431373, 0.7490196078431373], 
+    RectangleBox[NCache[{Rational[175, 256], 0}, {0.68359375, 0}], 
+     NCache[{Rational[11, 16], 1}, {0.6875, 1}]]}, 
+   {RGBColor[0.7411764705882353, 0.7411764705882353, 0.7411764705882353], 
+    RectangleBox[NCache[{Rational[11, 16], 0}, {0.6875, 0}], 
+     NCache[{Rational[177, 256], 1}, {0.69140625, 1}]]}, 
+   {RGBColor[0.7372549019607844, 0.7372549019607844, 0.7372549019607844], 
+    RectangleBox[NCache[{Rational[177, 256], 0}, {0.69140625, 0}], 
+     NCache[{Rational[89, 128], 1}, {0.6953125, 1}]]}, 
+   {RGBColor[0.7294117647058823, 0.7294117647058823, 0.7294117647058823], 
+    RectangleBox[NCache[{Rational[89, 128], 0}, {0.6953125, 0}], 
+     NCache[{Rational[179, 256], 1}, {0.69921875, 1}]]}, 
+   {RGBColor[0.7215686274509804, 0.7215686274509804, 0.7215686274509804], 
+    RectangleBox[NCache[{Rational[179, 256], 0}, {0.69921875, 0}], 
+     NCache[{Rational[45, 64], 1}, {0.703125, 1}]]}, 
+   {RGBColor[0.7137254901960784, 0.7137254901960784, 0.7137254901960784], 
+    RectangleBox[NCache[{Rational[45, 64], 0}, {0.703125, 0}], 
+     NCache[{Rational[181, 256], 1}, {0.70703125, 1}]]}, 
+   {RGBColor[0.7058823529411764, 0.7058823529411764, 0.7058823529411764], 
+    RectangleBox[NCache[{Rational[181, 256], 0}, {0.70703125, 0}], 
+     NCache[{Rational[91, 128], 1}, {0.7109375, 1}]]}, 
+   {RGBColor[0.6980392156862745, 0.6980392156862745, 0.6980392156862745], 
+    RectangleBox[NCache[{Rational[91, 128], 0}, {0.7109375, 0}], 
+     NCache[{Rational[183, 256], 1}, {0.71484375, 1}]]}, 
+   {RGBColor[0.6901960784313725, 0.6901960784313725, 0.6901960784313725], 
+    RectangleBox[NCache[{Rational[183, 256], 0}, {0.71484375, 0}], 
+     NCache[{Rational[23, 32], 1}, {0.71875, 1}]]}, 
+   {RGBColor[0.6823529411764706, 0.6823529411764706, 0.6823529411764706], 
+    RectangleBox[NCache[{Rational[23, 32], 0}, {0.71875, 0}], 
+     NCache[{Rational[185, 256], 1}, {0.72265625, 1}]]}, 
+   {RGBColor[0.6745098039215687, 0.6745098039215687, 0.6745098039215687], 
+    RectangleBox[NCache[{Rational[185, 256], 0}, {0.72265625, 0}], 
+     NCache[{Rational[93, 128], 1}, {0.7265625, 1}]]}, 
+   {RGBColor[0.6666666666666666, 0.6666666666666666, 0.6666666666666666], 
+    RectangleBox[NCache[{Rational[93, 128], 0}, {0.7265625, 0}], 
+     NCache[{Rational[187, 256], 1}, {0.73046875, 1}]]}, 
+   {RGBColor[0.6588235294117647, 0.6588235294117647, 0.6588235294117647], 
+    RectangleBox[NCache[{Rational[187, 256], 0}, {0.73046875, 0}], 
+     NCache[{Rational[47, 64], 1}, {0.734375, 1}]]}, 
+   {RGBColor[0.6509803921568628, 0.6509803921568628, 0.6509803921568628], 
+    RectangleBox[NCache[{Rational[47, 64], 0}, {0.734375, 0}], 
+     NCache[{Rational[189, 256], 1}, {0.73828125, 1}]]}, 
+   {RGBColor[0.6431372549019607, 0.6431372549019607, 0.6431372549019607], 
+    RectangleBox[NCache[{Rational[189, 256], 0}, {0.73828125, 0}], 
+     NCache[{Rational[95, 128], 1}, {0.7421875, 1}]]}, 
+   {RGBColor[0.6352941176470588, 0.6352941176470588, 0.6352941176470588], 
+    RectangleBox[NCache[{Rational[95, 128], 0}, {0.7421875, 0}], 
+     NCache[{Rational[191, 256], 1}, {0.74609375, 1}]]}, 
+   {RGBColor[0.6313725490196078, 0.6313725490196078, 0.6313725490196078], 
+    RectangleBox[NCache[{Rational[191, 256], 0}, {0.74609375, 0}], 
+     NCache[{Rational[3, 4], 1}, {0.75, 1}]]}, 
+   {RGBColor[0.6235294117647059, 0.6235294117647059, 0.6235294117647059], 
+    RectangleBox[NCache[{Rational[3, 4], 0}, {0.75, 0}], 
+     NCache[{Rational[193, 256], 1}, {0.75390625, 1}]]}, 
+   {RGBColor[0.615686274509804, 0.615686274509804, 0.615686274509804], 
+    RectangleBox[NCache[{Rational[193, 256], 0}, {0.75390625, 0}], 
+     NCache[{Rational[97, 128], 1}, {0.7578125, 1}]]}, 
+   {RGBColor[0.6078431372549019, 0.6078431372549019, 0.6078431372549019], 
+    RectangleBox[NCache[{Rational[97, 128], 0}, {0.7578125, 0}], 
+     NCache[{Rational[195, 256], 1}, {0.76171875, 1}]]}, 
+   {RGBColor[0.6, 0.6, 0.6], 
+    RectangleBox[NCache[{Rational[195, 256], 0}, {0.76171875, 0}], 
+     NCache[{Rational[49, 64], 1}, {0.765625, 1}]]}, 
+   {RGBColor[0.592156862745098, 0.592156862745098, 0.592156862745098], 
+    RectangleBox[NCache[{Rational[49, 64], 0}, {0.765625, 0}], 
+     NCache[{Rational[197, 256], 1}, {0.76953125, 1}]]}, 
+   {RGBColor[0.5843137254901961, 0.5843137254901961, 0.5843137254901961], 
+    RectangleBox[NCache[{Rational[197, 256], 0}, {0.76953125, 0}], 
+     NCache[{Rational[99, 128], 1}, {0.7734375, 1}]]}, 
+   {RGBColor[0.5764705882352941, 0.5764705882352941, 0.5764705882352941], 
+    RectangleBox[NCache[{Rational[99, 128], 0}, {0.7734375, 0}], 
+     NCache[{Rational[199, 256], 1}, {0.77734375, 1}]]}, 
+   {RGBColor[0.5686274509803921, 0.5686274509803921, 0.5686274509803921], 
+    RectangleBox[NCache[{Rational[199, 256], 0}, {0.77734375, 0}], 
+     NCache[{Rational[25, 32], 1}, {0.78125, 1}]]}, 
+   {RGBColor[0.5607843137254902, 0.5607843137254902, 0.5607843137254902], 
+    RectangleBox[NCache[{Rational[25, 32], 0}, {0.78125, 0}], 
+     NCache[{Rational[201, 256], 1}, {0.78515625, 1}]]}, 
+   {RGBColor[0.5529411764705883, 0.5529411764705883, 0.5529411764705883], 
+    RectangleBox[NCache[{Rational[201, 256], 0}, {0.78515625, 0}], 
+     NCache[{Rational[101, 128], 1}, {0.7890625, 1}]]}, 
+   {RGBColor[0.5450980392156862, 0.5450980392156862, 0.5450980392156862], 
+    RectangleBox[NCache[{Rational[101, 128], 0}, {0.7890625, 0}], 
+     NCache[{Rational[203, 256], 1}, {0.79296875, 1}]]}, 
+   {RGBColor[0.5372549019607843, 0.5372549019607843, 0.5372549019607843], 
+    RectangleBox[NCache[{Rational[203, 256], 0}, {0.79296875, 0}], 
+     NCache[{Rational[51, 64], 1}, {0.796875, 1}]]}, 
+   {RGBColor[0.5294117647058824, 0.5294117647058824, 0.5294117647058824], 
+    RectangleBox[NCache[{Rational[51, 64], 0}, {0.796875, 0}], 
+     NCache[{Rational[205, 256], 1}, {0.80078125, 1}]]}, 
+   {RGBColor[0.5215686274509804, 0.5215686274509804, 0.5215686274509804], 
+    RectangleBox[NCache[{Rational[205, 256], 0}, {0.80078125, 0}], 
+     NCache[{Rational[103, 128], 1}, {0.8046875, 1}]]}, 
+   {RGBColor[0.5098039215686274, 0.5098039215686274, 0.5098039215686274], 
+    RectangleBox[NCache[{Rational[103, 128], 0}, {0.8046875, 0}], 
+     NCache[{Rational[207, 256], 1}, {0.80859375, 1}]]}, 
+   {RGBColor[0.5019607843137255, 0.5019607843137255, 0.5019607843137255], 
+    RectangleBox[NCache[{Rational[207, 256], 0}, {0.80859375, 0}], 
+     NCache[{Rational[13, 16], 1}, {0.8125, 1}]]}, 
+   {RGBColor[
+    0.49411764705882355`, 0.49411764705882355`, 0.49411764705882355`], 
+    RectangleBox[NCache[{Rational[13, 16], 0}, {0.8125, 0}], 
+     NCache[{Rational[209, 256], 1}, {0.81640625, 1}]]}, 
+   {RGBColor[0.4823529411764706, 0.4823529411764706, 0.4823529411764706], 
+    RectangleBox[NCache[{Rational[209, 256], 0}, {0.81640625, 0}], 
+     NCache[{Rational[105, 128], 1}, {0.8203125, 1}]]}, 
+   {RGBColor[0.4745098039215686, 0.4745098039215686, 0.4745098039215686], 
+    RectangleBox[NCache[{Rational[105, 128], 0}, {0.8203125, 0}], 
+     NCache[{Rational[211, 256], 1}, {0.82421875, 1}]]}, 
+   {RGBColor[0.4666666666666667, 0.4666666666666667, 0.4666666666666667], 
+    RectangleBox[NCache[{Rational[211, 256], 0}, {0.82421875, 0}], 
+     NCache[{Rational[53, 64], 1}, {0.828125, 1}]]}, 
+   {RGBColor[0.4549019607843137, 0.4549019607843137, 0.4549019607843137], 
+    RectangleBox[NCache[{Rational[53, 64], 0}, {0.828125, 0}], 
+     NCache[{Rational[213, 256], 1}, {0.83203125, 1}]]}, 
+   {RGBColor[
+    0.44705882352941173`, 0.44705882352941173`, 0.44705882352941173`], 
+    RectangleBox[NCache[{Rational[213, 256], 0}, {0.83203125, 0}], 
+     NCache[{Rational[107, 128], 1}, {0.8359375, 1}]]}, 
+   {RGBColor[0.4392156862745098, 0.4392156862745098, 0.4392156862745098], 
+    RectangleBox[NCache[{Rational[107, 128], 0}, {0.8359375, 0}], 
+     NCache[{Rational[215, 256], 1}, {0.83984375, 1}]]}, 
+   {RGBColor[
+    0.42745098039215684`, 0.42745098039215684`, 0.42745098039215684`], 
+    RectangleBox[NCache[{Rational[215, 256], 0}, {0.83984375, 0}], 
+     NCache[{Rational[27, 32], 1}, {0.84375, 1}]]}, 
+   {RGBColor[0.4196078431372549, 0.4196078431372549, 0.4196078431372549], 
+    RectangleBox[NCache[{Rational[27, 32], 0}, {0.84375, 0}], 
+     NCache[{Rational[217, 256], 1}, {0.84765625, 1}]]}, 
+   {RGBColor[0.4117647058823529, 0.4117647058823529, 0.4117647058823529], 
+    RectangleBox[NCache[{Rational[217, 256], 0}, {0.84765625, 0}], 
+     NCache[{Rational[109, 128], 1}, {0.8515625, 1}]]}, 
+   {RGBColor[0.403921568627451, 0.403921568627451, 0.403921568627451], 
+    RectangleBox[NCache[{Rational[109, 128], 0}, {0.8515625, 0}], 
+     NCache[{Rational[219, 256], 1}, {0.85546875, 1}]]}, 
+   {RGBColor[
+    0.39215686274509803`, 0.39215686274509803`, 0.39215686274509803`], 
+    RectangleBox[NCache[{Rational[219, 256], 0}, {0.85546875, 0}], 
+     NCache[{Rational[55, 64], 1}, {0.859375, 1}]]}, 
+   {RGBColor[
+    0.38431372549019605`, 0.38431372549019605`, 0.38431372549019605`], 
+    RectangleBox[NCache[{Rational[55, 64], 0}, {0.859375, 0}], 
+     NCache[{Rational[221, 256], 1}, {0.86328125, 1}]]}, 
+   {RGBColor[0.3764705882352941, 0.3764705882352941, 0.3764705882352941], 
+    RectangleBox[NCache[{Rational[221, 256], 0}, {0.86328125, 0}], 
+     NCache[{Rational[111, 128], 1}, {0.8671875, 1}]]}, 
+   {RGBColor[
+    0.36470588235294116`, 0.36470588235294116`, 0.36470588235294116`], 
+    RectangleBox[NCache[{Rational[111, 128], 0}, {0.8671875, 0}], 
+     NCache[{Rational[223, 256], 1}, {0.87109375, 1}]]}, 
+   {RGBColor[0.3568627450980392, 0.3568627450980392, 0.3568627450980392], 
+    RectangleBox[NCache[{Rational[223, 256], 0}, {0.87109375, 0}], 
+     NCache[{Rational[7, 8], 1}, {0.875, 1}]]}, 
+   {RGBColor[
+    0.34901960784313724`, 0.34901960784313724`, 0.34901960784313724`], 
+    RectangleBox[NCache[{Rational[7, 8], 0}, {0.875, 0}], 
+     NCache[{Rational[225, 256], 1}, {0.87890625, 1}]]}, 
+   {RGBColor[
+    0.33725490196078434`, 0.33725490196078434`, 0.33725490196078434`], 
+    RectangleBox[NCache[{Rational[225, 256], 0}, {0.87890625, 0}], 
+     NCache[{Rational[113, 128], 1}, {0.8828125, 1}]]}, 
+   {RGBColor[
+    0.32941176470588235`, 0.32941176470588235`, 0.32941176470588235`], 
+    RectangleBox[NCache[{Rational[113, 128], 0}, {0.8828125, 0}], 
+     NCache[{Rational[227, 256], 1}, {0.88671875, 1}]]}, 
+   {RGBColor[
+    0.32156862745098036`, 0.32156862745098036`, 0.32156862745098036`], 
+    RectangleBox[NCache[{Rational[227, 256], 0}, {0.88671875, 0}], 
+     NCache[{Rational[57, 64], 1}, {0.890625, 1}]]}, 
+   {RGBColor[
+    0.30980392156862746`, 0.30980392156862746`, 0.30980392156862746`], 
+    RectangleBox[NCache[{Rational[57, 64], 0}, {0.890625, 0}], 
+     NCache[{Rational[229, 256], 1}, {0.89453125, 1}]]}, 
+   {RGBColor[
+    0.30196078431372547`, 0.30196078431372547`, 0.30196078431372547`], 
+    RectangleBox[NCache[{Rational[229, 256], 0}, {0.89453125, 0}], 
+     NCache[{Rational[115, 128], 1}, {0.8984375, 1}]]}, 
+   {RGBColor[
+    0.29411764705882354`, 0.29411764705882354`, 0.29411764705882354`], 
+    RectangleBox[NCache[{Rational[115, 128], 0}, {0.8984375, 0}], 
+     NCache[{Rational[231, 256], 1}, {0.90234375, 1}]]}, 
+   {RGBColor[
+    0.28627450980392155`, 0.28627450980392155`, 0.28627450980392155`], 
+    RectangleBox[NCache[{Rational[231, 256], 0}, {0.90234375, 0}], 
+     NCache[{Rational[29, 32], 1}, {0.90625, 1}]]}, 
+   {RGBColor[0.2784313725490196, 0.2784313725490196, 0.2784313725490196], 
+    RectangleBox[NCache[{Rational[29, 32], 0}, {0.90625, 0}], 
+     NCache[{Rational[233, 256], 1}, {0.91015625, 1}]]}, 
+   {RGBColor[
+    0.27058823529411763`, 0.27058823529411763`, 0.27058823529411763`], 
+    RectangleBox[NCache[{Rational[233, 256], 0}, {0.91015625, 0}], 
+     NCache[{Rational[117, 128], 1}, {0.9140625, 1}]]}, 
+   {RGBColor[0.2627450980392157, 0.2627450980392157, 0.2627450980392157], 
+    RectangleBox[NCache[{Rational[117, 128], 0}, {0.9140625, 0}], 
+     NCache[{Rational[235, 256], 1}, {0.91796875, 1}]]}, 
+   {RGBColor[0.2549019607843137, 0.2549019607843137, 0.2549019607843137], 
+    RectangleBox[NCache[{Rational[235, 256], 0}, {0.91796875, 0}], 
+     NCache[{Rational[59, 64], 1}, {0.921875, 1}]]}, 
+   {RGBColor[
+    0.24705882352941178`, 0.24705882352941178`, 0.24705882352941178`], 
+    RectangleBox[NCache[{Rational[59, 64], 0}, {0.921875, 0}], 
+     NCache[{Rational[237, 256], 1}, {0.92578125, 1}]]}, 
+   {RGBColor[0.2392156862745098, 0.2392156862745098, 0.2392156862745098], 
+    RectangleBox[NCache[{Rational[237, 256], 0}, {0.92578125, 0}], 
+     NCache[{Rational[119, 128], 1}, {0.9296875, 1}]]}, 
+   {RGBColor[
+    0.23137254901960785`, 0.23137254901960785`, 0.23137254901960785`], 
+    RectangleBox[NCache[{Rational[119, 128], 0}, {0.9296875, 0}], 
+     NCache[{Rational[239, 256], 1}, {0.93359375, 1}]]}, 
+   {RGBColor[
+    0.22352941176470587`, 0.22352941176470587`, 0.22352941176470587`], 
+    RectangleBox[NCache[{Rational[239, 256], 0}, {0.93359375, 0}], 
+     NCache[{Rational[15, 16], 1}, {0.9375, 1}]]}, 
+   {RGBColor[
+    0.21568627450980393`, 0.21568627450980393`, 0.21568627450980393`], 
+    RectangleBox[NCache[{Rational[15, 16], 0}, {0.9375, 0}], 
+     NCache[{Rational[241, 256], 1}, {0.94140625, 1}]]}, 
+   {RGBColor[
+    0.20784313725490194`, 0.20784313725490194`, 0.20784313725490194`], 
+    RectangleBox[NCache[{Rational[241, 256], 0}, {0.94140625, 0}], 
+     NCache[{Rational[121, 128], 1}, {0.9453125, 1}]]}, 
+   {RGBColor[
+    0.20392156862745098`, 0.20392156862745098`, 0.20392156862745098`], 
+    RectangleBox[NCache[{Rational[121, 128], 0}, {0.9453125, 0}], 
+     NCache[{Rational[243, 256], 1}, {0.94921875, 1}]]}, 
+   {RGBColor[
+    0.19607843137254902`, 0.19607843137254902`, 0.19607843137254902`], 
+    RectangleBox[NCache[{Rational[243, 256], 0}, {0.94921875, 0}], 
+     NCache[{Rational[61, 64], 1}, {0.953125, 1}]]}, 
+   {RGBColor[
+    0.18823529411764706`, 0.18823529411764706`, 0.18823529411764706`], 
+    RectangleBox[NCache[{Rational[61, 64], 0}, {0.953125, 0}], 
+     NCache[{Rational[245, 256], 1}, {0.95703125, 1}]]}, 
+   {RGBColor[0.1803921568627451, 0.1803921568627451, 0.1803921568627451], 
+    RectangleBox[NCache[{Rational[245, 256], 0}, {0.95703125, 0}], 
+     NCache[{Rational[123, 128], 1}, {0.9609375, 1}]]}, 
+   {RGBColor[
+    0.17254901960784313`, 0.17254901960784313`, 0.17254901960784313`], 
+    RectangleBox[NCache[{Rational[123, 128], 0}, {0.9609375, 0}], 
+     NCache[{Rational[247, 256], 1}, {0.96484375, 1}]]}, 
+   {RGBColor[
+    0.16470588235294117`, 0.16470588235294117`, 0.16470588235294117`], 
+    RectangleBox[NCache[{Rational[247, 256], 0}, {0.96484375, 0}], 
+     NCache[{Rational[31, 32], 1}, {0.96875, 1}]]}, 
+   {RGBColor[0.1568627450980392, 0.1568627450980392, 0.1568627450980392], 
+    RectangleBox[NCache[{Rational[31, 32], 0}, {0.96875, 0}], 
+     NCache[{Rational[249, 256], 1}, {0.97265625, 1}]]}, 
+   {RGBColor[
+    0.14901960784313725`, 0.14901960784313725`, 0.14901960784313725`], 
+    RectangleBox[NCache[{Rational[249, 256], 0}, {0.97265625, 0}], 
+     NCache[{Rational[125, 128], 1}, {0.9765625, 1}]]}, 
+   {RGBColor[0.1411764705882353, 0.1411764705882353, 0.1411764705882353], 
+    RectangleBox[NCache[{Rational[125, 128], 0}, {0.9765625, 0}], 
+     NCache[{Rational[251, 256], 1}, {0.98046875, 1}]]}, 
+   {RGBColor[
+    0.13333333333333333`, 0.13333333333333333`, 0.13333333333333333`], 
+    RectangleBox[NCache[{Rational[251, 256], 0}, {0.98046875, 0}], 
+     NCache[{Rational[63, 64], 1}, {0.984375, 1}]]}, 
+   {RGBColor[
+    0.12549019607843137`, 0.12549019607843137`, 0.12549019607843137`], 
+    RectangleBox[NCache[{Rational[63, 64], 0}, {0.984375, 0}], 
+     NCache[{Rational[253, 256], 1}, {0.98828125, 1}]]}, 
+   {RGBColor[
+    0.11764705882352941`, 0.11764705882352941`, 0.11764705882352941`], 
+    RectangleBox[NCache[{Rational[253, 256], 0}, {0.98828125, 0}], 
+     NCache[{Rational[127, 128], 1}, {0.9921875, 1}]]}, 
+   {RGBColor[
+    0.10980392156862745`, 0.10980392156862745`, 0.10980392156862745`], 
+    RectangleBox[NCache[{Rational[127, 128], 0}, {0.9921875, 0}], 
+     NCache[{Rational[255, 256], 1}, {0.99609375, 1}]]}, 
+   {RGBColor[
+    0.10196078431372549`, 0.10196078431372549`, 0.10196078431372549`], 
+    RectangleBox[NCache[{Rational[255, 256], 0}, {0.99609375, 0}], {1, 1}]}},
+  AspectRatio->0.2]], "Output",
+ CellChangeTimes->{{3.64806302837794*^9, 3.648063113631567*^9}, 
+   3.648063148452978*^9, {3.6480631876559896`*^9, 3.648063198511754*^9}, 
+   3.648063339100443*^9, 3.648064914228621*^9, 3.648069241876398*^9, {
+   3.648216343077951*^9, 3.6482163476077633`*^9}, 3.649608465502303*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Now write the python code for viscm", "Section",
+ CellChangeTimes->{{3.648063349167336*^9, 3.648063359505211*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "top", "=", 
+   "\"\<from matplotlib.colors import LinearSegmentedColormap\nfrom numpy \
+import nan, inf\n\>\""}], ";"}]], "Input",
+ CellChangeTimes->{{3.6480633718592653`*^9, 3.648063376769589*^9}, 
+   3.648063420926564*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "bottom", "=", 
+   "\"\<\n\ntest_cm = LinearSegmentedColormap.from_list(__file__, cm_data)\n\n\
+\nif __name__ == \\\"__main__\\\":\n    import matplotlib.pyplot as plt\n    \
+import numpy as np\n\n    try:\n        from pycam02ucs.cm.viscm import viscm\
+\n        viscm(test_cm)\n    except ImportError:\n        \
+print(\\\"pycam02ucs not found, falling back on simple display\\\")\n        \
+plt.imshow(np.linspace(0, 100, 256)[None, :], aspect='auto',\n                \
+   cmap=test_cm)\n    plt.show()\n\>\""}], ";"}]], "Input",
+ CellChangeTimes->{{3.6480633792080173`*^9, 3.648063423653368*^9}, {
+  3.648063846803421*^9, 3.648063846990644*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"midstrings", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\"\<cm_data = \>\"", "<>", 
+      RowBox[{"StringReplace", "[", 
+       RowBox[{
+        RowBox[{"ToString", "[", "#", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<}, {\>\"", "\[Rule]", "\"\<],\\n[\>\""}], ",", 
+          RowBox[{"\"\<{{\>\"", "\[Rule]", "\"\<[[\>\""}], ",", 
+          RowBox[{"\"\<}}\>\"", "\[Rule]", "\"\<]]\>\""}]}], "}"}]}], "]"}]}],
+      "&"}], "/@", "idlcolorbars"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.648063439231969*^9, 3.6480635731595697`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pyscripts", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"top", "<>", "#", "<>", "bottom"}], "&"}], "/@", 
+    "midstrings"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.648063578747971*^9, 3.648063605935761*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pytestdir", "=", "\"\<IDL_py_test/\>\""}], ";"}]], "Input",
+ CellChangeTimes->{{3.648063656174835*^9, 3.6480636742956877`*^9}, {
+   3.648063713365862*^9, 3.648063714628457*^9}, 3.648216358453638*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pyscriptname", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"pytestdir", "<>", "#", "<>", "\"\<.py\>\""}], "&"}], "/@", 
+   RowBox[{"FileBaseName", "/@", "idlcolorbarnames"}]}]}]], "Input",
+ CellChangeTimes->{{3.648063608457438*^9, 3.6480636314275417`*^9}, {
+  3.648063682119842*^9, 3.648063703852894*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/00_B-W_LINEAR.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/01_BLUE-WHITE.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/02_GRN-RED-BLU-WHT.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/03_RED_TEMPERATURE.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/04_BLUE-GREEN-RED-YELLOW.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/05_STD_GAMMA-II.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/06_PRISM.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/07_RED-PURPLE.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/08_GREEN-WHITE_LINEAR.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/09_GRN-WHT_EXPONENTIAL.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/10_GREEN-PINK.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/11_BLUE-RED.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/12_16_LEVEL.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/13_RAINBOW.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/14_STEPS.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/15_STERN_SPECIAL.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/16_Haze.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/17_Blue_-_Pastel_-_Red.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/18_Pastels.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/19_Hue_Sat_Lightness_1.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/20_Hue_Sat_Lightness_2.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/21_Hue_Sat_Value_1.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/22_Hue_Sat_Value_2.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/23_Purple-Red_plus_Stripes.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/24_Beach.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/25_Mac_Style.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/26_Eos_A.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/27_Eos_B.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/28_Hardcandy.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/29_Nature.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/30_Ocean.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/31_Peppermint.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/32_Plasma.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/33_Blue-Red.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/34_Rainbow.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/35_Blue_Waves.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/36_Volcano.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/37_Waves.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/38_Rainbow18.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/39_Rainbow_plus_white.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/40_Rainbow_plus_black.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/41_CB-Accent.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/42_CB-Dark2.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/43_CB-Paired.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/44_CB-Pastel1.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/45_CB-Pastel2.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/46_CB-Set1.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/47_CB-Set2.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/48_CB-Set3.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/49_CB-Blues.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/50_CB-BuGn.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/51_CB-BuPu.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/52_CB-GnBu.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/53_CB-Greens.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/54_CB-Greys.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/55_CB-Oranges.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/56_CB-OrRd.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/57_CB-PuBu.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/58_CB-PuBuGn.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/59_CB-PuRd.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/60_CB-Purples.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/61_CB-RdPu.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/62_CB-Reds.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/63_CB-YlGn.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/64_CB-YlGnBu.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/65_CB-YlOrBr.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/66_CB-BrBG.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/67_CB-PiYG.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/68_CB-PRGn.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/69_CB-PuOr.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/70_CB-RdBu.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/71_CB-RdGy.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/72_CB-RdYlBu.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/73_CB-RdYlGn.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/74_CB-Spectral.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/75_LAB_rainbow.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/76_MPL_rainbow.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/77_MPL_option_A.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/78_MPL_option_B.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/79_MPL_option_C.py\"\>", 
+   ",", "\<\"/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_\
+py_test/80_MPL_option_D.py\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.6480636119466953`*^9, 3.648063631829821*^9}, {
+   3.6480637049317513`*^9, 3.6480637163123207`*^9}, 3.6480638552497263`*^9, 
+   3.64806492230716*^9, 3.648069250658839*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"Export", "[", 
+    RowBox[{
+     RowBox[{"pyscriptname", "[", 
+      RowBox[{"[", "ii", "]"}], "]"}], ",", 
+     RowBox[{"pyscripts", "[", 
+      RowBox[{"[", "ii", "]"}], "]"}], ",", "\"\<Text\>\""}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"ii", ",", "1", ",", 
+     RowBox[{"Length", "[", "pyscripts", "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6480637202028103`*^9, 3.648063810837858*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Now run the python script to generate pngs for these colormaps\
+\>", "Section",
+ CellChangeTimes->{{3.648064025481926*^9, 3.648064039375063*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"idlpngdir", "=", "\"\<IDL_py_png/\>\""}]], "Input",
+ CellChangeTimes->{{3.6480640580288258`*^9, 3.6480640614951973`*^9}, {
+   3.648064100430931*^9, 3.64806410163061*^9}, {3.648066002194281*^9, 
+   3.648066002758906*^9}, 3.6482163696565313`*^9}],
+
+Cell[BoxData["\<\"IDL_py_png/\"\>"], "Output",
+ CellChangeTimes->{3.648064102957438*^9, 3.648064926258675*^9, 
+  3.648066003427677*^9, 3.6480692592871017`*^9, 3.648216372421011*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pypngcmds", "=", "\[IndentingNewLine]", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"\"\<python -m viscm show \>\"", "<>", 
+      RowBox[{"pyscriptname", "[", 
+       RowBox[{"[", "ii", "]"}], "]"}], "<>", "\"\< --save \>\"", "<>", 
+      "idlpngdir", "<>", 
+      RowBox[{"FileBaseName", "[", 
+       RowBox[{"idlcolorbarnames", "[", 
+        RowBox[{"[", "ii", "]"}], "]"}], "]"}], "<>", "\"\<.png\>\"", "<>", 
+      "\"\< --quit\>\""}], ",", 
+     RowBox[{"{", 
+      RowBox[{"ii", ",", "1", ",", 
+       RowBox[{"idlcolorbarnames", "//", "Length"}]}], "}"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.648064104899021*^9, 3.648064171643588*^9}, {
+  3.6480642291397*^9, 3.64806426334074*^9}, {3.648064370517997*^9, 
+  3.648064371072249*^9}, {3.64806464750462*^9, 3.6480646476954813`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "RunProcess"}]], "Input",
+ CellChangeTimes->{{3.648064275931439*^9, 3.6480642805371513`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox["\<\"RunProcess[\\\"command\\\"] runs the specified external \
+command, returning information on the outcome.\\nRunProcess[{\\\"command\\\", \
+arg 1, arg 2, \[Ellipsis]}] runs the specified command, with command-line \
+arguments arg i.\\nRunProcess[command, \\\"prop\\\"] returns only the \
+specified property.\\nRunProcess[command, prop, input] feeds the specified \
+initial input to the command.\"\>", "MSG"], "\[NonBreakingSpace]", 
+  ButtonBox[
+   StyleBox["\[RightSkeleton]", "SR"],
+   Active->True,
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/RunProcess"]}]], "Print", "PrintUsage",
+ CellChangeTimes->{3.6480692610227537`*^9},
+ CellTags->"Info-87eff334-cbdf-415c-94cf-3255e571f330"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pypngcmds", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.648064331480205*^9, 3.648064336428062*^9}}],
+
+Cell[BoxData["\<\"python -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/00_B-W_\
+LINEAR.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/00_B-W_\
+LINEAR.png --quit\"\>"], "Output",
+ CellChangeTimes->{3.648064336786614*^9, 3.6480643731150827`*^9, 
+  3.648064650092746*^9, 3.648064929340295*^9, 3.648066007032193*^9, 
+  3.64806926171944*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"bashproc", "=", 
+  RowBox[{"StartProcess", "[", "\"\</bin/bash\>\"", "]"}]}]], "Input",
+ CellChangeTimes->{{3.6480641884958076`*^9, 3.6480642259157953`*^9}, {
+  3.648064266871916*^9, 3.6480643045516777`*^9}, {3.6480651496586313`*^9, 
+  3.648065177272279*^9}, {3.64806580686567*^9, 3.648065809842325*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ProcessObject", "[", "4", "]"}]], "Output",
+ CellChangeTimes->{{3.648064210184697*^9, 3.6480642227241707`*^9}, {
+   3.648064296064619*^9, 3.648064305556226*^9}, 3.648064375456925*^9, 
+   3.6480649325134163`*^9, 3.648065152773514*^9, 3.6480658124208393`*^9, 
+   3.648066011586935*^9, 3.6480692626179523`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pypngcmds", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.648064635053461*^9, 3.648064638394985*^9}}],
+
+Cell[BoxData["\<\"python -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/00_B-W_\
+LINEAR.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/00_B-W_\
+LINEAR.png --quit\"\>"], "Output",
+ CellChangeTimes->{3.648064639572618*^9, 3.648064934325944*^9, 
+  3.648065817397374*^9, 3.6480659455498753`*^9, 3.648066012795014*^9, 
+  3.648069263470655*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StringJoin", "[", 
+  RowBox[{"Riffle", "[", 
+   RowBox[{"pypngcmds", ",", "\"\<\\n\\n\>\""}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.648066120699483*^9, 3.648066127175836*^9}, {
+  3.648066162515628*^9, 3.648066183432466*^9}}],
+
+Cell[BoxData["\<\"python -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/00_B-W_\
+LINEAR.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/00_B-W_\
+LINEAR.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/01_\
+BLUE-WHITE.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/01_BLUE-\
+WHITE.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/02_GRN-\
+RED-BLU-WHT.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/02_GRN-\
+RED-BLU-WHT.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/03_RED_\
+TEMPERATURE.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/03_RED_\
+TEMPERATURE.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/04_\
+BLUE-GREEN-RED-YELLOW.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/04_BLUE-\
+GREEN-RED-YELLOW.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/05_STD_\
+GAMMA-II.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/05_STD_\
+GAMMA-II.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/06_\
+PRISM.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/06_\
+PRISM.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/07_RED-\
+PURPLE.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/07_RED-\
+PURPLE.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/08_\
+GREEN-WHITE_LINEAR.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/08_\
+GREEN-WHITE_LINEAR.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/09_GRN-\
+WHT_EXPONENTIAL.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/09_GRN-\
+WHT_EXPONENTIAL.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/10_\
+GREEN-PINK.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/10_\
+GREEN-PINK.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/11_\
+BLUE-RED.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/11_BLUE-\
+RED.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/12_16_\
+LEVEL.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/12_16_\
+LEVEL.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/13_\
+RAINBOW.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/13_\
+RAINBOW.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/14_\
+STEPS.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/14_\
+STEPS.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/15_\
+STERN_SPECIAL.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/15_\
+STERN_SPECIAL.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/16_\
+Haze.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/16_Haze.\
+png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/17_\
+Blue_-_Pastel_-_Red.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/17_Blue_\
+-_Pastel_-_Red.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/18_\
+Pastels.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/18_\
+Pastels.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/19_Hue_\
+Sat_Lightness_1.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/19_Hue_\
+Sat_Lightness_1.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/20_Hue_\
+Sat_Lightness_2.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/20_Hue_\
+Sat_Lightness_2.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/21_Hue_\
+Sat_Value_1.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/21_Hue_\
+Sat_Value_1.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/22_Hue_\
+Sat_Value_2.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/22_Hue_\
+Sat_Value_2.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/23_\
+Purple-Red_plus_Stripes.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/23_\
+Purple-Red_plus_Stripes.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/24_\
+Beach.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/24_\
+Beach.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/25_Mac_\
+Style.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/25_Mac_\
+Style.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/26_Eos_\
+A.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/26_Eos_\
+A.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/27_Eos_\
+B.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/27_Eos_\
+B.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/28_\
+Hardcandy.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/28_\
+Hardcandy.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/29_\
+Nature.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/29_\
+Nature.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/30_\
+Ocean.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/30_\
+Ocean.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/31_\
+Peppermint.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/31_\
+Peppermint.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/32_\
+Plasma.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/32_\
+Plasma.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/33_\
+Blue-Red.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/33_Blue-\
+Red.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/34_\
+Rainbow.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/34_\
+Rainbow.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/35_\
+Blue_Waves.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/35_Blue_\
+Waves.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/36_\
+Volcano.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/36_\
+Volcano.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/37_\
+Waves.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/37_\
+Waves.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/38_\
+Rainbow18.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/38_\
+Rainbow18.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/39_\
+Rainbow_plus_white.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/39_\
+Rainbow_plus_white.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/40_\
+Rainbow_plus_black.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/40_\
+Rainbow_plus_black.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/41_CB-\
+Accent.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/41_CB-\
+Accent.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/42_CB-\
+Dark2.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/42_CB-\
+Dark2.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/43_CB-\
+Paired.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/43_CB-\
+Paired.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/44_CB-\
+Pastel1.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/44_CB-\
+Pastel1.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/45_CB-\
+Pastel2.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/45_CB-\
+Pastel2.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/46_CB-\
+Set1.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/46_CB-\
+Set1.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/47_CB-\
+Set2.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/47_CB-\
+Set2.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/48_CB-\
+Set3.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/48_CB-\
+Set3.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/49_CB-\
+Blues.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/49_CB-\
+Blues.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/50_CB-\
+BuGn.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/50_CB-\
+BuGn.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/51_CB-\
+BuPu.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/51_CB-\
+BuPu.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/52_CB-\
+GnBu.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/52_CB-\
+GnBu.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/53_CB-\
+Greens.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/53_CB-\
+Greens.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/54_CB-\
+Greys.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/54_CB-\
+Greys.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/55_CB-\
+Oranges.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/55_CB-\
+Oranges.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/56_CB-\
+OrRd.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/56_CB-\
+OrRd.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/57_CB-\
+PuBu.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/57_CB-\
+PuBu.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/58_CB-\
+PuBuGn.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/58_CB-\
+PuBuGn.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/59_CB-\
+PuRd.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/59_CB-\
+PuRd.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/60_CB-\
+Purples.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/60_CB-\
+Purples.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/61_CB-\
+RdPu.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/61_CB-\
+RdPu.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/62_CB-\
+Reds.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/62_CB-\
+Reds.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/63_CB-\
+YlGn.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/63_CB-\
+YlGn.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/64_CB-\
+YlGnBu.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/64_CB-\
+YlGnBu.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/65_CB-\
+YlOrBr.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/65_CB-\
+YlOrBr.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/66_CB-\
+BrBG.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/66_CB-\
+BrBG.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/67_CB-\
+PiYG.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/67_CB-\
+PiYG.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/68_CB-\
+PRGn.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/68_CB-\
+PRGn.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/69_CB-\
+PuOr.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/69_CB-\
+PuOr.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/70_CB-\
+RdBu.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/70_CB-\
+RdBu.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/71_CB-\
+RdGy.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/71_CB-\
+RdGy.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/72_CB-\
+RdYlBu.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/72_CB-\
+RdYlBu.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/73_CB-\
+RdYlGn.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/73_CB-\
+RdYlGn.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/74_CB-\
+Spectral.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/74_CB-\
+Spectral.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/75_LAB_\
+rainbow.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/75_LAB_\
+rainbow.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/76_MPL_\
+rainbow.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/76_MPL_\
+rainbow.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/77_MPL_\
+option_A.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/77_MPL_\
+option_A.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/78_MPL_\
+option_B.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/78_MPL_\
+option_B.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/79_MPL_\
+option_C.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/79_MPL_\
+option_C.png --quit\\n\\npython -m viscm show \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_test/80_MPL_\
+option_D.py --save \
+/home/mike/Documents/Helpful_Objects/IDL/chaffin/colorbars/IDL_py_png/80_MPL_\
+option_D.png --quit\"\>"], "Output",
+ CellChangeTimes->{
+  3.6480661275751133`*^9, {3.648066163349036*^9, 3.648066183933166*^9}, 
+   3.648069264530015*^9}]
+}, Open  ]],
+
+Cell["\<\
+I then copied and pasted the above expression into a terminal, which had the \
+desired effect.\
+\>", "Text",
+ CellChangeTimes->{{3.648216388672044*^9, 3.648216415749504*^9}}]
+}, Open  ]]
+},
+WindowSize->{2815, 1776},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"10.2 for Linux x86 (64-bit) (July 6, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "Info-984607dc-bfb2-433f-be7c-4b6a93e476d7"->{
+  Cell[2623, 81, 1957, 33, 94, "Print",
+   CellTags->"Info-984607dc-bfb2-433f-be7c-4b6a93e476d7"]},
+ "Info-87eff334-cbdf-415c-94cf-3255e571f330"->{
+  Cell[167668, 2879, 728, 14, 150, "Print",
+   CellTags->"Info-87eff334-cbdf-415c-94cf-3255e571f330"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"Info-984607dc-bfb2-433f-be7c-4b6a93e476d7", 189415, 3304},
+ {"Info-87eff334-cbdf-415c-94cf-3255e571f330", 189563, 3307}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 174, 3, 47, "Input"],
+Cell[757, 27, 185, 2, 47, "Output"]
+}, Open  ]],
+Cell[957, 32, 314, 7, 47, "Input"],
+Cell[1274, 41, 353, 8, 47, "Input"],
+Cell[1630, 51, 362, 8, 47, "Input"],
+Cell[CellGroupData[{
+Cell[2017, 63, 178, 3, 47, "Input"],
+Cell[2198, 68, 267, 4, 47, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2502, 77, 118, 2, 47, "Input"],
+Cell[2623, 81, 1957, 33, 94, "Print",
+ CellTags->"Info-984607dc-bfb2-433f-be7c-4b6a93e476d7"]
+}, Open  ]],
+Cell[4595, 117, 1061, 29, 86, "Input"],
+Cell[CellGroupData[{
+Cell[5681, 150, 183, 3, 47, "Input"],
+Cell[5867, 155, 50045, 787, 131, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55949, 947, 136, 2, 47, "Input"],
+Cell[56088, 951, 45241, 771, 131, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[101366, 1727, 923, 23, 144, "Input"],
+Cell[102292, 1752, 265, 3, 104, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[102594, 1760, 384, 8, 47, "Input"],
+Cell[102981, 1770, 50836, 804, 131, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[153854, 2579, 120, 1, 97, "Section"],
+Cell[153977, 2582, 262, 7, 112, "Input"],
+Cell[154242, 2591, 687, 12, 592, "Input"],
+Cell[154932, 2605, 603, 15, 47, "Input"],
+Cell[155538, 2622, 245, 7, 47, "Input"],
+Cell[155786, 2631, 234, 4, 47, "Input"],
+Cell[CellGroupData[{
+Cell[156045, 2639, 326, 7, 47, "Input"],
+Cell[156374, 2648, 9134, 166, 1328, "Output"]
+}, Open  ]],
+Cell[165523, 2817, 467, 12, 47, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[166027, 2834, 155, 3, 97, "Section"],
+Cell[CellGroupData[{
+Cell[166207, 2841, 268, 4, 47, "Input"],
+Cell[166478, 2847, 181, 2, 47, "Output"]
+}, Open  ]],
+Cell[166674, 2852, 845, 19, 80, "Input"],
+Cell[CellGroupData[{
+Cell[167544, 2875, 121, 2, 47, "Input"],
+Cell[167668, 2879, 728, 14, 150, "Print",
+ CellTags->"Info-87eff334-cbdf-415c-94cf-3255e571f330"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[168433, 2898, 151, 3, 47, "Input"],
+Cell[168587, 2903, 412, 7, 80, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[169036, 2915, 328, 5, 47, "Input"],
+Cell[169367, 2922, 331, 5, 47, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[169735, 2932, 151, 3, 47, "Input"],
+Cell[169889, 2937, 413, 7, 80, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[170339, 2949, 256, 5, 47, "Input"],
+Cell[170598, 2956, 18256, 327, 7504, "Output"]
+}, Open  ]],
+Cell[188869, 3286, 184, 4, 69, "Text"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

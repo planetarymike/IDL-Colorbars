@@ -12,9 +12,9 @@ loadct, file='/path/to/IDL-Colorbars/mycolorbars.tbl'. The new perceptual scheme
 
 To load a set of qualitative colors and a colorbar from file, use the command loadcsvcolorbar. You can specify the filename of a colorbar CSV file, relative to the IDL_rgb_values directory, or call it without arguments and see a list of all the colorbar files hosted in this directory, and select which one to load by number.
 
-Interpolation is performed in RGB space on the input CSV file, to compress or expand the input color arrays to the space available in the IDL colortable. For this reason, it is possible to create new RGB colorbars easily in CSV format. Two examples are given as bw.csv and brw.csv . Because RGB colorspace is not perceptually uniform, it's best to keep it simple with manually entered color tables, and leave creating new perceptually uniform color bars to languages with a more robust color handling system than IDL. 
+Interpolation is performed in RGB space on the input CSV file, to compress or expand the input color arrays to the space available in the IDL colortable. For this reason, it is possible to create new RGB colorbars easily in CSV format. Two examples are given in the colorbar_csv_source directory, bw.csv and brw.csv . Because RGB colorspace is not perceptually uniform, it's best to keep it simple with manually entered color tables, and leave creating new perceptually uniform color bars to languages with a more robust color handling system than IDL. 
 
-When using qualitative colors, make sure that any array display commands, such as tv or tvscl, refer only to indices in the qualitative scheme. One way to do this is to bytscl images into the appropriate range. At the moment, the number of qualitative colors loaded is 13, so that images should be scaled to the values 13-255 before being displayed. This is possible, for example, using the commands
+When using qualitative colors, make sure that any array display commands, such as tv or tvscl, refer only to indices in the quantitative scheme. One way to do this is to bytscl images into the appropriate range. At the moment, the number of qualitative colors loaded is 13, so that images should be scaled to the values 13-255 before being displayed. This is possible, for example, using the commands
 
     sclarr=bytscl(arr,top=(255-13))+13
     tv, sclarr
@@ -33,5 +33,5 @@ I recommend adding qualcolors.pro to your IDL startup script. This sets some var
     sclarr=bytscl(arr,top=(top_c-bottom_c))+bottom_c
     tv, sclarr
 
-Many routines and files hosted here are useful only if you want to reproduce the work I did to export the IDL color tables, analyze them with the python tools, and import new colortables into IDL. This work requires the python viscm toolkit, available here: https://github.com/matplotlib/viscm . There's also an unfortunate detour into Mathematica to perform some basic file generation (basically, to convert IDL csv tables to the viscm format), as I don't yet know how to do this sort of thing in Python.
+Many routines and files hosted here, particularly those in the IDL_py_test/ and colorbar_csv_source/ directories, are useful only if you want to reproduce the work I did to export the IDL color tables, analyze them with the python tools, and import new colortables into IDL. This work requires the python viscm toolkit, available here: https://github.com/matplotlib/viscm . There's also an unfortunate detour into Mathematica to perform some basic file generation (basically, to convert IDL csv tables to the viscm format), as I don't yet know how to do this sort of thing in Python (I'm sure it's easy!).
 
