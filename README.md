@@ -19,6 +19,12 @@ To load a set of qualitative colors and a colorbar from file, use the command
 
 You can specify the filename of a colorbar CSV file, relative to the IDL_rgb_values directory, or call it without arguments and see a list of all the colorbar files hosted in this directory, and select which one to load by number.
 
+If you are using object graphics, the keyword rgb_table will return a 3x256 array of the RGB color values in the default color table, so that you can pass this to the plot() function. Unless you specify otherwise, a set of qualitative colors will be included in this array. Best to call like so:
+
+       loadcsvcolorbar, 78, rgb_table=rgb_table, /noqual
+
+This will put the Matplotlib option B color RGB values into the rgb_table array. You can use the /reverse keyword as well to swap the order of the colortable.
+
 Interpolation is performed in RGB space on the input CSV file, to compress or expand the input color arrays to the space available in the IDL colortable. For this reason, it is possible to create new RGB colorbars easily in CSV format. Two examples are given in the colorbar_csv_source directory, bw.csv and brw.csv . Because RGB colorspace is not perceptually uniform, it's best to keep it simple with manually entered color tables, and leave creating new perceptually uniform color bars to languages with a more robust color handling system than IDL. 
 
 When using qualitative colors, make sure that any array display commands, such as tv or tvscl, refer only to indices in the quantitative scheme. One way to do this is to bytscl images into the appropriate range. At the moment, the number of qualitative colors loaded is 13, so that images should be scaled to the values 13-255 before being displayed. This is possible, for example, using the commands

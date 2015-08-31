@@ -26,13 +26,17 @@
 ;; colors. Unless the color table contains them at the ends of the
 ;; range, white and black will not be accessible with this flag
 ;; enabled.
+;;
+;; RGB_TABLE: return 3x256 array of the RGB values loaded into the
+;; current color table.
 
 
 pro loadcsvcolorbar, colortbl, $
                      directory = directory, $
                      silent = silent, $
                      reverse = reverse, $
-                     noqual = noqual
+                     noqual = noqual,  $
+                     rgb_table = rgb_table
 
 
   if keyword_set(directory) then begin
@@ -152,6 +156,15 @@ pro loadcsvcolorbar, colortbl, $
   r_curr = r
   g_curr = g
   b_curr = b
+
+  if arg_present(rgb_table) then begin
+     ;;return the rgb values into a 3x256 array
+     rgb_table = make_array(3, 256)
+     rgb_table[0, *] =  r
+     rgb_table[1, *] =  g
+     rgb_table[2, *] =  b
+  endif
+
 
   if ~keyword_set(noqual) then begin
      ;;if we have qualitative colors, then set the global plot
