@@ -56,6 +56,7 @@ pro loadcsvcolorbar, colortbl, $
         ;;string colortbl, this is a filename, just add the directory
         ;;and extension
         colortbl = rgbdir+colortbl
+        if ~keyword_set(silent) then print, "Loading color bar from CSV file: ", colortbl
      endif else if isa(colortbl, /integer) then begin
         ;;by integer, get the filenames and pick the right one
         colorbarnames = file_basename(file_search(rgbdir+"/*"), '.dat')
