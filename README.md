@@ -51,7 +51,9 @@ When using qualitative colors, make sure that any array display commands, such a
     sclarr=bytscl(arr,top=(255-13))+13
     tv, sclarr
 
-tvscl will not work, because IDL has no bottom keyword for these commands. If you added qualcolors.pro to your startup script, you can replace the magic numbers in the tvscl example above with
+tvscl will not work, because IDL has no bottom keyword for these commands. 
+
+If you added qualcolors.pro to your startup script, you can replace the magic numbers in the tvscl example above with
 
     sclarr=bytscl(arr,top=(top_c-bottom_c))+bottom_c
     tv, sclarr
