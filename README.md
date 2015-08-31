@@ -16,7 +16,7 @@ To improve interaction with loadcsvcolorbar, I recommend adding qualcolors.pro t
 
 Loading Color Tables
 --------------------
-*Using loadcsvcolorbar*
+**Using loadcsvcolorbar**
 
 To load a set of qualitative colors and a colorbar from file, use the command 
 
@@ -26,14 +26,16 @@ You can specify the filename of a colorbar CSV file, relative to the IDL_rgb_val
 
 This command has several options, including /noqual (diables qualitative colors) and /reverse (loads color table in reverse order). See the source code header for complete documentation.
 
-*Using loadct (not recommended)*
+**Using loadct (not recommended)**
+
 To load a table from the supplied colortable, point loadct at the location of the table file:
 
 	loadct, file='/path/to/IDL-Colorbars/mycolorbars.tbl' 
 
 The new perceptual schemes are stored at the end of the table, in indices 75 and on.
 
-*Object graphics*
+**Object graphics**
+
 If you are using object graphics, the keyword rgb_table will return a 3x256 array of the RGB color values in the default color table, so that you can pass this to the plot() function. Unless you specify otherwise, a set of qualitative colors will be included in this array. Best to call like so:
 
        loadcsvcolorbar, 78, rgb_table=rgb_table, /noqual
