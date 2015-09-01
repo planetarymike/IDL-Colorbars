@@ -70,12 +70,12 @@ If you added qualcolors.pro to your startup script, you can replace the magic nu
 
 Interaction with tplot
 ----------------------
-If you are using tplot, written in large part by Davin Larson (available here: http://themis.ssl.berkeley.edu/software.shtml), then this scaling can be accomplished for all spectrogram plots by setting
+If you are using tplot, written in large part by Davin Larson (available here: http://themis.ssl.berkeley.edu/software.shtml), then telling tplot to use only the quantitative colors for all spectrogram plots is done with the commands
 
-    tplot_options, 'bottom', 13
-    tplot_options, 'top', 255
+    tplot_options, 'bottom', bottom_c ;; bottom_c = 13
+    tplot_options, 'top', top_c ;; top_c = 255
 
-This is done automatically by loadcsvcolorbar if it detects tplot on your IDL path.
+These commands are run automatically by loadcsvcolorbar if it detects tplot on your IDL path.
 
 Additional Notes
 ----------------
