@@ -2,7 +2,7 @@
 
 Description
 -----------
-RGB values and helper routines for IDL colorbars.
+This repository is designed to get decent colormaps into IDL.
 
 Included is a new IDL colortable file with the new Matplotlib perceptual colorbars, as designed by Stéfan van der Walt and Nathaniel Smith (http://bids.github.io/colormap/). These colorbars are better than most of the builtin IDL default colorbars. To see why, you can look at the .png files located in the IDL_py_png directory, which apply the python-based sequential colormap analysis tools to the IDL builtin maps. Aside from the monochromatic and colorbrewer color bars, almost all IDL colorbars suffer from extreme deficiencies in perceptual uniformity and colorblind friendliness. By contrast, the new colorbars are perceptually uniform, colorblind friendly, and print correctly in black and white.
 
