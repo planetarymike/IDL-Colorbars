@@ -17,10 +17,10 @@ To improve interaction with loadcsvcolorbar, I recommend adding qualcolors.pro t
 To check that you've installed everything correctly, you can run the following commands:
 
 	loadcsvcolorbar, 78, /noqual
-	window,0, xsize=256, ysize=256
-	tvscl,rebin(rebin(indgen(256),256.*256),[256,256])
+	window, 0, xsize=256, ysize=256
+	tvscl, rebin(rebin(indgen(256),256.*256),[256,256])
 
-If the package is successfully installed, you should see this in you X window:
+If the package is successfully installed, you should see this in your X window:
 
 ![idl_png_out](https://cloud.githubusercontent.com/assets/13734186/9619362/9f0b4e26-50cc-11e5-845f-d2ad6c905d57.png)
 
