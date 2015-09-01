@@ -16,9 +16,9 @@ To improve interaction with loadcsvcolorbar, I recommend adding qualcolors.pro t
 
 To check that you've installed everything correctly, you can run the following commands:
 
-	loadcsvcolorbar, 78, /noqual
-	window, 0, xsize=256, ysize=256
-	tvscl, rebin(rebin(indgen(256),256.*256),[256,256])
+	loadcsvcolorbar, 78, /noqual ;;loads the Matplotlib 'option B' colorbar
+	window, 0, xsize=256, ysize=256 ;;prepares an appropriately sized X window
+	tvscl, rebin(rebin(indgen(256),256.*256),[256,256]) ;;plots a 256x256 horizontally increasing array
 
 If the package is successfully installed, you should see this in your X window:
 
