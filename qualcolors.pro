@@ -3,6 +3,11 @@
 
 ;;MAKE SURE TO CHANGE BOTH INDEX, NAME, AND RGB VALUES IF CHANGES ARE MADE
 
+;;set up the device for true color
+;;device, true=24,decompose=0,retain=2
+
+;;here are the color definitions
+
 red = 0
 green = 1 
 blue = 2
