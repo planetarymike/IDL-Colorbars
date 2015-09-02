@@ -27,7 +27,7 @@
 ;; range, white and black will not be accessible with this flag
 ;; enabled.
 ;;
-;; RGB_TABLE: return 3x256 array of the RGB values loaded into the
+;; RGB_TABLE=: return 3x256 array of the RGB values loaded into the
 ;; current color table.
 
 
@@ -55,7 +55,7 @@ pro loadcsvcolorbar, colortbl, $
      if size(colortbl, type = 7) EQ 7 then begin 
         ;;string colortbl, this is a filename, just add the directory
         ;;and extension
-        colortbl = rgbdir+colortbl
+        colortbl = rgbdir+colortbl+".dat"
         if ~keyword_set(silent) then print, "Loading color bar from CSV file: ", colortbl
      endif else if isa(colortbl, /integer) then begin
         ;;by integer, get the filenames and pick the right one
