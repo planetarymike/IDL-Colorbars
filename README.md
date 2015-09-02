@@ -16,7 +16,7 @@ To improve interaction with loadcsvcolorbar, I recommend adding qualcolors.pro t
 
 	@'qualcolors.pro'
 
-to your script, which will run all the commands in this file if IDL-Colorbars/ is on your !PATH . This script sets some variable names to their qualitative indices (eg red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin. qualcolors.pro also defines the usable range of colors in the color bar and the number of qualitative colors as variable names.
+to your startup file. This script sets some variable names to their qualitative indices (eg red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin. qualcolors.pro also defines the usable range of colors in the color bar and the number of qualitative colors as variable names.
 
 To check that you've installed everything correctly, you can run the following commands:
 
