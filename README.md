@@ -28,7 +28,7 @@ If the package is successfully installed, you should see this in your X window:
 
 ![idl_png_out](https://cloud.githubusercontent.com/assets/13734186/9619362/9f0b4e26-50cc-11e5-845f-d2ad6c905d57.png)
 
-If you see a black and white version of the above, try running this command before the above:
+If you see a black and white version of the above, try running this command and trying again:
 
 	device, true=24, decompose=0, retain=2
 
