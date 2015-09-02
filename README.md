@@ -2,7 +2,7 @@
 
 Description
 -----------
-RGB values and helper routines for IDL colorbars.
+This repository is designed to get decent colormaps into IDL.
 
 Included is a new IDL colortable file with the new Matplotlib perceptual colorbars, as designed by Stéfan van der Walt and Nathaniel Smith (http://bids.github.io/colormap/). These colorbars are better than most of the builtin IDL default colorbars. To see why, you can look at the .png files located in the IDL_py_png directory, which apply the python-based sequential colormap analysis tools to the IDL builtin maps. Aside from the monochromatic and colorbrewer color bars, almost all IDL colorbars suffer from extreme deficiencies in perceptual uniformity and colorblind friendliness. By contrast, the new colorbars are perceptually uniform, colorblind friendly, and print correctly in black and white.
 
@@ -14,17 +14,37 @@ To install, clone the entire repository onto your machine and add it to your IDL
 
 To improve interaction with loadcsvcolorbar, I recommend adding qualcolors.pro to your IDL startup script. This sets some variable names to their qualitative indices (eg red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin. qualcolors.pro also defines the usable range of colors in the color bar and the number of qualitative colors as variable names.
 
+To check that you've installed everything correctly, you can run the following commands:
+
+	loadcsvcolorbar, 78, /noqual ;;loads the Matplotlib 'option B' colorbar
+	window, 0, xsize=256, ysize=256 ;;prepares an appropriately sized X window
+	tvscl, rebin(rebin(indgen(256),256.*256),[256,256]) ;;plots a 256x256 horizontally increasing array
+
+If the package is successfully installed, you should see this in your X window:
+
+![idl_png_out](https://cloud.githubusercontent.com/assets/13734186/9619362/9f0b4e26-50cc-11e5-845f-d2ad6c905d57.png)
+
 Loading Color Tables
 --------------------
 **Using loadcsvcolorbar**
 
 To load a set of qualitative colors and a colorbar from file, use the command 
 
-  	loadcsvcolorbar 
+  	loadcsvcolorbar
 
-You can specify the filename of a colorbar CSV file, relative to the IDL_rgb_values directory, or call it without arguments and see a list of all the colorbar files hosted in this directory, and select which one to load by number.
+You can specify the filename of a colorbar CSV file, relative to the IDL_rgb_values directory, or call it without arguments and see a list of all the colorbar files hosted in this directory, and select which one to load by number. Examples:
 
-This command has several options, including /noqual (diables qualitative colors) and /reverse (loads color table in reverse order). See the source code header for complete documentation.
+	loadcsvcolorbar, 80 ;; loads Matplotlib option D
+	loadcsvcolorbar, '80_MPL_option_D' ;; same as above
+	loadcsvcolorbar ;; no argument, displays a list of options and asks the user to select by number
+
+By default, a set of qualitative colors is loaded along with the specified quantitative colormap, comprising eight colorbrewer colors (http://colorbrewer2.org/?type=qualitative&scheme=Set1&n=8) and 5 intervals of gray from black to white) If qualcolors.pro is on your IDL !PATH, you can refer to these colors with named variables referring to the appropriate color indices. To disable loading these qualitative colors, use the /noqual keyword, but beware! this may mean you cannot access black or white.
+
+Other keywords include:
+* /reverse, which loads the color table in reverse order (especially useful for colorbrewer monotonic schemes);
+* directory= , which specifies the search directory for RGB data files;
+* /silent, which disables echoing of loaded colorbar name to terminal; and
+* rgb_table= , which returns a 3x256 array of the RGB values loaded to the user, respecting both /reverse and /noqual.
 
 **Using loadct (not recommended)**
 
@@ -41,6 +61,10 @@ If you are using object graphics, the keyword rgb_table will return a 3x256 arra
        loadcsvcolorbar, 78, rgb_table=rgb_table, /noqual
 
 This will put the Matplotlib option B color RGB values into the rgb_table array. You can use the /reverse keyword as well to swap the order of the colortable.
+
+**Defining new colormaps**
+
+This is as easy as adding a new 3 column CSV file of RGB values to the IDL_rgb_values/ directory, following the naming convention already present in the directory. RGB values can range either from 0-1 or 0-256 (the package assumes that CSV files with any entries larger than 1 are scaled from 0-256). The number of rows must be at least two, but is otherwise unrestricted.
 
 Interpolation is performed in RGB space on the input CSV file, to compress or expand the input color arrays to the space available in the IDL colortable. For this reason, it is possible to create new RGB colorbars easily in CSV format. Two examples are given in the make_csv directory, bw.csv and brw.csv . Because RGB colorspace is not perceptually uniform, it's best to keep it simple with manually entered color tables, and leave creating new perceptually uniform color bars to languages with a more robust color handling system than IDL. 
 
@@ -60,12 +84,12 @@ If you added qualcolors.pro to your startup script, you can replace the magic nu
 
 Interaction with tplot
 ----------------------
-If you are using tplot, written in large part by Davin Larson (available here: http://themis.ssl.berkeley.edu/software.shtml), then this scaling can be accomplished for all spectrogram plots by setting
+If you are using tplot, written in large part by Davin Larson (available here: http://themis.ssl.berkeley.edu/software.shtml), then telling tplot to use only the quantitative colors for all spectrogram plots is done with the commands
 
-    tplot_options, 'bottom', 13
-    tplot_options, 'top', 255
+    tplot_options, 'bottom', bottom_c ;; bottom_c = 13
+    tplot_options, 'top', top_c ;; top_c = 255
 
-This is done automatically by loadcsvcolorbar if it detects tplot on your IDL path.
+These commands are run automatically by loadcsvcolorbar if it detects tplot on your IDL path.
 
 Additional Notes
 ----------------
