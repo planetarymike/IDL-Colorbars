@@ -52,6 +52,10 @@ If you are using object graphics, the keyword rgb_table will return a 3x256 arra
 
 This will put the Matplotlib option B color RGB values into the rgb_table array. You can use the /reverse keyword as well to swap the order of the colortable.
 
+**Defining new colormaps**
+
+This is as easy as adding a new 3 column CSV file of RGB values to the IDL_rgb_values/ directory, following the naming convention already present in the directory. RGB values can range either from 0-1 or 0-256 (the package assumes that CSV files with any entries larger than 1 are scaled from 0-256). The number of rows must be at least two, but is otherwise unrestricted.
+
 Interpolation is performed in RGB space on the input CSV file, to compress or expand the input color arrays to the space available in the IDL colortable. For this reason, it is possible to create new RGB colorbars easily in CSV format. Two examples are given in the make_csv directory, bw.csv and brw.csv . Because RGB colorspace is not perceptually uniform, it's best to keep it simple with manually entered color tables, and leave creating new perceptually uniform color bars to languages with a more robust color handling system than IDL. 
 
 Plotting Heatmaps
