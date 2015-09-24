@@ -38,6 +38,8 @@ pro loadcsvcolorbar, colortbl, $
                      noqual = noqual,  $
                      rgb_table = rgb_table
 
+compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to subscript the reverse flag instrad of calling the reverse procedure when interpreting reverse(interpr) 
+
 
   if keyword_set(directory) then begin
      ;;user-specified absolute directory
@@ -153,6 +155,7 @@ pro loadcsvcolorbar, colortbl, $
   b = myb
   tvlct, r, g, b
 
+  
   ;;Important!  Update the colors common block.  
   r_curr = r
   g_curr = g
@@ -160,7 +163,7 @@ pro loadcsvcolorbar, colortbl, $
 
   if arg_present(rgb_table) then begin
      ;;return the rgb values into a 3x256 array
-     rgb_table = make_array(3, 256)
+     rgb_table = make_array(3, 256, /double)
      rgb_table[0, *] =  r
      rgb_table[1, *] =  g
      rgb_table[2, *] =  b
