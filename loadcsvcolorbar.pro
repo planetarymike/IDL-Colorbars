@@ -54,12 +54,12 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
   
   if n_elements(colortbl) GT 0 then begin
      ;;user specified a colorbar
-     if size(colortbl, type = 7) EQ 7 then begin 
+     if size(colortbl, /type) EQ 7 then begin 
         ;;string colortbl, this is a filename, just add the directory
         ;;and extension
         colortbl = rgbdir+colortbl+".dat"
         if ~keyword_set(silent) then print, "Loading color bar from CSV file: ", colortbl
-     endif else if isa(colortbl, /integer) then begin
+     endif else if size(colortbl, /type) EQ 2 then begin
         ;;by integer, get the filenames and pick the right one
         colorbarnames = file_basename(file_search(rgbdir+"/*"), '.dat')
         if ~keyword_set(silent) then print, "Loading CSV color bar: ", colorbarnames[colortbl]

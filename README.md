@@ -12,7 +12,11 @@ Installation
 ------------
 To install, clone the entire repository onto your machine and add it to your IDL !PATH variable. All of the routines should compile on demand and find the files and directories they need automatically.
 
-To improve interaction with loadcsvcolorbar, I recommend adding qualcolors.pro to your IDL startup script. This sets some variable names to their qualitative indices (eg red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin. qualcolors.pro also defines the usable range of colors in the color bar and the number of qualitative colors as variable names.
+To improve interaction with loadcsvcolorbar, I recommend adding qualcolors.pro to your IDL startup script. You can do this by appending the line
+
+	@'qualcolors.pro'
+
+to your startup file. This script sets some variable names to their qualitative indices (eg red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin. qualcolors.pro also defines the usable range of colors in the color bar and the number of qualitative colors as variable names.
 
 To check that you've installed everything correctly, you can run the following commands:
 
@@ -23,6 +27,12 @@ To check that you've installed everything correctly, you can run the following c
 If the package is successfully installed, you should see this in your X window:
 
 ![idl_png_out](https://cloud.githubusercontent.com/assets/13734186/9619362/9f0b4e26-50cc-11e5-845f-d2ad6c905d57.png)
+
+If you see a black and white version of the above, try running this command and trying again:
+
+	device, true=24, decompose=0, retain=2
+
+You may wish to add this command to your startup file, in a seperate script or by uncommenting the line in qualcolors.pro that does this for you.
 
 Loading Color Tables
 --------------------
