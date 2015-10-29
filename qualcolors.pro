@@ -8,22 +8,26 @@
 
 ;;here are the color definitions
 
-red = 0
-green = 1 
-blue = 2
-purple = 3 
-orange = 4
-yellow = 5
-brown = 6 
-pink = 7
+;;qualitative colors must be in a single block at either the top or
+;;bottom of the color table. Here, they are put at the top. 
+red = !d.table_size-1
+green = !d.table_size-2
+blue = !d.table_size-3
+purple = !d.table_size-4
+orange = !d.table_size-5
+yellow = !d.table_size-6
+brown = !d.table_size-7
+pink = !d.table_size-8
 ;;and a few unsaturated grays
-black = 8
-gray25 = 9
-gray50 = 10
-gray75 = 11
-white = 12
+black = !d.table_size-9
+gray25 = !d.table_size-10
+gray50 = !d.table_size-11
+gray75 = !d.table_size-12
+white = !d.table_size-13
 ;;total number of qualitative colors is
 nqual = 13
+top_c = !d.table_size-nqual-1
+bottom_c = 0
 
 ;;color names
 colornames = [ 'red', 'green', 'blue', 'purple', 'orange', $
