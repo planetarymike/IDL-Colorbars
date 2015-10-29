@@ -78,6 +78,12 @@ This is as easy as adding a new 3 column CSV file of RGB values to the IDL_rgb_v
 
 Interpolation is performed in RGB space on the input CSV file, to compress or expand the input color arrays to the space available in the IDL colortable. For this reason, it is possible to create new RGB colorbars easily in CSV format. Two examples are given in the make_csv directory, bw.csv and brw.csv . Because RGB colorspace is not perceptually uniform, it's best to keep it simple with manually entered color tables, and leave creating new perceptually uniform color bars to languages with a more robust color handling system than IDL. 
 
+Colormaps available
+-------------------
+Here is a graphical description of the available colormaps:
+![all_idl_tables](https://github.com/planetarymike/IDL-Colorbars/blob/master/all_idl_tables.png)
+
+
 Plotting Heatmaps
 -----------------
 When using qualitative colors, make sure that any array display commands, such as tv or tvscl, refer only to indices in the quantitative scheme. One way to do this is to bytscl images into the appropriate range. At the moment, the number of qualitative colors loaded is 13, so that images should be scaled to the values 13-255 before being displayed. This is possible, for example, using the commands
