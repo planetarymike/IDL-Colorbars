@@ -48,7 +48,7 @@ You can specify the filename of a colorbar CSV file, relative to the IDL_rgb_val
 	loadcsvcolorbar, '80_MPL_option_D' ;; same as above
 	loadcsvcolorbar ;; no argument, displays a list of options and asks the user to select by number
 
-By default, a set of qualitative colors is loaded along with the specified quantitative colormap, comprising eight colorbrewer colors (http://colorbrewer2.org/?type=qualitative&scheme=Set1&n=8) and 5 intervals of gray from black to white) If qualcolors.pro is on your IDL !PATH, you can refer to these colors with named variables referring to the appropriate color indices. To disable loading these qualitative colors, use the /noqual keyword, but beware! this may mean you cannot access black or white.
+By default, a set of qualitative colors is loaded along with the specified quantitative colormap, comprising eight colorbrewer colors (http://colorbrewer2.org/?type=qualitative&scheme=Set1&n=8) and 5 intervals of gray from black to white. If qualcolors.pro is on your IDL !PATH, you can refer to these colors with named variables referring to the appropriate color indices. To disable loading these qualitative colors, use the /noqual keyword, but beware! this may mean you cannot access black or white.
 
 Other keywords include:
 * /reverse, which loads the color table in reverse order (especially useful for colorbrewer monotonic schemes);
