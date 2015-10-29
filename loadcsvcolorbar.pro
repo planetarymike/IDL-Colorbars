@@ -29,15 +29,24 @@
 ;;
 ;; RGB_TABLE=: return 3x256 array of the RGB values loaded into the
 ;; current color table.
-
+;;
+;; LOW_QUANT=: load only the file indices above the specified quantile
+;; into the color table (e.g. to load only the upper half of the
+;; colors in the file specify LOW_QUANT=0.5)
+;;
+;; HIGH_QUANT=: load only the file indices below the specified quantile
+;; into the color table (e.g. to load only the lower half of the
+;; colors in the file specify HIGH_QUANT=0.5)
 
 pro loadcsvcolorbar, colortbl, $
                      directory = directory, $
                      silent = silent, $
                      reverse = reverse, $
                      noqual = noqual,  $
-                     rgb_table = rgb_table
-
+                     rgb_table = rgb_table, $
+                     low_quant = low_quant, $
+                     high_quant = high_quant
+  
 compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to subscript the reverse flag instrad of calling the reverse procedure when interpreting reverse(interpr) 
 
 
@@ -79,6 +88,21 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
 
   ;;load the RGB values from file
   mytbl = read_csv(colortbl)
+  ;;restrict the quantiles loaded from this table
+  ntblcolors = n_elements(mytbl.field1)
+  if keyword_set(low_quant) then begin
+     lowidx = round(low_quant*float(ntblcolors))
+  endif else begin
+     lowidx = 0
+  endelse
+  if keyword_set(high_quant) then begin
+     highidx = round(high_quant*(float(ntblcolors)-1))
+  endif else begin
+     highidx = ntblcolors-1
+  endelse
+  tblr = mytbl.field1[lowidx:highidx]
+  tblg = mytbl.field2[lowidx:highidx]
+  tblb = mytbl.field3[lowidx:highidx]
 
   ;;setup color arrays
   myr = indgen(256)
@@ -122,12 +146,12 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
   endif
   
   ;;now interpolate the color bar to the appropriate size
-  interpr = interpolate(float(mytbl.field1), findgen(top_c-bottom_c+1) $
-                                       *(n_elements(mytbl.field1)-1)/(top_c-bottom_c))
-  interpg = interpolate(float(mytbl.field2), findgen(top_c-bottom_c+1) $
-                                       *(n_elements(mytbl.field1)-1)/(top_c-bottom_c))
-  interpb = interpolate(float(mytbl.field3), findgen(top_c-bottom_c+1) $
-                                       *(n_elements(mytbl.field1)-1)/(top_c-bottom_c))
+  interpr = interpolate(float(tblr), findgen(top_c-bottom_c+1) $
+                                       *(n_elements(tblr)-1)/(top_c-bottom_c))
+  interpg = interpolate(float(tblg), findgen(top_c-bottom_c+1) $
+                                       *(n_elements(tblr)-1)/(top_c-bottom_c))
+  interpb = interpolate(float(tblb), findgen(top_c-bottom_c+1) $
+                                       *(n_elements(tblb)-1)/(top_c-bottom_c))
 
   ;;correct for RGB values that run from 0->1
   if max(interpr) > max(interpg) > max(interpb) LT 1.1 then begin
