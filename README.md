@@ -55,6 +55,8 @@ Other keywords include:
 * directory= , which specifies the search directory for RGB data files;
 * /silent, which disables echoing of loaded colorbar name to terminal; and
 * rgb_table= , which returns a 3x256 array of the RGB values loaded to the user, respecting both /reverse and /noqual.
+* low_quant=, which limits the loaded values to start at the specified quantile of the colors in the original table.
+* high_quant=, which limits the loaded values to end at the specified quantile of the colors in the original table.
 
 **Using loadct (not recommended)**
 
