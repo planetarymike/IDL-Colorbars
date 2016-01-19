@@ -47,7 +47,7 @@ pro loadcsvcolorbar, colortbl, $
                      low_quant = low_quant, $
                      high_quant = high_quant
   
-compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to subscript the reverse flag instrad of calling the reverse procedure when interpreting reverse(interpr) 
+compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to subscript the reverse flag instead of calling the reverse procedure when interpreting reverse(interpr) 
 
 
   if keyword_set(directory) then begin
