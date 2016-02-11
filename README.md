@@ -95,9 +95,9 @@ When using qualitative colors, make sure that any array display commands, such a
 
 tvscl will not work, because IDL has no bottom keyword for these commands. 
 
-If you added qualcolors.pro to your startup script, you can replace the magic numbers in the tvscl example above with
+If you added qualcolors to your startup script, you can replace the magic numbers in the tvscl example above with
 
-    sclarr=bytscl(arr,top=(top_c-bottom_c))+bottom_c
+    sclarr=bytscl(arr,top=(qualcolors.top_c-qualcolors.bottom_c))+qualcolors.bottom_c
     tv, sclarr
 
 Interaction with tplot
