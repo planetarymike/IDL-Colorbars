@@ -12,11 +12,11 @@ Installation
 ------------
 To install, clone the entire repository onto your machine and add it to your IDL !PATH variable. All of the routines should compile on demand and find the files and directories they need automatically.
 
-To improve interaction with loadcsvcolorbar, I recommend adding qualcolors.pro to your IDL startup script. You can do this by appending the line
+To improve interaction with loadcsvcolorbar, I recommend adding qualcolors to your IDL startup script. You can do this by appending the line
 
-	@'qualcolors.pro'
+	@'qualcolors'
 
-to your startup file. This script sets some variable names to their qualitative indices (eg red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin. qualcolors.pro also defines the usable range of colors in the color bar and the number of qualitative colors as variable names.
+to your startup file. This script load a structure that stores information about qualitative colors, for intuitive access (eg qualcolors.red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin. qualcolors also defines the usable range of colors in the color bar and the number of qualitative colors as variable names.
 
 To check that you've installed everything correctly, you can run the following commands:
 
@@ -32,7 +32,7 @@ If you see a black and white version of the above, try running this command and 
 
 	device, true=24, decompose=0, retain=2
 
-You may wish to add this command to your startup file, in a seperate script or by uncommenting the line in qualcolors.pro that does this for you.
+You may wish to add this command to your startup file, in a seperate script or by uncommenting the line in qualcolors that does this for you.
 
 Loading Color Tables
 --------------------
@@ -48,7 +48,7 @@ You can specify the filename of a colorbar CSV file, relative to the IDL_rgb_val
 	loadcsvcolorbar, '80_MPL_option_D' ;; same as above
 	loadcsvcolorbar ;; no argument, displays a list of options and asks the user to select by number
 
-By default, a set of qualitative colors is loaded along with the specified quantitative colormap, comprising eight colorbrewer colors (http://colorbrewer2.org/?type=qualitative&scheme=Set1&n=8) and 5 intervals of gray from black to white. If qualcolors.pro is on your IDL !PATH, you can refer to these colors with named variables referring to the appropriate color indices. To disable loading these qualitative colors, use the /noqual keyword, but beware! this may mean you cannot access black or white.
+By default, a set of qualitative colors is loaded along with the specified quantitative colormap, comprising eight colorbrewer colors (http://colorbrewer2.org/?type=qualitative&scheme=Set1&n=8) and 5 intervals of gray from black to white. If qualcolors is on your IDL !PATH, you can refer to these colors with named elements of the qualcolors structure referring to the appropriate color indices (eg, color=qualcolors.blue). To disable loading these qualitative colors, use the /noqual keyword, but beware! this may mean you cannot access black or white.
 
 Other keywords include:
 * /reverse, which loads the color table in reverse order (especially useful for colorbrewer monotonic schemes);
@@ -95,9 +95,9 @@ When using qualitative colors, make sure that any array display commands, such a
 
 tvscl will not work, because IDL has no bottom keyword for these commands. 
 
-If you added qualcolors.pro to your startup script, you can replace the magic numbers in the tvscl example above with
+If you added qualcolors to your startup script, you can replace the magic numbers in the tvscl example above with
 
-    sclarr=bytscl(arr,top=(top_c-bottom_c))+bottom_c
+    sclarr=bytscl(arr,top=(qualcolors.top_c-qualcolors.bottom_c))+qualcolors.bottom_c
     tv, sclarr
 
 Interaction with tplot
