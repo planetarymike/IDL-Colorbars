@@ -110,19 +110,19 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
   myb = indgen(256)
 
   ;;get the qualitative color info
-  @'qualcolors.pro'
-  myr[qi] = qr
-  myg[qi] = qg
-  myb[qi] = qb
+  @'qualcolors'
+  myr[qualcolors.qi] = qualcolors.qr
+  myg[qualcolors.qi] = qualcolors.qg
+  myb[qualcolors.qi] = qualcolors.qb
 
   ;;the color indices usable in the colorbar are therefore
-  if max(qi) EQ !d.table_size-1 and max(qi)-min(qi)+1 EQ nqual then begin
+  if max(qualcolors.qi) EQ !d.table_size-1 and max(qualcolors.qi)-min(qualcolors.qi)+1 EQ qualcolors.nqual then begin
      ;;qualcolors are at top of color table
      bottom_c = 0
-     top_c = !d.table_size-nqual-1
-  endif else if min(qi) EQ 0 and max(qi)-min(qi)+1 EQ nqual then begin
+     top_c = !d.table_size-qualcolors.nqual-1
+  endif else if min(qualcolors.qi) EQ 0 and max(qualcolors.qi)-min(qualcolors.qi)+1 EQ qualcolors.nqual then begin
      ;;qualcolors are at bottom of color table
-     bottom_c = nqual
+     bottom_c = qualcolors.nqual
      top_c = !d.table_size-1
   endif else begin
      print, "**********************************************************"
@@ -198,8 +198,8 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
      ;;if we have qualitative colors, then set the global plot
      ;;variables to some nice defaults. Otherwise, the user is on
      ;;their own!
-     !p.color = gray50
-     !p.background = white
+     !p.color = qualcolors.gray50
+     !p.background = qualcolors.white
   endif
 
   ;;tplot global options to make sure the colorbars don't use
