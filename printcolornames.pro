@@ -1,6 +1,6 @@
 ;;prints names and indices for named colors loaded by loadcsvcolorbar
 pro printcolornames
-  @'qualcolors.pro'
+  @'qualcolors'
   colorindex = indgen(size(colornames, /n_elements))
 
   print, 'Here are the defined named colors usable with a loadcsvcolorbar command:'

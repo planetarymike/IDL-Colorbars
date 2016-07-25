@@ -1,7 +1,7 @@
 ;;LOADCSVCOLORBAR.PRO
 ;;commands to load a CSV color table file from a local directory,
 ;;along with some colorbrewer qualitative colors in selected indices,
-;;as defined in qualcolors.pro
+;;as defined in qualcolors file
 ;;
 ;; OPTIONAL:
 ;;
@@ -132,7 +132,7 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
      print, " disabling qualitative colors."
      print, ""
      print, "Colorbar "+file_basename(colortbl)+" will be loaded "
-     print, " without qualitative indices. Check qualcolors.pro to "
+     print, " without qualitative indices. Check qualcolors file to "
      print, " remedy the problem."
      print, "**********************************************************"
      print, "**********************************************************"
