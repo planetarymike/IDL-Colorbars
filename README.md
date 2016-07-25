@@ -104,8 +104,8 @@ Interaction with tplot
 ----------------------
 If you are using tplot, written in large part by Davin Larson (available here: http://themis.ssl.berkeley.edu/software.shtml), then telling tplot to use only the quantitative colors for all spectrogram plots is done with the commands
 
-    tplot_options, 'bottom', bottom_c ;; bottom_c = 13
-    tplot_options, 'top', top_c ;; top_c = 255
+    tplot_options, 'bottom', qualcolors.bottom_c ;; bottom_c = 13
+    tplot_options, 'top', qualcolors.top_c ;; top_c = 255
 
 These commands are run automatically by loadcsvcolorbar if it detects tplot on your IDL path.
 
