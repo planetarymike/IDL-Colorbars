@@ -205,8 +205,13 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
   ;;tplot global options to make sure the colorbars don't use
   ;;the qualitative colors
   if file_which('tplot_options.pro') NE "" then begin
-     tplot_options, 'bottom', bottom_c
-     tplot_options, 'top', top_c
+     if keyword_set(noqual) then begin
+        tplot_options, 'bottom', bottom_c+1
+        tplot_options, 'top', top_c
+     endif else begin
+        tplot_options, 'bottom', bottom_c
+        tplot_options, 'top', top_c
+     endelse
   endif
   
 end
