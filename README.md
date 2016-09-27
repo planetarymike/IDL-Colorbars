@@ -109,6 +109,13 @@ If you are using tplot, written in large part by Davin Larson (available here: h
 
 These commands are run automatically by loadcsvcolorbar if it detects tplot on your IDL path.
 
+You may experience a problem where color scales are not drawn after loading the package. This happens if you use do not use qualitative colors, because the color bar spans indices 0-255, and tplot checks if it can draw a color scale by calling keyword_set(bottom), which is terrible and not the proper syntax. You can fix this by running
+
+    tplot_options, 'bottom', qualcolors.bottom_c+1 ;; bottom_c = 13
+    tplot_options, 'top', qualcolors.top_c ;; top_c = 255
+
+These commands are run if you load a colorbar without qualitative colors while using tplot.
+
 Additional Notes
 ----------------
 Many routines and files hosted here, particularly those in the IDL_py_test/ and make_csv/ directories, are useful only if you want to reproduce the work I did to export the IDL color tables, analyze them with the python tools, and import new colortables into IDL. This work requires the python viscm toolkit, available here: https://github.com/matplotlib/viscm . There's also an unfortunate detour into Mathematica to perform some basic file generation (basically, to convert IDL csv tables to the viscm format), as I don't yet know how to do this sort of thing in Python (I'm sure it's easy!).
