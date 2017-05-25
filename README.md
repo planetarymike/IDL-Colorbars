@@ -104,6 +104,10 @@ Interaction with tplot
 ----------------------
 Using loadcv as recommended above should automatically handle interaction with tplot, but see below if you're interested in the details.
 
+Qualitiative colors can be accessed with qualcolors, just do something like
+	 
+	 options, 'mvn_swim_velocity_mso', 'colors', [qualcolors.gray75, qualcolors.red, qualcolors.green, qualcolors.blue]
+
 If you are using tplot, written in large part by Davin Larson (available here: http://themis.ssl.berkeley.edu/software.shtml), then telling tplot to use only the quantitative colors for all spectrogram plots is done with the commands
 
     tplot_options, 'bottom', qualcolors.bottom_c ;; bottom_c = 13
