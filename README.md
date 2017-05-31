@@ -100,6 +100,20 @@ If you added qualcolors to your startup script, you can replace the magic number
     sclarr=bytscl(arr,top=(qualcolors.top_c-qualcolors.bottom_c))+qualcolors.bottom_c
     tv, sclarr
 
+Printing to PS
+--------------
+If you're having difficulties printing to PS (red backgrounds, odd colors), try some variation of the below:
+
+	set_plot, 'PS'
+        device, /color, filename=saveDIR+fname, xsize=8., ysize=11.5, /inches, /encapsulated, bits_per_pixel=8., decomposed=0
+        !p.background = qualcolors.gray25
+        tplot, vars
+        timebar, tbar, thick=2
+        device, /close
+        set_plot, 'X'
+	
+(Thanks, Chris Fowler!)
+
 Interaction with tplot
 ----------------------
 Using loadcv as recommended above should automatically handle interaction with tplot, but see below if you're interested in the details.
