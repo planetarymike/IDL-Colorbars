@@ -105,12 +105,12 @@ Printing to PS
 If you're having difficulties printing to PS (red backgrounds, odd colors), try some variation of the below:
 
 	set_plot, 'PS'
-        device, /color, filename=saveDIR+fname, xsize=8., ysize=11.5, /inches, /encapsulated, bits_per_pixel=8., decomposed=0
-        !p.background = qualcolors.gray25
-        tplot, vars
-        timebar, tbar, thick=2
-        device, /close
-        set_plot, 'X'
+	device, /color, filename=saveDIR+fname, xsize=8., ysize=11.5, /inches, /encapsulated, bits_per_pixel=8., decomposed=0
+	!p.background = qualcolors.gray25
+	tplot, vars
+	timebar, tbar, thick=2
+	device, /close
+	set_plot, 'X'
 	
 (Thanks, Chris Fowler!)
 
