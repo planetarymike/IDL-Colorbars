@@ -99,6 +99,15 @@ If you added qualcolors to your startup script, you can replace the magic number
 
     sclarr=bytscl(arr,top=(qualcolors.top_c-qualcolors.bottom_c))+qualcolors.bottom_c
     tv, sclarr
+    
+Contour plots
+-------------
+Similar to the above, if you want to plot a density or contour map in IDL, you need to tell the routine which colors to use from the colormap. Some variation of the following will probably work for your data:
+
+	CD, !DIR+'/examples/data'
+	RESTORE, 'marbells.dat'
+	loadcv, 80
+	CONTOUR, elev, c_colors=findgen(60)*(qualcolors.top_c-1-qualcolors.bottom_c)/60.0+qualcolors.bottom_c,/fill,LEVELS = 2750 + FINDGEN(60) * 25.
 
 Printing to PS
 --------------
