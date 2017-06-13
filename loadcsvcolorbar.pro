@@ -46,6 +46,8 @@ pro loadcsvcolorbar, colortbl, $
                      rgb_table = rgb_table, $
                      low_quant = low_quant, $
                      high_quant = high_quant
+
+  incolortbl = colortbl
   
 compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to subscript the reverse flag instead of calling the reverse procedure when interpreting reverse(interpr) 
 
@@ -213,5 +215,7 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
         tplot_options, 'top', top_c
      endelse
   endif
+
+  colortbl = incolortbl
   
 end
