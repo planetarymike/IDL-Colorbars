@@ -107,7 +107,8 @@ Similar to the above, if you want to plot a density or contour map in IDL, you n
 	CD, !DIR+'/examples/data'
 	RESTORE, 'marbells.dat'
 	loadcv, 80
-	CONTOUR, elev, c_colors=findgen(60)*(qualcolors.top_c-1-qualcolors.bottom_c)/60.0+qualcolors.bottom_c,/fill,LEVELS = 2750 + FINDGEN(60) * 25.
+	nlevels=120
+	CONTOUR, elev, c_colors=findgen(nlevels)*(qualcolors.top_c-1-qualcolors.bottom_c)/double(nlevels)+qualcolors.bottom_c,/fill,NLEVELS = nlevels
 
 Printing to PS
 --------------
