@@ -16,11 +16,11 @@ To improve interaction with loadcsvcolorbar, I recommend adding qualcolors to yo
 
 	@'qualcolors'
 
-to your startup file. This script load a structure that stores information about qualitative colors, for intuitive access (eg qualcolors.red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin. qualcolors also defines the usable range of colors in the color bar and the number of qualitative colors as variable names.
+to your startup file. This script loads a structure that stores information about qualitative colors, for intuitive access (eg qualcolors.red = 0). Otherwise, the indices and color names are available through the command printcolornames, which does what it says on the tin. qualcolors also defines the usable range of colors in the color bar and the number of qualitative colors as variable names.
 
 To check that you've installed everything correctly, you can run the following commands:
 
-	loadcsvcolorbar, 78, /noqual ;;loads the Matplotlib 'option B' colorbar
+	loadcv, 78, /noqual ;;loads the Matplotlib 'option B' colorbar
 	window, 0, xsize=256, ysize=256 ;;prepares an appropriately sized X window
 	tvscl, rebin(rebin(indgen(256),256.*256),[256,256]) ;;plots a 256x256 horizontally increasing array
 
@@ -40,13 +40,13 @@ Loading Color Tables
 
 To load a set of qualitative colors and a colorbar from file, use the command 
 
-  	loadcsvcolorbar
+  	loadcv
 
 You can specify the filename of a colorbar CSV file, relative to the IDL_rgb_values directory, or call it without arguments and see a list of all the colorbar files hosted in this directory, and select which one to load by number. Examples:
 
-	loadcsvcolorbar, 80 ;; loads Matplotlib option D
-	loadcsvcolorbar, '80_MPL_option_D' ;; same as above
-	loadcsvcolorbar ;; no argument, displays a list of options and asks the user to select by number
+	loadcv, 80 ;; loads Matplotlib option D
+	loadcv, '80_MPL_option_D' ;; same as above
+	loadcv ;; no argument, displays a list of options and asks the user to select by number
 
 By default, a set of qualitative colors is loaded along with the specified quantitative colormap, comprising eight colorbrewer colors (http://colorbrewer2.org/?type=qualitative&scheme=Set1&n=8) and 5 intervals of gray from black to white. If qualcolors is on your IDL !PATH, you can refer to these colors with named elements of the qualcolors structure referring to the appropriate color indices (eg, color=qualcolors.blue). To disable loading these qualitative colors, use the /noqual keyword, but beware! this may mean you cannot access black or white.
 
@@ -70,7 +70,7 @@ The new perceptual schemes are stored at the end of the table, in indices 75 and
 
 If you are using object graphics, the keyword rgb_table will return a 3x256 array of the RGB color values in the default color table, so that you can pass this to the plot() function. Unless you specify otherwise, a set of qualitative colors will be included in this array. Best to call like so:
 
-       loadcsvcolorbar, 78, rgb_table=rgb_table, /noqual
+       loadcv, 78, rgb_table=rgb_table, /noqual
 
 This will put the Matplotlib option B color RGB values into the rgb_table array. You can use the /reverse keyword as well to swap the order of the colortable.
 
@@ -100,8 +100,28 @@ If you added qualcolors to your startup script, you can replace the magic number
     sclarr=bytscl(arr,top=(qualcolors.top_c-qualcolors.bottom_c))+qualcolors.bottom_c
     tv, sclarr
 
+Printing to PS
+--------------
+If you're having difficulties printing to PS (red backgrounds, odd colors), try some variation of the below:
+
+	set_plot, 'PS'
+	device, /color, filename=saveDIR+fname, xsize=8., ysize=11.5, /inches, /encapsulated, bits_per_pixel=8., decomposed=0
+	!p.background = qualcolors.gray25
+	tplot, vars
+	timebar, tbar, thick=2
+	device, /close
+	set_plot, 'X'
+	
+(Thanks, Chris Fowler!)
+
 Interaction with tplot
 ----------------------
+Using loadcv as recommended above should automatically handle interaction with tplot, but see below if you're interested in the details.
+
+Qualitiative colors can be accessed with qualcolors, just do something like
+	 
+	 options, 'mvn_swim_velocity_mso', 'colors', [qualcolors.gray75, qualcolors.red, qualcolors.green, qualcolors.blue]
+
 If you are using tplot, written in large part by Davin Larson (available here: http://themis.ssl.berkeley.edu/software.shtml), then telling tplot to use only the quantitative colors for all spectrogram plots is done with the commands
 
     tplot_options, 'bottom', qualcolors.bottom_c ;; bottom_c = 13
