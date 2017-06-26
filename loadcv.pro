@@ -1,4 +1,4 @@
 ;;alias for loadcsvcolorbar
-pro loadcv, colortbl, _EXTRA = ex
-  loadcsvcolorbar, colortbl, _EXTRA = ex
+pro loadcv, colortbl, rgb_table = rgb_table, _EXTRA = ex
+  loadcsvcolorbar, colortbl, rgb_table = rgb_table, _EXTRA = ex
 end
