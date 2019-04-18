@@ -148,5 +148,5 @@ These commands are run if you load a colorbar without qualitative colors while u
 
 Additional Notes
 ----------------
-Many routines and files hosted here, particularly those in the IDL_py_test/ and make_csv/ directories, are useful only if you want to reproduce the work I did to export the IDL color tables, analyze them with the python tools, and import new colortables into IDL. This work requires the python viscm toolkit, available here: https://github.com/matplotlib/viscm . There's also an unfortunate detour into Mathematica to perform some basic file generation (basically, to convert IDL csv tables to the viscm format), as I don't yet know how to do this sort of thing in Python (I'm sure it's easy!).
+Many routines and files hosted here, particularly those in the IDL_py_test/ and make_csv/ directories, are useful only if you want to reproduce the work I did to export the IDL color tables, analyze them with the python tools, and import new colortables into IDL. This work requires the python viscm toolkit, available here: https://github.com/matplotlib/viscm . There's also an unfortunate detour into Mathematica to perform some basic file generation (basically, to convert IDL csv tables to the viscm format), as I didn't yet know how to do this sort of thing in Python (I'm sure it's easy!).
 
