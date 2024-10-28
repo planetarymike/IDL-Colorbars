@@ -47,7 +47,9 @@ pro loadcsvcolorbar, colortbl, $
                      low_quant = low_quant, $
                      high_quant = high_quant
 
-  incolortbl = colortbl
+  if size(colortbl, /type) NE 0 then begin
+     incolortbl = colortbl
+  endif
   
 compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to subscript the reverse flag instead of calling the reverse procedure when interpreting reverse(interpr) 
 
@@ -63,7 +65,7 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
   endelse
 
   
-  if n_elements(colortbl) GT 0 then begin
+  if size(colortbl, /type) NE 0 then begin
      ;;user specified a colorbar
      if size(colortbl, /type) EQ 7 then begin 
         ;;string colortbl, this is a filename, just add the directory
@@ -76,7 +78,7 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
         if ~keyword_set(silent) then print, "Loading CSV color bar: ", colorbarnames[colortbl]
         colortbl = rgbdir+colorbarnames[colortbl]+".dat"
      endif else begin
-        print, "I'm not sure which colorbar you're trying to load, please pick by hand:"
+        print, "I'm not sure which colorbar you're trying to load, call this function without arguments to see a list of available colorbars."
      endelse
   endif else begin
      colorbarnames = file_basename(file_search(rgbdir+"/*"), '.dat')
@@ -216,6 +218,8 @@ compile_opt strictarr ;;forces IDL to not make the insanely stupid choice to sub
      endelse
   endif
 
-  colortbl = incolortbl
+  if size(incolortbl, /type) NE 0 then begin
+     colortbl = incolortbl
+  endif
   
 end
